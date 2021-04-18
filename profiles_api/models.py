@@ -3,6 +3,92 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
+from enum import Enum
+# from address.models import AddressField """pip install django-address"""
+from django.utils import timezone
+
+# Tags = Enum('','','')
+# RatingPOV = Enum('','','')
+
+
+class Location(models.Model):
+    latitude = ''
+    longitude = ''
+    cityName = models.CharField(max_length=15)
+
+class Weather(models.Model):
+    temprature = models.FloatField(null=False)
+    message = models.CharField(max_length=1000)
+    condition = ''
+    location = Location()
+    windSpeed = models.FloatField(null=False)
+
+class PartialRating(models.Model):
+    POV = ''#RatingPOV()
+    rating = 0.0
+
+class Review(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    reviewText = models.CharField(max_length=1000)
+    overallRating = 0.0
+    partialRating = PartialRating()
+
+class Bookable():
+    def makeAnAppointment(self):
+        pass
+
+class Place(models.Model):
+    name = models.CharField(max_length=10)
+    location = Location()
+    ranking = 0.0
+    description = models.CharField(max_length=100)
+    tags = []#list(Tags)
+    reviews = []#list(Review())
+    address = models.CharField(max_length=100) #AddressField()
+
+class Room(models.Model):
+    checkinDate = models.DateTimeField()
+    checkoutDate  = models.DateTimeField()
+    details = models.CharField(max_length=1000)
+
+class Restaurant(Place,Bookable):
+    checkinDate = models.DateTimeField()
+    orderMenu = []#list(Order())
+    # @override
+    def makeAnAppointment():
+        pass
+
+class Hotel(Place,Bookable):
+    rooms = []#list(Room())
+    # @override
+    def makeAnAppointment():
+        pass
+
+class FlightTicket(models.Model):
+    date = models.DateTimeField()
+    originCity =models.CharField(max_length=15)
+    destinationCity = models.CharField(max_length=15)
+    expectedDuration = models.TimeField()
+
+class AirLine(models.Model):
+    name = models.CharField(max_length=20)
+    flights = []
+    reviews = []#list(Review())
+
+class Trip(models.Model):
+    """Places ,ovarAllRating and bookings"""
+    places = []#list(Place())
+    ovarAllRating = 0.0
+    bookings =[]
+
+class Task(models.Model):
+    title = models.CharField(max_length=100)
+    date = models.DateTimeField()
+    isFinished = models.BooleanField(default=True)
+    category = models.CharField(max_length=10)
 
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
@@ -34,9 +120,12 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
+    tripsHistory = []#list(Trip())
+    tasks = []#list(Task())
+    currentTrip = Trip()
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
+    date_joined = models.DateTimeField(default=timezone.now)
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
@@ -53,16 +142,16 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of user"""
         return self.email
-
-class ProfileFeedItem(models.Model):
-    """Profile status update"""
-    user_profile = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-    )
-    status_text = models.CharField(max_length=255)
-    created_on = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        """Return the model as a string"""
-        return self.status_text
+#
+# class ProfileFeedItem(models.Model):
+#     """Profile status update"""
+#     user_profile = models.ForeignKey(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE
+#     )
+#     status_text = models.CharField(max_length=255)
+#     created_on = models.DateTimeField(auto_now_add=True)
+#
+#     def __str__(self):
+#         """Return the model as a string"""
+#         return self.status_text
