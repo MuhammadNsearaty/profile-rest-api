@@ -24,21 +24,31 @@ from profiles_api import permissions
 #     def perform_create(self, serializer):
 #         """Sets the user profile to the logged in user"""
 #         serializer.save(user_profile=self.request.user)
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
 
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)
+        
 class UserLogInApiView(ObtainAuthToken):
     """Handle creating user authentication token"""
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+class HotelViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.HotelSerializer
+    queryset = models.Hotel.objects.all()
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handle creating and updating profiles"""
 
     serializer_class = serializers.UserProfileSerializer
+
     queryset = models.UserProfile.objects.all()
 
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('name','email')
+    search_fields = ('firstName','email')
 
 # class HelloApiView(APIView):
 #     """Test API View"""

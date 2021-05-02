@@ -4,28 +4,31 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
 from enum import Enum
-# from address.models import AddressField """pip install django-address"""
 from django.utils import timezone
+from django.contrib.postgres.fields import ArrayField
 
 # Tags = Enum('','','')
 # RatingPOV = Enum('','','')
 
 
 class Location(models.Model):
-    latitude = ''
-    longitude = ''
+    latitude = models.FloatField(null=False,default=0.0)
+    longitude = models.FloatField(null=False,default=0.0)
     cityName = models.CharField(max_length=15)
 
 class Weather(models.Model):
     temprature = models.FloatField(null=False)
     message = models.CharField(max_length=1000)
-    condition = ''
-    location = Location()
+    # condition =
+    location = models.ForeignKey(
+        'Location',
+        on_delete = models.CASCADE
+    )
     windSpeed = models.FloatField(null=False)
-
-class PartialRating(models.Model):
-    POV = ''#RatingPOV()
-    rating = 0.0
+#
+# class PartialRating(models.Model):
+#     POV = ''#RatingPOV()
+#     rating = 0.0
 
 class Review(models.Model):
     user = models.ForeignKey(
@@ -34,7 +37,7 @@ class Review(models.Model):
     )
     reviewText = models.CharField(max_length=1000)
     overallRating = 0.0
-    partialRating = PartialRating()
+    # partialRating = PartialRating()
 
 class Bookable():
     def makeAnAppointment(self):
@@ -42,12 +45,22 @@ class Bookable():
 
 class Place(models.Model):
     name = models.CharField(max_length=10)
-    location = Location()
-    ranking = 0.0
+    location = models.ForeignKey(
+        'Location',
+        on_delete = models.DO_NOTHING,
+    )
+    ranking = models.FloatField(null=False,default=0.0)
     description = models.CharField(max_length=100)
     tags = []#list(Tags)
     reviews = []#list(Review())
-    address = models.CharField(max_length=100) #AddressField()
+    # reviews = ArrayField(
+    #     models.ForeignKey(
+    #         'Review',
+    #         on_delete = models.DO_NOTHING
+    #     )
+    #     ,25
+    # )
+    address =  models.CharField(max_length=100)
 
 class Room(models.Model):
     checkinDate = models.DateTimeField()
@@ -119,7 +132,8 @@ class UserProfileManager(BaseUserManager):
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
-    name = models.CharField(max_length=255)
+    firstName = models.CharField(max_length=255,default='')
+    lastName = models.CharField(max_length=255,default='')
     tripsHistory = []#list(Trip())
     tasks = []#list(Task())
     currentTrip = Trip()

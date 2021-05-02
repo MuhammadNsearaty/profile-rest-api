@@ -16,13 +16,43 @@ from profiles_api import models
 # class HelloSerializer(serializers.Serializer):
 #     """Serializes a name field for testing out APIView"""
 #     name = serializers.CharField(max_length=10)
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Location
+        fileds = ('latitude','longitude','cityName')
+    def create(self,validated_data):
+        location = models.Location.objects.create_user(
+        latitude = validated_data['latitude'],
+        longitude = validated_data['longitude'],
+        cityName = validated_data['cityName'],
+        )
+        return location
+
+class HotelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Hotel
+        fields = ('name','location','ranking','description','tags','reviews','address')
+
+    def create(self,validated_data):
+        hotel = Hotel.objects.create(
+            name = validated_data['name'],
+            location = validated_data['location'],
+            ranking = validated_data['ranking'],
+            description = validated_data['description'],
+            tags = validated_data['tags'],
+            reviews = validated_data['reviews'],
+            address = validated_data['address']
+        )
+        # user = Hotel.objects.create(**validated_data)
+        return hotel
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """serializes a user profile object"""
 
     class Meta:
         model = models.UserProfile
-        fields = ('id','email','name','password')
+        fields = ('id','email','firstName','password')
         extra_kwargs = {
             'password':{
                 'write_only':True,
@@ -33,7 +63,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
         """Create and return a new user"""
         user  = models.UserProfile.objects.create_user(
             email=validated_data['email'],
-            name = validated_data['name'],
+            firstName = validated_data['firstName'],
             password = validated_data['password']
         )
+
         return user
