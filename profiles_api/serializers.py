@@ -13,20 +13,34 @@ from profiles_api import models
 #                 }
 #         }
 
-# class HelloSerializer(serializers.Serializer):
-#     """Serializes a name field for testing out APIView"""
-#     name = serializers.CharField(max_length=10)
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Location
         fileds = ('latitude','longitude','cityName')
     def create(self,validated_data):
-        location = models.Location.objects.create_user(
+        location = models.Location.objects.create(
         latitude = validated_data['latitude'],
         longitude = validated_data['longitude'],
         cityName = validated_data['cityName'],
         )
         return location
+
+
+class PlaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Place
+        fields = ('name','location','ranking','description','tags','reviews')
+    def create(self,validated_data):
+        place = models.Place.objects.create(
+            name = validated_data['name'],
+            location = validated_data['location'],
+            ranking = validated_data['ranking'],
+            description  =validated_data['description'],
+            reviews = validated_data['reviews'],
+            tags = validated_data['tags']
+        )
+        return place
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:

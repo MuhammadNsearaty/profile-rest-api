@@ -30,13 +30,19 @@ class HelloView(APIView):
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
-        
+
 class UserLogInApiView(ObtainAuthToken):
     """Handle creating user authentication token"""
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 class HotelViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HotelSerializer
     queryset = models.Hotel.objects.all()
+
+class PlaceViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.PlaceSerializer
+
+    queryset = models.Place.objects.all()
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handle creating and updating profiles"""

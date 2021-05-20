@@ -6,6 +6,7 @@ from django.conf import settings
 from enum import Enum
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
+# from profiles_api import serializers
 
 # Tags = Enum('','','')
 # RatingPOV = Enum('','','')
@@ -25,10 +26,7 @@ class Weather(models.Model):
         on_delete = models.CASCADE
     )
     windSpeed = models.FloatField(null=False)
-#
-# class PartialRating(models.Model):
-#     POV = ''#RatingPOV()
-#     rating = 0.0
+
 
 class Review(models.Model):
     user = models.ForeignKey(
@@ -37,11 +35,6 @@ class Review(models.Model):
     )
     reviewText = models.CharField(max_length=1000)
     overallRating = 0.0
-    # partialRating = PartialRating()
-
-class Bookable():
-    def makeAnAppointment(self):
-        pass
 
 class Place(models.Model):
     name = models.CharField(max_length=10)
@@ -51,16 +44,20 @@ class Place(models.Model):
     )
     ranking = models.FloatField(null=False,default=0.0)
     description = models.CharField(max_length=100)
+
+    # reviews  = serializers.ListField(child = serializers.IntegerField())
+
     tags = []#list(Tags)
-    reviews = []#list(Review())
-    # reviews = ArrayField(
-    #     models.ForeignKey(
-    #         'Review',
-    #         on_delete = models.DO_NOTHING
-    #     )
-    #     ,25
-    # )
+    #reviews = []#list(Review())
+    reviews = ArrayField(
+        models.IntegerField(),50,null=True,
+    )
     address =  models.CharField(max_length=100)
+
+class Bookable():
+    def makeAnAppointment(self):
+        pass
+
 
 class Room(models.Model):
     checkinDate = models.DateTimeField()
