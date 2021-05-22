@@ -20,7 +20,6 @@ class Location(models.Model):
 class Weather(models.Model):
     temprature = models.FloatField(null=False)
     message = models.CharField(max_length=1000)
-    # condition =
     location = models.ForeignKey(
         'Location',
         on_delete = models.CASCADE
@@ -33,7 +32,7 @@ class Review(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    reviewText = models.CharField(max_length=1000)
+    reviewText = models.CharField(max_length=2000)
     overallRating = 0.0
 
 class Place(models.Model):
@@ -42,17 +41,13 @@ class Place(models.Model):
         'Location',
         on_delete = models.DO_NOTHING,
     )
-    ranking = models.FloatField(null=False,default=0.0)
+    rank = models.FloatField(null=False,default=0.0)
+    kinds = models.CharField(max_length=1000)
     description = models.CharField(max_length=100)
-
-    # reviews  = serializers.ListField(child = serializers.IntegerField())
-
-    tags = []#list(Tags)
-    #reviews = []#list(Review())
     reviews = ArrayField(
         models.IntegerField(),50,null=True,
     )
-    address =  models.CharField(max_length=100)
+    # address =  models.CharField(max_length=100)
 
 class Bookable():
     def makeAnAppointment(self):
@@ -103,22 +98,22 @@ class Task(models.Model):
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, firstName,lastName, password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=name,)
+        user = self.model(email=email, firstName=firstName,lastName=lastName)
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, name, password):
+    def create_superuser(self, email, password):
         """Create and save a new superuser with given details"""
-        user = self.create_user(email, name, password)
+        user = self.create_user(email, 'superuser','', password)
 
         user.is_superuser = True
         user.is_staff = True
@@ -140,15 +135,15 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    # REQUIRED_FIELDS = ['name']
 
     def get_full_name(self):
         """Retrieve full name for user"""
-        return self.name
+        return self.firstName+self.lastName
 
     def get_short_name(self):
         """Retrieve short name of user"""
-        return self.name
+        return self.firstName
 
     def __str__(self):
         """Return string representation of user"""

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'profiles_api',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -106,12 +107,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
+APPEND_SLASH=False 
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

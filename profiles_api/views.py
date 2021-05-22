@@ -25,7 +25,6 @@ from profiles_api import permissions
 #         """Sets the user profile to the logged in user"""
 #         serializer.save(user_profile=self.request.user)
 class HelloView(APIView):
-    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         content = {'message': 'Hello, World!'}

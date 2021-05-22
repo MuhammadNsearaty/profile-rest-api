@@ -30,32 +30,31 @@ class LocationSerializer(serializers.ModelSerializer):
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Place
-        fields = ('name','location','ranking','description','tags','reviews')
+        fields = ('name','location','rank','description','kinds','reviews')
     def create(self,validated_data):
         place = models.Place.objects.create(
             name = validated_data['name'],
             location = validated_data['location'],
-            ranking = validated_data['ranking'],
+            rank = validated_data['rank'],
             description  =validated_data['description'],
             reviews = validated_data['reviews'],
-            tags = validated_data['tags']
+            kinds = validated_data['kinds']
         )
         return place
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Hotel
-        fields = ('name','location','ranking','description','tags','reviews','address')
+        fields = ('name','location','rank','description','kinds','reviews')
 
     def create(self,validated_data):
         hotel = Hotel.objects.create(
             name = validated_data['name'],
             location = validated_data['location'],
-            ranking = validated_data['ranking'],
+            rank = validated_data['rank'],
             description = validated_data['description'],
-            tags = validated_data['tags'],
+            kinds = validated_data['kinds'],
             reviews = validated_data['reviews'],
-            address = validated_data['address']
         )
         # user = Hotel.objects.create(**validated_data)
         return hotel
@@ -75,7 +74,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         }
     def create(self, validated_data):
         """Create and return a new user"""
-        user  = models.UserProfile.objects.create_user(
+        user  = models.UserProfile.objects.create(
             email=validated_data['email'],
             firstName = validated_data['firstName'],
             password = validated_data['password']
