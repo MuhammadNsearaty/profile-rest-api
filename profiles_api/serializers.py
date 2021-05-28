@@ -1,17 +1,5 @@
 from rest_framework import serializers
 from profiles_api import models
-#
-# class ProfileFeedItemSerializer(serializers.ModelSerializer):
-#     """Serializes profile fees item"""
-#
-#     class Meta:
-#         model = models.ProfileFeedItem
-#         fields = ('id', 'user_profile','status_text', 'created_on')
-#         extra_kwargs = {
-#             'user_profile':{
-#                 'read_only':True,
-#                 }
-#         }
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -65,7 +53,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserProfile
-        fields = ('id','email','firstName','password')
+        fields = ('id','email','firstName','lastName','password')
         extra_kwargs = {
             'password':{
                 'write_only':True,
@@ -74,9 +62,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
         }
     def create(self, validated_data):
         """Create and return a new user"""
-        user  = models.UserProfile.objects.create(
+        user  = models.UserProfile.objects.create_user(
             email=validated_data['email'],
             firstName = validated_data['firstName'],
+            lastName = validated_data['lastName'],
             password = validated_data['password']
         )
 

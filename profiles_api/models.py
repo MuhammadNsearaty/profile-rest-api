@@ -135,7 +135,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name']
 
     def get_full_name(self):
         """Retrieve full name for user"""
