@@ -98,22 +98,51 @@ class Task(models.Model):
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
+<<<<<<< HEAD
     def create_user(self, email, firstName,lastName, password=None):
+=======
+    # def create_user(self, email, name, password=None):
+    #     """Create a new user profile"""
+    #     if not email:
+    #         raise ValueError('Users must have an email address')
+    #
+    #     email = self.normalize_email(email)
+    #     user = self.model(email=email, name=name,)
+    #
+    #     user.set_password(password)
+    #     user.save(using=self._db)
+    #
+    #     return user
+    def create_user(self, email, firstName,lastName,age,gender,password=None):
+>>>>>>> master
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
+<<<<<<< HEAD
         user = self.model(email=email, firstName=firstName,lastName=lastName)
+=======
+        user = self.model(email=email, firstName=firstName,lastName=lastName,age=age,gender=gender)
+>>>>>>> master
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
+<<<<<<< HEAD
     def create_superuser(self, email, password):
         """Create and save a new superuser with given details"""
         user = self.create_user(email, 'superuser','', password)
+=======
+    def create_superuser(self, email,password):
+        """Create and save a new superuser with given details"""
+        if password is None:
+            raise TypeError('Superusers must have a password.')
+
+        user = self.create_user(email, firstName='super',lastName='user',age=0,gender=0,password=password)
+>>>>>>> master
 
         user.is_superuser = True
         user.is_staff = True
@@ -123,9 +152,17 @@ class UserProfileManager(BaseUserManager):
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(verbose_name = 'email address',max_length=255, unique=True)
     firstName = models.CharField(max_length=255,default='')
     lastName = models.CharField(max_length=255,default='')
+    # phone_number = models.CharField(max_length=10)
+    age = models.PositiveIntegerField(null=False, blank=False)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+
     tripsHistory = []#list(Trip())
     tasks = []#list(Task())
     currentTrip = Trip()
@@ -135,7 +172,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = []
 
     def get_full_name(self):
         """Retrieve full name for user"""
@@ -148,6 +185,12 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of user"""
         return self.email
+    #
+    # class Meta:
+    #     '''
+    #     to set table name in database
+    #     '''
+    #     db_table = "login"
 #
 # class ProfileFeedItem(models.Model):
 #     """Profile status update"""
