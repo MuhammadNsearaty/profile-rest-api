@@ -3,147 +3,32 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
-from enum import Enum
+
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
-# from profiles_api import serializers
-
-# Tags = Enum('','','')
-# RatingPOV = Enum('','','')
-
-
-class Location(models.Model):
-    latitude = models.FloatField(null=False,default=0.0)
-    longitude = models.FloatField(null=False,default=0.0)
-    cityName = models.CharField(max_length=15)
-
-class Weather(models.Model):
-    temprature = models.FloatField(null=False)
-    message = models.CharField(max_length=1000)
-    location = models.ForeignKey(
-        'Location',
-        on_delete = models.CASCADE
-    )
-    windSpeed = models.FloatField(null=False)
-
-
-class Review(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-    )
-    reviewText = models.CharField(max_length=2000)
-    overallRating = 0.0
-
-class Place(models.Model):
-    name = models.CharField(max_length=10)
-    location = models.ForeignKey(
-        'Location',
-        on_delete = models.DO_NOTHING,
-    )
-    rank = models.FloatField(null=False,default=0.0)
-    kinds = models.CharField(max_length=1000)
-    description = models.CharField(max_length=100)
-    reviews = ArrayField(
-        models.IntegerField(),50,null=True,
-    )
-    # address =  models.CharField(max_length=100)
-
-class Bookable():
-    def makeAnAppointment(self):
-        pass
-
-
-class Room(models.Model):
-    checkinDate = models.DateTimeField()
-    checkoutDate  = models.DateTimeField()
-    details = models.CharField(max_length=1000)
-
-class Restaurant(Place,Bookable):
-    checkinDate = models.DateTimeField()
-    orderMenu = []#list(Order())
-    # @override
-    def makeAnAppointment():
-        pass
-
-class Hotel(Place,Bookable):
-    rooms = []#list(Room())
-    # @override
-    def makeAnAppointment():
-        pass
-
-class FlightTicket(models.Model):
-    date = models.DateTimeField()
-    originCity =models.CharField(max_length=15)
-    destinationCity = models.CharField(max_length=15)
-    expectedDuration = models.TimeField()
-
-class AirLine(models.Model):
-    name = models.CharField(max_length=20)
-    flights = []
-    reviews = []#list(Review())
-
-class Trip(models.Model):
-    """Places ,ovarAllRating and bookings"""
-    places = []#list(Place())
-    ovarAllRating = 0.0
-    bookings =[]
-
-class Task(models.Model):
-    title = models.CharField(max_length=100)
-    date = models.DateTimeField()
-    isFinished = models.BooleanField(default=True)
-    category = models.CharField(max_length=10)
+from trips_api.models import Trip
 
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-<<<<<<< HEAD
     def create_user(self, email, firstName,lastName, password=None):
-=======
-    # def create_user(self, email, name, password=None):
-    #     """Create a new user profile"""
-    #     if not email:
-    #         raise ValueError('Users must have an email address')
-    #
-    #     email = self.normalize_email(email)
-    #     user = self.model(email=email, name=name,)
-    #
-    #     user.set_password(password)
-    #     user.save(using=self._db)
-    #
-    #     return user
-    def create_user(self, email, firstName,lastName,age,gender,password=None):
->>>>>>> master
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
-<<<<<<< HEAD
-        user = self.model(email=email, firstName=firstName,lastName=lastName)
-=======
-        user = self.model(email=email, firstName=firstName,lastName=lastName,age=age,gender=gender)
->>>>>>> master
 
+        user = self.model(email=email, firstName=firstName,lastName=lastName)
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-<<<<<<< HEAD
     def create_superuser(self, email, password):
-        """Create and save a new superuser with given details"""
-        user = self.create_user(email, 'superuser','', password)
-=======
-    def create_superuser(self, email,password):
-        """Create and save a new superuser with given details"""
         if password is None:
             raise TypeError('Superusers must have a password.')
 
-        user = self.create_user(email, firstName='super',lastName='user',age=0,gender=0,password=password)
->>>>>>> master
-
+        user = self.create_user(email, firstName='super',lastName='user',password=password)
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
@@ -155,13 +40,12 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name = 'email address',max_length=255, unique=True)
     firstName = models.CharField(max_length=255,default='')
     lastName = models.CharField(max_length=255,default='')
-    # phone_number = models.CharField(max_length=10)
-    age = models.PositiveIntegerField(null=False, blank=False)
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    # age = models.PositiveIntegerField(null=False, blank=False)
+    # GENDER_CHOICES = (
+    #     ('M', 'Male'),
+    #     ('F', 'Female'),
+    # )
+    # gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 
     tripsHistory = []#list(Trip())
     tasks = []#list(Task())
@@ -172,7 +56,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['name']
 
     def get_full_name(self):
         """Retrieve full name for user"""
@@ -185,22 +69,3 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of user"""
         return self.email
-    #
-    # class Meta:
-    #     '''
-    #     to set table name in database
-    #     '''
-    #     db_table = "login"
-#
-# class ProfileFeedItem(models.Model):
-#     """Profile status update"""
-#     user_profile = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE
-#     )
-#     status_text = models.CharField(max_length=255)
-#     created_on = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         """Return the model as a string"""
-#         return self.status_text

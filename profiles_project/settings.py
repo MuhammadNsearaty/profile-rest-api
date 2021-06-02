@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'profiles_api',
+    'hotels_api',
+    'trips_api',
     'rest_framework_swagger',
 ]
 
@@ -102,14 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-<<<<<<< HEAD
 
-
-
-
-=======
-#
->>>>>>> master
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
