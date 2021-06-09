@@ -6,8 +6,8 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register('hotels',views.HotelViewSet,basename='hotels')
-router.register('places',views.PlaceViewSet,basename='places')
+router.register('hotel',views.HotelViewSet,basename='hotels')
+router.register('place',views.PlaceViewSet,basename='places')
 
 urlpatterns =[
     path('', include(router.urls)),

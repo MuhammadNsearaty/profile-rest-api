@@ -48,6 +48,7 @@ class Place(models.Model):
         models.IntegerField(),50,null=True,
     )
     # address =  models.CharField(max_length=100)
+    # make the review have a pointer to the place
 
 class Bookable():
     def makeAnAppointment(self):
