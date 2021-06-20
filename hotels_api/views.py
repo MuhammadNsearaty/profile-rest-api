@@ -21,15 +21,18 @@ class HotelViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
-    queryset = models.Hotel.objects.all()
+    # queryset = models.Hotel.objects.all()
 
     def list(self,request):
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
+
+        print(f'choice is {choice} \n info {type(infoDict)}')
+
         search_engine = Search_Engine()
-        res = search_engine.get('HOTELS', choice, dict(infoDict))
+        res = search_engine.get('HOTELS', choice, infoDict)
         return Response({'result' : res})
-    
+
     def create(self, request):
         """Create a new hello message."""
         serializer = self.serializer_class(data=request.data)
@@ -64,7 +67,7 @@ class HotelViewSet(viewsets.ModelViewSet):
 
         return Response({'http_method': 'DELETE'})
 
-        
+
 
 
 
@@ -117,8 +120,3 @@ class PlaceViewSet(viewsets.ModelViewSet):
         """Handle removing an object"""
 
         return Response({'http_method': 'DELETE'})
-
-        
-
-
-    
