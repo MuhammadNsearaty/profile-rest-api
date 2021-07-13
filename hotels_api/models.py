@@ -13,6 +13,9 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Location(models.Model):
+    def Location(self,longitude,latitude):
+        this.longitude = longitude
+        this.latitude = latitude
     latitude = models.FloatField(null=False,default=0.0)
     longitude = models.FloatField(null=False,default=0.0)
     cityName = models.CharField(max_length=15)
@@ -36,12 +39,22 @@ class Review(models.Model):
     overallRating = 0.0
 
 class Place(models.Model):
+    def Place(item):
+        print(f'the item {item}')
+        this.name = item['name']
+        cordinate = item['coordinate']
+        this.location = Location(cordinate['lon'],cordinate['lat'])
+        this.distance = item['distance']
+        this.guestrating = item['guestrating']
+        this.kinds = item['kinds']
+
     name = models.CharField(max_length=10)
     location = models.ForeignKey(
         'Location',
         on_delete = models.DO_NOTHING,
     )
-    rank = models.FloatField(null=False,default=0.0)
+    distance = models.FloatField(null=False,default=0.0)
+    guestrating = models.FloatField(null=False,default=0.0)
     kinds = models.CharField(max_length=1000)
     description = models.CharField(max_length=100)
     reviews = ArrayField(

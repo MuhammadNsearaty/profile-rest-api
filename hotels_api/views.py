@@ -11,7 +11,7 @@ from hotels_api import serializers
 import json
 import ast
 import sys
-
+from pprint import pprint
 from pathlib import Path
 sys.path.append("./Search Engine/Trips-planning-system-main/SearchEngine")
 
@@ -31,6 +31,7 @@ class HotelViewSet(viewsets.ModelViewSet):
 
         search_engine = Search_Engine()
         res = search_engine.get('HOTELS', choice, infoDict)
+        res = res[0:10]#get the first 10 hotels
         return Response({'result' : res})
 
     def create(self, request):
@@ -70,10 +71,6 @@ class HotelViewSet(viewsets.ModelViewSet):
 
 
 
-
-
-
-
 class PlaceViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaceSerializer
     permission_classes = (AllowAny,)
@@ -85,6 +82,18 @@ class PlaceViewSet(viewsets.ModelViewSet):
         infoDict = ast.literal_eval(request.query_params.get('info'))
         search_engine = Search_Engine()
         res = search_engine.get('PLACES', choice, infoDict)
+        res = res[0:10]#get the first 10 places
+        print(type(res[0]))
+        placeList =[]
+        for item1 in res:
+            placeList.append(models.Place(item1))
+        #we must sign the placeList in the DataBase
+        # print(f'placeList {placeList}')
+
+        print(f'the place 0 {type(placeList[0])}')
+        pprint(placeList[0])
+        # print(f'name :{placeList[0].name}\nlocation :{placeList[0].location}')
+        # models.Place.objects.bulk_create(placeList)
         return Response({'result' : res})
 
     def create(self, request):
