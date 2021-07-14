@@ -102,7 +102,7 @@ class HotelSearchEngine:
     # general booking end_point -> search for hotels in a specific location.
     def search_location(self, loc, pn, check_in, check_out, adults, sort_order='PRICE', filters={}):
         '''
-        sort_order : One of the following is allowed: 
+        sort_order : One of the following is allowed:
         BEST_SELLER|
         STAR_RATING_HIGHEST_FIRST|
         STAR_RATING_LOWEST_FIRST|

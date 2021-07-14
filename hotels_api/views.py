@@ -13,9 +13,9 @@ import ast
 import sys
 from pprint import pprint
 from pathlib import Path
-sys.path.append("./Search Engine/Trips-planning-system-main/SearchEngine")
+sys.path.append("./Search Engine/Trips-planning-system-main/")
 
-from Search_engine import Search_Engine
+from search_engine.search_engine import SearchEngine
 
 class HotelViewSet(viewsets.ModelViewSet):
 
@@ -26,12 +26,10 @@ class HotelViewSet(viewsets.ModelViewSet):
     def list(self,request):
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
-
-        print(f'choice is {choice} \n info {type(infoDict)}')
-
-        search_engine = Search_Engine()
+        search_engine = SearchEngine()
         res = search_engine.get('HOTELS', choice, infoDict)
-        res = res[0:10]#get the first 10 hotels
+        print(f'res {type(res)}')
+        # res = res[0:10]#get the first 10 hotels
         return Response({'result' : res})
 
     def create(self, request):
@@ -80,7 +78,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
         # infoDict = dict(request.data['info'])
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
-        search_engine = Search_Engine()
+        search_engine = SearchEngine()
         res = search_engine.get('PLACES', choice, infoDict)
         res = res[0:10]#get the first 10 places
         print(type(res[0]))
