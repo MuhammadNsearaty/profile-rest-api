@@ -7,10 +7,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
 
-
-
 # Create your models here.
-
 
 class Location(models.Model):
     def Location(self,longitude,latitude):
@@ -58,7 +55,7 @@ class Place(models.Model):
     kinds = models.CharField(max_length=1000)
     description = models.CharField(max_length=100)
     reviews = ArrayField(
-        models.IntegerField(),50,null=True,
+        models.IntegerField(),10000,null=True,
     )
     # address =  models.CharField(max_length=100)
     # make the review have a pointer to the place

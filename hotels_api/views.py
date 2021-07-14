@@ -80,16 +80,13 @@ class PlaceViewSet(viewsets.ModelViewSet):
         infoDict = ast.literal_eval(request.query_params.get('info'))
         search_engine = SearchEngine()
         res = search_engine.get('PLACES', choice, infoDict)
-        res = res[0:10]#get the first 10 places
-        print(type(res[0]))
-        placeList =[]
-        for item1 in res:
-            placeList.append(models.Place(item1))
+        # placeList =[]
+        # for item1 in res:
+        #     placeList.append(models.Place(item1))
+        # print(placeList)
         #we must sign the placeList in the DataBase
         # print(f'placeList {placeList}')
 
-        print(f'the place 0 {type(placeList[0])}')
-        pprint(placeList[0])
         # print(f'name :{placeList[0].name}\nlocation :{placeList[0].location}')
         # models.Place.objects.bulk_create(placeList)
         return Response({'result' : res})
