@@ -1,6 +1,6 @@
 
 django==3.1.7
 djangorestframework==3.12.2
-psycopg2==2.7.6.1
+psycopg2
 django-heroku
 gunicorn
