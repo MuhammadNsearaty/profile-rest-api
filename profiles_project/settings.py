@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'profiles_api',
     'hotels_api',
     'trips_api',
-    'rest_framework_swagger',
+
 ]
 
 MIDDLEWARE = [
