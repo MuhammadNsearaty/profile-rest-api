@@ -9,7 +9,6 @@ from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
-
 class FlightTicket(models.Model):
     date = models.DateTimeField()
     originCity =models.CharField(max_length=15)
