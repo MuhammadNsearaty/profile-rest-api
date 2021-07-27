@@ -125,7 +125,7 @@ import os
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, ‘static’)
+
 AUTH_USER_MODEL = 'profiles_api.UserProfile'
 REST_FRAMEWORK = {
      'DEFAULT_PERMISSION_CLASSES': [
