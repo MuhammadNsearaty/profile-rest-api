@@ -4,3 +4,4 @@ djangorestframework==3.12.2
 psycopg2
 django-heroku
 gunicorn
+rest_framework_jwt
