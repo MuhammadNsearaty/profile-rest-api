@@ -6,3 +6,4 @@ django-heroku
 gunicorn
 coreapi
 pandas
+django-seed

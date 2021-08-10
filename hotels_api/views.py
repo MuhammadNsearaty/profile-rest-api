@@ -21,8 +21,7 @@ class HotelViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
-    # queryset = models.Hotel.objects.all()
-
+    
     def list(self,request):
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
@@ -72,23 +71,11 @@ class HotelViewSet(viewsets.ModelViewSet):
 class PlaceViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaceSerializer
     permission_classes = (AllowAny,)
-        # queryset = models.Place.objects.all()
     def list(self, request, pk=None):
-        # choice = request.data['choice']
-        # infoDict = dict(request.data['info'])
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
         search_engine = SearchEngine()
         res = search_engine.get('PLACES', choice, infoDict)
-        # placeList =[]
-        # for item1 in res:
-        #     placeList.append(models.Place(item1))
-        # print(placeList)
-        #we must sign the placeList in the DataBase
-        # print(f'placeList {placeList}')
-
-        # print(f'name :{placeList[0].name}\nlocation :{placeList[0].location}')
-        # models.Place.objects.bulk_create(placeList)
         return Response({'result' : res})
 
     def create(self, request):

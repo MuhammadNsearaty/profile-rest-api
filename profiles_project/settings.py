@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'nn!w(@jx7q^c0tykch^s+t=jtjx)!&x1=v+@#-d$!slt(s&28p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0','192.168.43.180','127.0.0.1']
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'profiles_api',
     'hotels_api',
     'trips_api',
+    'django_seed',
 
 ]
 
