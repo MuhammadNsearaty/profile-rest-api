@@ -68,7 +68,6 @@ class Room(models.Model):
 #         pass
 
 class Hotel(Place):
-    rooms = []#list(Room())
     # @override
     def makeAnAppointment():
         pass
