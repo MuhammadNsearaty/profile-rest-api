@@ -6,7 +6,7 @@ from django.conf import settings
 
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 class Location(models.Model):
@@ -23,37 +23,43 @@ class Review(models.Model):
         on_delete=models.CASCADE
     )
     placeId = models.ForeignKey(
-        'Place',
+        'Hotel',
         on_delete=models.CASCADE
     )
     reviewText = models.CharField(max_length=2000)
     overallRating = 0.0
 
-class Place(models.Model):
-    # def Place(item):
-    #     print(f'the item {item}')
-    #     this.name = item['name']
-    #     cordinate = item['coordinate']
-    #     this.location = Location(cordinate['lon'],cordinate['lat'])
-    #     this.distance = item['distance']
-    #     this.guestrating = item['guestrating']
-    #     this.kinds = item['kinds']
-
+class Hotel(models.Model):
     name = models.CharField(max_length=10)
     location = models.ForeignKey(
         'Location',
         on_delete = models.DO_NOTHING,
     )
     distance = models.FloatField(null=False,default=0.0)
-    guestrating = models.FloatField(null=False,default=0.0)
-    kinds = models.CharField(max_length=1000)
-    description = models.CharField(max_length=100)
-    address =  models.CharField(max_length=100)
-    imageUri = models.CharField(max_length=100)
+    guestrating = models.FloatField(null=False,default=0.0,validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+    kinds = models.CharField(max_length=1000,default='')
+    description = models.CharField(max_length=100,default='')
+    address =  models.CharField(max_length=100,default='')
+    imageUri = models.CharField(max_length=100,default='')
+
+
+class Place(models.Model):
+    name = models.CharField(max_length=10)
+    location = models.ForeignKey(
+        'Location',
+        on_delete = models.DO_NOTHING,
+    )
+    distance = models.FloatField(null=False,default=0.0)
+    guestrating = models.FloatField(null=False,default=0.0,validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+    kinds = models.CharField(max_length=1000,default='')
+    address =  models.CharField(max_length=100,default='')
+    description = models.CharField(max_length=100,default='')
+    imageUri = models.CharField(max_length=100,default='')
+
 
 class Room(models.Model):
     placeId = models.ForeignKey(
-        'Place',
+        'Hotel',
         on_delete=models.CASCADE
     )
     checkinDate = models.DateTimeField()
@@ -66,8 +72,3 @@ class Room(models.Model):
 #     # @override
 #     def makeAnAppointment():
 #         pass
-
-class Hotel(Place):
-    # @override
-    def makeAnAppointment():
-        pass

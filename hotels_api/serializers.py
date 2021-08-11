@@ -21,34 +21,33 @@ class LocationSerializer(serializers.ModelSerializer):
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Place
-        fields = ('name','location','guestrating','description','kinds','reviews','distance')
+        fields = ('name','location','guestrating','description','kinds','distance','address','imageUri')
     def create(self,validated_data):
-        print('place created')
         place = models.Place.objects.create(
             name = validated_data['name'],
             location = validated_data['location'],
             guestrating = validated_data['guestrating'],
             description  =validated_data['description'],
-            reviews = validated_data['reviews'],
             kinds = validated_data['kinds'],
             distance = validated_data['distance'],
-
+            address = validated_data['address'],
+            imageUri = validated_data['imageUri'],
         )
         return place
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Hotel
-        fields = ('name','location','rank','description','kinds','reviews')
-
+        fields = ('name','location','guestrating','description','kinds','distance','address','imageUri')
     def create(self,validated_data):
-        hotel = Hotel.objects.create(
+        hotel = models.Place.objects.create(
             name = validated_data['name'],
             location = validated_data['location'],
-            rank = validated_data['rank'],
-            description = validated_data['description'],
+            guestrating = validated_data['guestrating'],
+            description  =validated_data['description'],
             kinds = validated_data['kinds'],
-            reviews = validated_data['reviews'],
+            distance = validated_data['distance'],
+            address = validated_data['address'],
+            imageUri = validated_data['imageUri'],
         )
-        # user = Hotel.objects.create(**validated_data)
         return hotel

@@ -21,7 +21,7 @@ class HotelViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
-    
+
     def list(self,request):
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
