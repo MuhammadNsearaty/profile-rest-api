@@ -7,21 +7,24 @@ from django.conf import settings
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
 from trips_api.models import Trip
+import datetime
 
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, firstName,lastName, password=None):
+    def create_user(self, email, firstName,lastName,birthDay=None,gender='M',password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
-
+        if not birthDay:
+            birthDay = datetime.date.today().isoformat()
         email = self.normalize_email(email)
-
-        user = self.model(email=email, firstName=firstName,lastName=lastName)
+        user = self.model(email=email, firstName=firstName,lastName=lastName,birthDay=birthDay,gender=gender)
+        
         user.set_password(password)
         user.save(using=self._db)
-
+        user.profilePicture = f'https://loremflickr.com/320/320/person?random={user.pk}'
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password):
@@ -32,7 +35,6 @@ class UserProfileManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
-
         return user
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
@@ -40,19 +42,16 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name = 'email address',max_length=255, unique=True)
     firstName = models.CharField(max_length=255,default='')
     lastName = models.CharField(max_length=255,default='')
-    # age = models.PositiveIntegerField(null=False, blank=False)
-    # GENDER_CHOICES = (
-    #     ('M', 'Male'),
-    #     ('F', 'Female'),
-    # )
-    # gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-
-    tripsHistory = []#list(Trip())
-    tasks = []#list(Task())
-    currentTrip = Trip()
+    birthDay = models.DateField()
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now)
+    date_joined = models.DateField(default=datetime.date.today)
+    profilePicture = models.URLField(max_length=200, null=True)
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'

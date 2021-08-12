@@ -9,7 +9,7 @@ from django.contrib.auth.models import update_last_login
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Location
-        fileds = ('latitude','longitude','cityName')
+        fields = ('latitude','longitude','cityName')
     def create(self,validated_data):
         location = models.Location.objects.create(
         latitude = validated_data['latitude'],
