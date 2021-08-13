@@ -1,9 +1,7 @@
 from rest_framework import serializers
-
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 from profiles_api import models
-
-from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
