@@ -116,6 +116,6 @@ class HotelDbViewSet(viewsets.ModelViewSet):
 
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.HotelSerializer
+    serializer_class = serializers.PlaceSerializer
     permission_classes = (AllowAny,)
     queryset = models.Place.objects.all()
