@@ -116,7 +116,13 @@ class PlaceViewSet(viewsets.ModelViewSet):
 class HotelDbViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
+    queryset = models.Hotel.objects.all()
+
+class PlaceDbViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.HotelSerializer
+    permission_classes = (AllowAny,)
+    queryset = models.Place.objects.all()
     
-    # def list(self, request, pk=None):
-    #     queryset = models.Hotel.objects.filter(dayId =)
+    
+        
     

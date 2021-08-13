@@ -55,7 +55,7 @@ class Hotel(models.Model):
     kinds = models.CharField(max_length=1000,default='')
     description = models.CharField(max_length=100,default='')
     address =  models.CharField(max_length=100,default='')
-    imageUri = models.CharField(max_length=100,default='')
+    imageUri = models.URLField(max_length=200, null=True)
     
 
 
@@ -70,7 +70,7 @@ class Place(models.Model):
     kinds = models.CharField(max_length=1000,default='')
     address =  models.CharField(max_length=100,default='')
     description = models.CharField(max_length=100,default='')
-    imageUri = models.CharField(max_length=100,default='')
+    imageUri = models.URLField(max_length=200, null=True)
     
 
 
