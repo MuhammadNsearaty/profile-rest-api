@@ -40,6 +40,10 @@ class PlaceSerializer(serializers.ModelSerializer):
         instance.imageUri = f'https://loremflickr.com/320/320/person?random={instance.pk}'
         instance.save()
         data = super().to_representation(instance)
+        location = models.Location.objects.get(id = instance.location.id)
+        loaction_serializer = LocationSerializer()
+        json_location = loaction_serializer.to_representation(location)
+        data['location'] = json_location
         return data
 
 class HotelSerializer(serializers.ModelSerializer):
@@ -57,8 +61,7 @@ class HotelSerializer(serializers.ModelSerializer):
             address = validated_data['address'],
             imageUri = validated_data['imageUri'],
         )
-        hotel.imageUri = f'https://loremflickr.com/320/320/person?random={hotel.pk}'
-        hotel.save()
+      
         return hotel
 
     #throw this function at end
@@ -66,5 +69,9 @@ class HotelSerializer(serializers.ModelSerializer):
         instance.imageUri = f'https://loremflickr.com/320/320/person?random={instance.pk}'
         instance.save()
         data = super().to_representation(instance)
+        location = models.Location.objects.get(id = instance.location.id)
+        loaction_serializer = LocationSerializer()
+        json_location = loaction_serializer.to_representation(location)
+        data['location'] = json_location
         return data
 

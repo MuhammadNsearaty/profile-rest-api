@@ -17,7 +17,7 @@ class TripSerializer(serializers.ModelSerializer):
         return trip
 
     def to_representation(self, instance):
-        data = super(TripSerializer, self).to_representation(instance)
+        data = super().to_representation(instance)
         days = models.Day.objects.filter(tripId=instance.pk)
         days_serializer = DaySerializer()
         json_days = [days_serializer.to_representation(day) for day in days]
