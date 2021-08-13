@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'hotels_api',
     'trips_api',
     'django_seed',
-
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.IsAdminUser',
     ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',
+                                'rest_framework.filters.SearchFilter', 'rest_framework.filters.OrderingFilter'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'SEARCH_PARAM': 'q',
 }
 django_heroku.settings(locals())

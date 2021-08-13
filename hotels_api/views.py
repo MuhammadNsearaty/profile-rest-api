@@ -113,9 +113,13 @@ class HotelDbViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
     queryset = models.Hotel.objects.all()
+    ordering_fields = ['name', 'distance', 'guestrating']
+    search_fields = ['name', 'address']
 
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaceSerializer
     permission_classes = (AllowAny,)
     queryset = models.Place.objects.all()
+    ordering_fields = ['name', 'distance', 'guestrating']
+    search_fields = ['name', 'address']
