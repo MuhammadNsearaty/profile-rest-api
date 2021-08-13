@@ -1,5 +1,3 @@
-import pickle
-
 from search_engine.search_engine import SearchEngine
 
 search_engine = SearchEngine()
@@ -29,19 +27,18 @@ Build Trips
 Search Engine Queries
 '''
 booking_dict = {
-    'location' : 'new yourk',
-    'page_number' : 1,
-    'check_in_date' : "2021-07-16",
-    'check_out_date' : "2021-07-20",
-    'adults' : 1,
-    'sort_order' : 'GUEST_RATING'
+    'location': 'new yourk',
+    'page_number': 1,
+    'check_in_date': "2021-07-16",
+    'check_out_date': "2021-07-20",
+    'adults': 1,
+    'sort_order': 'GUEST_RATING'
 }
 # booking_dict = {
 #     'id' : 487455
 # }
-res1 = search_engine.get('HOTELS', 'BOOK',booking_dict)
+res1 = search_engine.get('HOTELS', 'BOOK', booking_dict)
 print(res1)
 
 # res6 = search_engine.get('PLACES', 'LOCATION', {'name': 'london'})
 # print(res6[1])
-

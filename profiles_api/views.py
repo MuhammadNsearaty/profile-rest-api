@@ -51,7 +51,7 @@ class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        
+
         if serializer.is_valid():
             user = serializer.create(request.data)
             token, created = Token.objects.get_or_create(user=user)

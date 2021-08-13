@@ -1,8 +1,6 @@
-import pandas as pd
-import numpy as np
-import requests
 import json
-import math
+
+import requests
 
 
 def _clean_kinds(kinds: str):

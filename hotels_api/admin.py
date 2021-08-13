@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-
 from hotels_api import models
-
 
 admin.site.register(models.Place)
 admin.site.register(models.Room)

@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class CreateOwnTrip(permissions.BasePermission):
 
     # edit_methods = ("PUT", "PATCH")

@@ -1,7 +1,3 @@
-from Item import Item
-from copy import deepcopy
-
-
 class Day:
     def __init__(self, idx: int, items: list):
         self.idx = idx

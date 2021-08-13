@@ -1,7 +1,8 @@
+from enum import Enum
+
+from search_engine.trip_planner.trip_classes.Item import Item
 from search_engine.utils.hotels_engine import HotelSearchEngine as Hotels
 from search_engine.utils.places_engine import PlacesSearchEngine as Places
-from search_engine.trip_planner.trip_classes.Item import Item
-from enum import Enum
 
 
 class SearchEngine:
@@ -20,7 +21,7 @@ class SearchEngine:
         REVIEWS = 4,  # hotel_id 'int'
         FINDHOTEL = 5,  # hotel_name 'str'
         BESTCHOISE = 6,  # location 'str
-        RECOMMEND = 7,   # hotel_id
+        RECOMMEND = 7,  # hotel_id
 
     class PSEEndPoints(Enum):
         DETAILS = 1,  # place_id : str
@@ -149,7 +150,8 @@ class SearchEngine:
                 elif end_point == 'RECOMMEND':
                     if 'id' in query_params:
                         hotel_details = self.hotels.hotel_details(query_params['id'])
-                        hotel_features = hotel_details['HOTEL_FEATURE'] + hotel_details['HOTEL_FREEBIES'] + hotel_details['ROOMS']
+                        hotel_features = hotel_details['HOTEL_FEATURE'] + hotel_details['HOTEL_FREEBIES'] + \
+                                         hotel_details['ROOMS']
                         # add code here --> return list of recommended hotel names   #adnan
                         names = ['Hyatt Regency Istanbul Ataköy']
                         recommended_hotels = []

@@ -1,18 +1,19 @@
-from django.db.models.query import QuerySet
 from rest_framework import serializers
 
-from trips_api import models
 from hotels_api import models as hotel_models
 from hotels_api import serializers as hotel_serializers
-class TripSerializer(serializers.ModelSerializer):
+from trips_api import models
 
+
+class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Trip
-        fields = ('userId','startDate')
-    def create(self,validated_data):
+        fields = ('userId', 'startDate')
+
+    def create(self, validated_data):
         trip = models.Trip.objects.create(
-        userId = validated_data['userId'],
-        startDate = validated_data['startDate'],
+            userId=validated_data['userId'],
+            startDate=validated_data['startDate'],
         )
         return trip
 
@@ -25,26 +26,25 @@ class TripSerializer(serializers.ModelSerializer):
 
         return data
 
-class DaySerializer(serializers.ModelSerializer):
 
+class DaySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Day
-        fields = ('tripId','idx','hotels','places')
-    
-    def create(self,validated_data):
+        fields = ('tripId', 'idx', 'hotels', 'places')
 
+    def create(self, validated_data):
         day = models.Day.objects.create(
-        tripId = validated_data['tripId'],
-        idx = validated_data['idx'],
-        hotels = validated_data['hotels'],
-        places = validated_data['places'],
+            tripId=validated_data['tripId'],
+            idx=validated_data['idx'],
+            hotels=validated_data['hotels'],
+            places=validated_data['places'],
         )
         return day
-    
+
     def to_representation(self, instance):
         data = super(DaySerializer, self).to_representation(instance)
-        hotels = hotel_models.Hotel.objects.filter(id__in = instance.hotels.all())
-        places = hotel_models.Place.objects.filter(id__in = instance.places.all())
+        hotels = hotel_models.Hotel.objects.filter(id__in=instance.hotels.all())
+        places = hotel_models.Place.objects.filter(id__in=instance.places.all())
 
         hotels_serializers = hotel_serializers.HotelSerializer()
         places_serializers = hotel_serializers.PlaceSerializer()
@@ -54,4 +54,3 @@ class DaySerializer(serializers.ModelSerializer):
         data['places'] = json_places
 
         return data
-

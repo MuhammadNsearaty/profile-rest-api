@@ -10,15 +10,15 @@ from django.db import models
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, firstName,lastName,birthDay=None,gender='M',password=None):
+    def create_user(self, email, firstName, lastName, birthDay=None, gender='M', password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
         if not birthDay:
             birthDay = datetime.date.today().isoformat()
         email = self.normalize_email(email)
-        user = self.model(email=email, firstName=firstName,lastName=lastName,birthDay=birthDay,gender=gender)
-        
+        user = self.model(email=email, firstName=firstName, lastName=lastName, birthDay=birthDay, gender=gender)
+
         user.set_password(password)
         user.save(using=self._db)
         user.profilePicture = f'https://loremflickr.com/320/320/person?random={user.pk}'
@@ -29,7 +29,7 @@ class UserProfileManager(BaseUserManager):
         if password is None:
             raise TypeError('Superusers must have a password.')
 
-        user = self.create_user(email, firstName='super',lastName='user',password=password)
+        user = self.create_user(email, firstName='super', lastName='user', password=password)
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
@@ -38,9 +38,9 @@ class UserProfileManager(BaseUserManager):
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
-    email = models.EmailField(verbose_name = 'email address',max_length=255, unique=True)
-    firstName = models.CharField(max_length=255,default='')
-    lastName = models.CharField(max_length=255,default='')
+    email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    firstName = models.CharField(max_length=255, default='')
+    lastName = models.CharField(max_length=255, default='')
     birthDay = models.DateField()
     GENDER_CHOICES = (
         ('M', 'Male'),

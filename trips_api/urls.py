@@ -1,5 +1,6 @@
-from trips_api import views
 from rest_framework.routers import DefaultRouter
+
+from trips_api import views
 
 router = DefaultRouter()
 

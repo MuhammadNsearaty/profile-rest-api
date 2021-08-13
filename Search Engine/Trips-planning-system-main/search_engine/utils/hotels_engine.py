@@ -1,8 +1,7 @@
-import pandas as pd
-import numpy as np
-import requests
 import json
-import math
+
+import pandas as pd
+import requests
 from search_engine.utils import data_parser as dp
 
 
@@ -78,8 +77,6 @@ class HotelSearchEngine:
     def get_search_results(self, jsn):
         return pd.DataFrame.from_dict(json.loads(jsn.text)['data']['body']['searchResults']['results'])
 
-
-
     def _clean_filters(self, json):
         return {
             'landmarks': json['landmarks']['items'][:10],
@@ -89,6 +86,7 @@ class HotelSearchEngine:
             'accessibility': json['accessibility']['items'][:10],
             'paymentPreference': json['paymentPreference']['items'][:10],
         }
+
     # get a list of filters from unparsed json file
     def get_search_filters(self, jsn):
         return self._clean_filters(json.loads(jsn.text)['data']['body']['filters'])

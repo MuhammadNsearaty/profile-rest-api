@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from profiles_project import settings
+
+from hotels_api.urls import router as hotel_router
 from patches.routers import DefaultRouter
 from profiles_api.urls import router as profile_router
-from hotels_api.urls import router as hotel_router
+from profiles_project import settings
 from trips_api.urls import router as trip_router
 
 router = DefaultRouter()

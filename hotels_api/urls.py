@@ -1,7 +1,6 @@
-from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from hotels_api import views
-from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 

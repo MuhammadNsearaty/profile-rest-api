@@ -1,5 +1,4 @@
 from Day import Day
-from Item import Item
 
 
 class Trip:

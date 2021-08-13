@@ -1,4 +1,5 @@
 import random2
+
 pool = []
 population = [[0] + random2.sample(range(1, 10), 9),
               [0] + random2.sample(range(1, 10), 9),
