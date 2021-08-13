@@ -1,13 +1,11 @@
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.models import BaseUserManager
-from django.conf import settings
-
-from django.utils import timezone
-from django.contrib.postgres.fields import ArrayField
-from trips_api.models import Trip
 import datetime
+
+from django.conf import settings
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
+
 
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
@@ -37,6 +35,7 @@ class UserProfileManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(verbose_name = 'email address',max_length=255, unique=True)
@@ -59,12 +58,28 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         """Retrieve full name for user"""
-        return self.firstName+self.lastName
+        return str(self.firstName) + str(self.lastName)
 
     def get_short_name(self):
         """Retrieve short name of user"""
-        return self.firstName
+        return str(self.firstName)
 
     def __str__(self):
         """Return string representation of user"""
         return self.email
+
+
+class DeviceInfo(models.Model):
+    uuid = models.CharField(max_length=100, unique=True)
+    app_name = models.CharField(max_length=100)
+    app_version = models.CharField(max_length=10)
+    build_number = models.CharField(max_length=100)
+    fcm_token = models.CharField(max_length=255, unique=True)
+    os_version = models.CharField(max_length=100)
+    os = models.CharField(max_length=10)
+    brand = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user} have {self.brand} device with {self.os} os'

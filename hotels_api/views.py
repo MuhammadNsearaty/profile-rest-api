@@ -1,22 +1,17 @@
-from django.db.models import query
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
 
 from hotels_api import models
 from hotels_api import serializers
 
-import json
 import ast
 import sys
-from pprint import pprint
-from pathlib import Path
 sys.path.append("./Search Engine/Trips-planning-system-main/")
 
 from search_engine.search_engine import SearchEngine
+
 
 class HotelViewSet(viewsets.ModelViewSet):
 
@@ -24,7 +19,7 @@ class HotelViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = models.Hotel.objects.all()
 
-    def list(self,request):
+    def list(self, request):
         choice = request.query_params.get('choice')
         infoDict = ast.literal_eval(request.query_params.get('info'))
         search_engine = SearchEngine()
@@ -113,10 +108,12 @@ class PlaceViewSet(viewsets.ModelViewSet):
 
         return Response({'http_method': 'DELETE'})
 
+
 class HotelDbViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HotelSerializer
     permission_classes = (AllowAny,)
     queryset = models.Hotel.objects.all()
+
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HotelSerializer

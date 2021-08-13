@@ -1,13 +1,7 @@
 from rest_framework import serializers
-
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 from profiles_api import models
-
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import update_last_login
-from rest_framework.authtoken.models import Token
-
-from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -22,6 +16,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
                 'style':{'input_type':'password'}
                 }
         }
+
     def create(self, validated_data):
         """Create and return a new user"""
         print(f"here {validated_data['birthDay']}")
@@ -36,6 +31,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
         return user
 
+
 class LoginSerializer(AuthTokenSerializer):
     """serializes a user profile object"""
     user = models.UserProfile
@@ -43,3 +39,18 @@ class LoginSerializer(AuthTokenSerializer):
     class Meta:
         model = models.UserProfile
         fields = ('id','email','firstName','lastName','birthDay','gender')
+
+
+class DeviceInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DeviceInfo
+        fields = ('uuid', 'app_name', 'app_version', 'build_number',  'fcm_token', 'os_version', 'os', 'brand', 'model',
+                  'user', 'id')
+
+        extra_kwargs = {'user': {'read_only': True},
+                        'id': {'read_only': True}}
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['user'] = UserProfileSerializer().to_representation(models.UserProfile.objects.get(pk=ret['user']))
+        return ret

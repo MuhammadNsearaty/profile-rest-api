@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from profiles_project import settings
+from patches.routers import DefaultRouter
+from profiles_api.urls import router as profile_router
+from hotels_api.urls import router as hotel_router
+from trips_api.urls import router as trip_router
+
+router = DefaultRouter()
+router.extend(profile_router)
+router.extend(hotel_router)
+router.extend(trip_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('profiles_api.urls')),
-    path('search_engine/',include('hotels_api.urls')),
-    path('',include('trips_api.urls')),
+    path(settings.BASE_API_URL, include(router.urls)),
 ]
