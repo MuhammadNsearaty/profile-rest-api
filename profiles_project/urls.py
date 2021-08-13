@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from profiles_project import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('profiles_api.urls')),
-    path('search_engine/',include('hotels_api.urls')),
-    path('',include('trips_api.urls')),
+    path(settings.BASE_API_URL, include('profiles_api.urls')),
+    path(settings.BASE_API_URL + 'search_engine/', include('hotels_api.urls')),
+    path(settings.BASE_API_URL, include('trips_api.urls')),
 ]
