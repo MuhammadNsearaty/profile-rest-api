@@ -3,10 +3,12 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
+from django.db.models.fields.related import ForeignKey
 
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from trips_api import models as trip_models
 # Create your models here.
 
 class Location(models.Model):
@@ -17,17 +19,30 @@ class Location(models.Model):
     longitude = models.FloatField(null=False,default=0.0)
     cityName = models.CharField(max_length=15)
 
-class Review(models.Model):
+class HotelReview(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    placeId = models.ForeignKey(
+    hotelId = models.ForeignKey(
         'Hotel',
         on_delete=models.CASCADE
     )
     reviewText = models.CharField(max_length=2000)
     overallRating = 0.0
+
+class PlaceReview(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    placeId = models.ForeignKey(
+        'Place',
+        on_delete=models.CASCADE
+    )
+    reviewText = models.CharField(max_length=2000)
+    overallRating = 0.0
+
 
 class Hotel(models.Model):
     name = models.CharField(max_length=10)
@@ -40,7 +55,8 @@ class Hotel(models.Model):
     kinds = models.CharField(max_length=1000,default='')
     description = models.CharField(max_length=100,default='')
     address =  models.CharField(max_length=100,default='')
-    imageUri = models.CharField(max_length=100,default='')
+    imageUri = models.URLField(max_length=200, null=True)
+    
 
 
 class Place(models.Model):
@@ -54,11 +70,12 @@ class Place(models.Model):
     kinds = models.CharField(max_length=1000,default='')
     address =  models.CharField(max_length=100,default='')
     description = models.CharField(max_length=100,default='')
-    imageUri = models.CharField(max_length=100,default='')
+    imageUri = models.URLField(max_length=200, null=True)
+    
 
 
 class Room(models.Model):
-    placeId = models.ForeignKey(
+    hotelId = models.ForeignKey(
         'Hotel',
         on_delete=models.CASCADE
     )
