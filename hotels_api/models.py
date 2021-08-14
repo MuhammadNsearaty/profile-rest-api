@@ -37,10 +37,14 @@ class PlaceReview(models.Model):
 
 class Hotel(models.Model):
     name = models.CharField(max_length=10)
-    location = models.ForeignKey(
-        'Location',
-        on_delete=models.DO_NOTHING,
-    )
+    # location = models.ForeignKey(
+    #     'Location',
+    #     on_delete=models.DO_NOTHING,
+    # )
+    latitude = models.FloatField(null=False, default=0.0)
+    longitude = models.FloatField(null=False, default=0.0)
+    cityName = models.CharField(max_length=15)
+
     distance = models.FloatField(null=False, default=0.0)
     guestrating = models.FloatField(null=False, default=0.0,
                                     validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
@@ -52,10 +56,14 @@ class Hotel(models.Model):
 
 class Place(models.Model):
     name = models.CharField(max_length=10)
-    location = models.ForeignKey(
-        'Location',
-        on_delete=models.DO_NOTHING,
-    )
+    # location = models.ForeignKey(
+    #     'Location',
+    #     on_delete=models.DO_NOTHING,
+    # )
+    latitude = models.FloatField(null=False, default=0.0)
+    longitude = models.FloatField(null=False, default=0.0)
+    cityName = models.CharField(max_length=15)
+    
     distance = models.FloatField(null=False, default=0.0)
     guestrating = models.FloatField(null=False, default=0.0,
                                     validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
