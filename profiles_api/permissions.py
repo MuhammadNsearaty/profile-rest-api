@@ -23,8 +23,17 @@ class UpdateOwnStatus(permissions.BasePermission):
         return obj.user_profile.id == request.user.id
 
 
-class UpdateOwnDevice(permissions.BasePermission):
+class DevicesViewPermissions(permissions.BasePermission):
+    def __init__(self):
+        self.isAdmin = permissions.IsAdminUser()
+        self.isAuthenticated = permissions.IsAuthenticated()
+
+    def has_permission(self, request, view):
+        if view.action == 'update_own' or request.method in permissions.SAFE_METHODS:
+            return self.isAuthenticated.has_permission(request, view)
+        return self.isAdmin.has_permission(request, view)
+
     def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
+        if self.isAdmin.has_permission(request, view):
             return True
         return request.user.id == obj.user.id

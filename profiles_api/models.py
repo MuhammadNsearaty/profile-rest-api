@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.utils.functional import lazy
 
 
 class UserProfileManager(BaseUserManager):
@@ -80,6 +81,10 @@ class DeviceInfo(models.Model):
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Device info"
+        verbose_name_plural = "Devices info"
 
     def __str__(self):
         return f'{self.user} have {self.brand} device with {self.os} os'

@@ -6,4 +6,4 @@ router = DefaultRouter()
 
 router.register('login', views.UserLoginApiView, basename='login')
 router.register('register', views.UserRegisterViewSet, basename='register')
-router.register('devices', views.DevicesViewSet)
+router.register('devices', views.DevicesViewSet, basename='devices')
