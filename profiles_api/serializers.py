@@ -46,11 +46,12 @@ class DeviceInfoSerializer(serializers.ModelSerializer):
         model = models.DeviceInfo
         fields = ('uuid', 'app_name', 'app_version', 'build_number', 'fcm_token', 'os_version', 'os', 'brand', 'model',
                   'user', 'id')
+        depth = 1
 
         extra_kwargs = {'user': {'read_only': True},
                         'id': {'read_only': True}}
 
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['user'] = UserProfileSerializer().to_representation(models.UserProfile.objects.get(pk=ret['user']))
-        return ret
+    # def to_representation(self, instance):
+    #     ret = super().to_representation(instance)
+    #     ret['user'] = UserProfileSerializer().to_representation(models.UserProfile.objects.get(pk=ret['user']))
+    #     return ret

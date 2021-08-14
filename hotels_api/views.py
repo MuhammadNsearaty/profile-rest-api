@@ -25,7 +25,6 @@ class HotelViewSet(viewsets.ModelViewSet):
         search_engine = SearchEngine()
         res = search_engine.get('HOTELS', choice, infoDict)
         print(f'res {type(res)}')
-        # res = res[0:10]#get the first 10 hotels
         return Response({'result': res})
 
     def create(self, request):
