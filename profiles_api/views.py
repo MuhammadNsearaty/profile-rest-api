@@ -1,12 +1,10 @@
 from typing import Dict
 
 from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import status
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
@@ -35,6 +33,10 @@ class UserLoginApiView(viewsets.GenericViewSet, mixins.CreateModelMixin):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
+        if not created:
+            token.delete()
+            token = Token.objects.create(user=user)
+
         return Response({
             'token': token.key,
             'user': serializers.UserProfileSerializer().to_representation(user),
@@ -49,21 +51,16 @@ class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
 
-    def post(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
 
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             user = serializer.create(request.data)
-            token, created = Token.objects.get_or_create(user=user)
+            token = Token.objects.create(user=user)
             return Response({
                 'token': token.key,
                 'user': serializers.UserProfileSerializer().to_representation(user),
             })
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
 
 
 def validate_own(data: Dict):
@@ -81,8 +78,7 @@ class DevicesViewSet(mixins.CreateModelMixin,
                      viewsets.GenericViewSet):
     serializer_class = serializers.DeviceInfoSerializer
     authentication_classes = (TokenAuthentication,)
-    queryset = models.DeviceInfo.objects.all()
-    permission_classes = (IsAuthenticated, permissions.UpdateOwnDevice)
+    permission_classes = (permissions.DevicesViewPermissions, )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -94,13 +90,19 @@ class DevicesViewSet(mixins.CreateModelMixin,
             try:
                 obj = models.DeviceInfo.objects.get(uuid=request.data['uuid'])
                 del request.data['uuid']
-                if serializer.is_valid():
+                if serializer.is_valid(raise_exception=True):
                     obj = serializer.update(obj, serializer.validated_data)
                     return Response(serializer.to_representation(obj))
             except ObjectDoesNotExist:
-                if serializer.is_valid():
+                if serializer.is_valid(raise_exception=True):
                     validated_data = serializer.validated_data
                     validated_data['user'] = request.user
                     obj = serializer.create(validated_data)
                     return Response(serializer.to_representation(obj))
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.is_valid(raise_exception=True)
+
+    def get_queryset(self):
+        if self.request.user.is_staff:
+            return models.DeviceInfo.objects.all()
+        return models.DeviceInfo.objects.filter(user=self.request.user)
+
