@@ -31,7 +31,7 @@ class DaySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Day
         fields = ('tripId', 'idx', 'hotels', 'places')
-
+        
     def create(self, validated_data):
         day = models.Day.objects.create(
             tripId=validated_data['tripId'],
