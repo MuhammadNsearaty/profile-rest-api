@@ -4,52 +4,37 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
+
+from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.settings import api_settings
-from rest_framework.views import APIView
 
 from profiles_api import models
 from profiles_api import permissions
 from profiles_api import serializers
 
 
-class HelloView(APIView):
-
-    def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
-
-
 class UserLoginApiView(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """Handle getting authentication token and users login"""
-    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
-    serializer_class = serializers.AuthTokenSerializer
+    serializer_class = serializers.LoginSerializer
+    permission_classes = (AllowAny, )
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
+        token, created = serializer.get_or_create(validated_data=serializer.validated_data)
         user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        if not created:
-            token.delete()
-            token = Token.objects.create(user=user)
-
-        return Response({
-            'token': token.key,
-            'user': serializers.UserProfileSerializer().to_representation(user),
-        })
+        return Response(serializer.to_representation({'token': token, 'user': user}))
 
 
 class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """Handle creating users"""
 
     serializer_class = serializers.UserProfileSerializer
-
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.UpdateOwnProfile,)
+    permission_classes = (AllowAny, )
+    user_serializer = serializers.UserProfileSerializer(read_only=True)
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -59,15 +44,8 @@ class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
             token = Token.objects.create(user=user)
             return Response({
                 'token': token.key,
-                'user': serializers.UserProfileSerializer().to_representation(user),
+                'user': self.user_serializer.to_representation(user),
             })
-
-
-def validate_own(data: Dict):
-    uuid = data.get('uuid', None)
-    if not uuid:
-        return False
-    return True
 
 
 class DevicesViewSet(mixins.CreateModelMixin,
@@ -76,6 +54,8 @@ class DevicesViewSet(mixins.CreateModelMixin,
                      mixins.DestroyModelMixin,
                      mixins.ListModelMixin,
                      viewsets.GenericViewSet):
+    """handles CRUD operations on users devices"""
+
     serializer_class = serializers.DeviceInfoSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.DevicesViewPermissions, )
@@ -83,10 +63,17 @@ class DevicesViewSet(mixins.CreateModelMixin,
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    @staticmethod
+    def validate_own(data: Dict):
+        uuid = data.get('uuid', None)
+        if not uuid:
+            return False
+        return True
+
     @action(detail=False, url_path='update', methods=['PUT'])
     def update_own(self, request: Request, pk=None):
         serializer = self.serializer_class(data=request.data, partial=True)
-        if validate_own(request.data):
+        if self.validate_own(request.data):
             try:
                 obj = models.DeviceInfo.objects.get(uuid=request.data['uuid'])
                 del request.data['uuid']

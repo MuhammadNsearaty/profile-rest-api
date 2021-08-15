@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -31,7 +33,7 @@ class PlaceReview(models.Model):
         'Place',
         on_delete=models.CASCADE
     )
-    reviewText = models.CharField(max_length=2000)
+    reviewText = models.CharField(max_length=5000)
     overallRating = 0.0
 
 
@@ -47,7 +49,8 @@ class Hotel(models.Model):
     kinds = models.CharField(max_length=1000, default='')
     description = models.CharField(max_length=100, default='')
     address = models.CharField(max_length=100, default='')
-    imageUri = models.URLField(max_length=200, null=True)
+    # TODO make null False
+    image = models.URLField(max_length=200, null=True)
 
 
 class Place(models.Model):
@@ -62,7 +65,8 @@ class Place(models.Model):
     kinds = models.CharField(max_length=1000, default='')
     address = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
-    imageUri = models.URLField(max_length=200, null=True)
+    # TODO make null False
+    image = models.URLField(max_length=200, null=True)
 
 
 class Room(models.Model):
@@ -80,3 +84,30 @@ class Room(models.Model):
 #     # @override
 #     def makeAnAppointment():
 #         pass
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.name
+
+
+class Blog(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    blog_text = models.CharField(max_length=100000)
+    date = models.DateField(default=datetime.date.today)
+    # TODO make null False
+    image = models.URLField(null=True)
+    title = models.CharField(max_length=300)
+    tags = models.ManyToManyField(Tag)
+
+# class BlogHasTag(models.Model):
+    # blog_id = models.ForeignKey('Blog', on_delete=models.CASCADE)
+    # tag_id = models.ForeignKey('Tag', on_delete=models.CASCADE)
+    #
+    # class Meta:
+    #     constraints = [
+    #         models.UniqueConstraint(fields=['blog_id', 'tag_id'], name='uniqueness')
+    #     ]

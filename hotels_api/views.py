@@ -1,5 +1,6 @@
 import ast
 import sys
+from functools import reduce
 
 from rest_framework import status
 from rest_framework import viewsets
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 
 from hotels_api import models
 from hotels_api import serializers
+from hotels_api import filters
 
 sys.path.append("./Search Engine/Trips-planning-system-main/")
 
@@ -122,3 +124,12 @@ class PlaceDbViewSet(viewsets.ModelViewSet):
     queryset = models.Place.objects.all()
     ordering_fields = ['name', 'distance', 'guestrating']
     search_fields = ['name', 'address']
+
+
+class BlogViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.BlogSerializer
+    permission_classes = (AllowAny,)
+    ordering_fields = ['title', 'date']
+    search_fields = ['title', 'tags__name']
+    filterset_class = filters.BlogFilter
+    queryset = models.Blog.objects.all()
