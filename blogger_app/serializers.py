@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from profiles_api.serializers import UserProfileSerializer
+from profiles_app.serializers import UserProfileSerializer
 
 from blogger_app import models
 
@@ -8,34 +8,24 @@ from blogger_app import models
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Tag
-        fields = ('id', 'name', 'description', 'image')
+        fields = ('id', 'name', 'description', 'image', 'blogs')
+        extra_kwargs = {'blogs': {'required': False}}
 
     def to_representation(self, instance):
-        return {
-            'id': instance.pk,
-            'name': instance.name,
-            'description': instance.description,
-            'image': f'https://loremflickr.com/320/320/{instance.name}?random'
-        }
+        data = super().to_representation(instance)
+        data['image'] = f'https://loremflickr.com/320/320/{instance.name}?random'
+        return data
 
 
 class BlogSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
-    tags = TagSerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Blog
         fields = ('id', 'title', 'image', 'blog_text', 'date', 'tags', 'user')
         read_only_fields = ['date']
-
-    def create(self, validated_data):
-        blog = models.Blog.objects.create(
-            title=validated_data['title'],
-            image=validated_data['image'],
-            blog_text=validated_data['blog_text'],
-            user=self.context['request'].user,
-        )
-        return blog
+        extra_kwargs = {'tags': {'required': False}}
+        depth = 1
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
