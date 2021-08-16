@@ -21,11 +21,13 @@ from patches.routers import DefaultRouter
 from profiles_api.urls import router as profile_router
 from profiles_project import settings
 from trips_api.urls import router as trip_router
+from blogger_app.urls import router as blogger_router
 
 router = DefaultRouter()
 router.extend(profile_router)
 router.extend(hotel_router)
 router.extend(trip_router)
+router.extend(blogger_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

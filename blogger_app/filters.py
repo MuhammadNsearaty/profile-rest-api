@@ -1,7 +1,7 @@
 from functools import reduce
 
 from django_filters import filters, filterset
-from hotels_api import models
+from blogger_app import models
 
 
 class BlogFilter(filterset.FilterSet):
