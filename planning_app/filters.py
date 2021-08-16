@@ -17,3 +17,4 @@ class PlaceReviewFilter(filterset.FilterSet):
     class Meta:
         model = models.PlaceReview
         fields = ['date', 'user', 'place', 'overall_rating']
+

@@ -24,4 +24,4 @@ class TagViewSet(viewsets.ModelViewSet):
     permission_classes = (ModeratedByAdminOnly, )
     ordering_fields = ['name', 'blogs_count']
     search_fields = ['name', 'description']
-    queryset = models.Tag.objects.annotate(blogs_count=Count('blogs')).all()
+    queryset = models.Tag.objects.annotate(blogs_count=Count('blogs'))

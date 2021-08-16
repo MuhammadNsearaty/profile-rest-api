@@ -1,4 +1,5 @@
 from django.db.models import Avg
+from django.db.models import F
 
 from rest_framework import serializers
 
@@ -14,12 +15,13 @@ class PropertySerializer(serializers.ModelSerializer):
 
 class PlaceSerializer(serializers.ModelSerializer):
     properties = PropertySerializer(many=True, read_only=True)
+    guest_rating = serializers.FloatField(read_only=True)
 
     class Meta:
         model = models.Place
         fields = ('id', 'name', 'description', 'latitude', 'longitude', 'address', 'distance',
                   'properties',
-                  'image', 'city_name')
+                  'image', 'city_name', 'guest_rating')
         extra_kwargs = {'properties': {'required': False}}
         read_only_fields = ['type']
         depth = 1
@@ -28,9 +30,6 @@ class PlaceSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         # TODO remove statement
         data['image'] = f'https://loremflickr.com/320/320/hotels?random={instance.pk}'
-        guest_rating = models.PlaceReview.objects.filter(place=instance).aggregate(
-            Avg('overall_rating'))['overall_rating__avg']
-        data['guest_rating'] = guest_rating if guest_rating is not None else 0
         return data
 
 
@@ -56,4 +55,9 @@ class TripSerializer(serializers.ModelSerializer):
         model = models.Trip
         fields = ('id', 'user', 'start_date', 'days')
         extra_kwargs = {'days': {'required': False}}
-        depth = 1
+        depth = 2
+
+    def to_representation(self, instance):
+
+        return super().to_representation(instance)
+

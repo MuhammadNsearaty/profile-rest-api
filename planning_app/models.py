@@ -57,11 +57,11 @@ class Room(models.Model):
 class PlaceReview(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE, related_name='reviews',
     )
     place = models.ForeignKey(
         'Place',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE, related_name='reviews',
     )
     date = models.DateField(default=datetime.date.today)
     review_text = models.CharField(max_length=5000)
@@ -74,7 +74,7 @@ class Day(models.Model):
     places = models.ManyToManyField(Place, related_name="days")
     trip = models.ForeignKey(
         'Trip',
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE, related_name='days',
     )
 
 
