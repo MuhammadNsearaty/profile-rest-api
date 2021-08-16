@@ -6,6 +6,6 @@ router = DefaultRouter()
 
 router.register('hotel', views.HotelViewSet, basename='hotels')
 router.register('place', views.PlaceViewSet, basename='places')
-router.register('hotel-db', views.HotelDbViewSet)
-router.register('place-db', views.PlaceDbViewSet)
+router.register('hotels-db', views.HotelDbViewSet)
+router.register('places-db', views.PlaceDbViewSet)
 router.register('blogs', views.BlogViewSet, basename='blogs')

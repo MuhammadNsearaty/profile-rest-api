@@ -29,7 +29,7 @@ class UserLoginApiView(viewsets.GenericViewSet, mixins.CreateModelMixin):
         return Response(serializer.to_representation({'token': token, 'user': user}))
 
 
-class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UserRegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """Handle creating users"""
 
     serializer_class = serializers.UserProfileSerializer
@@ -48,12 +48,7 @@ class UserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
             })
 
 
-class DevicesViewSet(mixins.CreateModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.DestroyModelMixin,
-                     mixins.ListModelMixin,
-                     viewsets.GenericViewSet):
+class DevicesViewSet(viewsets.ModelViewSet):
     """handles CRUD operations on users devices"""
 
     serializer_class = serializers.DeviceInfoSerializer

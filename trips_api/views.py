@@ -5,28 +5,25 @@ from rest_framework.response import Response
 from trips_api import models
 from trips_api import permissions
 from trips_api import serializers
-
-
-# Create your views here.
+from trips_api import filters
 
 
 class TripViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TripSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = [permissions.CreateOwnTrip]
+    filterset_class = filters.TripFilter
+    ordering_fields = ('start_date', )
 
     def get_queryset(self):
-        return models.Trip.objects.filter(userId=self.request.user)
+        return models.Trip.objects.all()
 
     def create(self, request, *args, **kwargs):
         """
-        verify that the POST has the request user as the obj.userId
+        verify that the POST has the request user as the obj.user
         """
-        if request.data["userId"] == str(request.user.id):
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            self.perform_create(serializer)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=201, headers=headers)
-        else:
-            return Response(status=403)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=201, headers=headers)

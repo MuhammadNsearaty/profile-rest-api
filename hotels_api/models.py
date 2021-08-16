@@ -5,10 +5,54 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
-class Location(models.Model):
+class Hotel(models.Model):
+    name = models.CharField(max_length=10)
     latitude = models.FloatField(null=False, default=0.0)
     longitude = models.FloatField(null=False, default=0.0)
-    cityName = models.CharField(max_length=15)
+    city_name = models.CharField(max_length=15)
+
+    distance = models.FloatField(null=False, default=0.0)
+    guest_rating = models.FloatField(null=False, default=0.0,
+                                     validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+    kinds = models.CharField(max_length=1000, default='')
+    description = models.CharField(max_length=100, default='')
+    address = models.CharField(max_length=100, default='')
+    # TODO make null False
+    image = models.URLField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Place(models.Model):
+    name = models.CharField(max_length=10)
+    latitude = models.FloatField(null=False, default=0.0)
+    longitude = models.FloatField(null=False, default=0.0)
+    city_name = models.CharField(max_length=15)
+    
+    distance = models.FloatField(null=False, default=0.0)
+    guest_rating = models.FloatField(null=False, default=0.0,
+                                     validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+    kinds = models.CharField(max_length=1000, default='')
+    address = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=100, default='')
+    # TODO make null False
+    image = models.URLField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Room(models.Model):
+    hotel = models.ForeignKey(
+        'Hotel',
+        on_delete=models.CASCADE
+    )
+    check_in_date = models.DateTimeField()
+    check_out_date = models.DateTimeField()
+    description = models.CharField(max_length=1000)
+    price = models.FloatField()
+    image = models.URLField(max_length=200, null=True)
 
 
 class HotelReview(models.Model):
@@ -16,12 +60,12 @@ class HotelReview(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    hotelId = models.ForeignKey(
+    hotel = models.ForeignKey(
         'Hotel',
         on_delete=models.CASCADE
     )
-    reviewText = models.CharField(max_length=2000)
-    overallRating = 0.0
+    review_rating = models.CharField(max_length=2000)
+    overall_rating = 0.0
 
 
 class PlaceReview(models.Model):
@@ -29,74 +73,18 @@ class PlaceReview(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    placeId = models.ForeignKey(
+    place = models.ForeignKey(
         'Place',
         on_delete=models.CASCADE
     )
-    reviewText = models.CharField(max_length=5000)
-    overallRating = 0.0
-
-
-class Hotel(models.Model):
-    name = models.CharField(max_length=10)
-    # location = models.ForeignKey(
-    #     'Location',
-    #     on_delete=models.DO_NOTHING,
-    # )
-    latitude = models.FloatField(null=False, default=0.0)
-    longitude = models.FloatField(null=False, default=0.0)
-    cityName = models.CharField(max_length=15)
-
-    distance = models.FloatField(null=False, default=0.0)
-    guestrating = models.FloatField(null=False, default=0.0,
-                                    validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
-    kinds = models.CharField(max_length=1000, default='')
-    description = models.CharField(max_length=100, default='')
-    address = models.CharField(max_length=100, default='')
-    # TODO make null False
-    image = models.URLField(max_length=200, null=True)
-
-
-class Place(models.Model):
-    name = models.CharField(max_length=10)
-    # location = models.ForeignKey(
-    #     'Location',
-    #     on_delete=models.DO_NOTHING,
-    # )
-    latitude = models.FloatField(null=False, default=0.0)
-    longitude = models.FloatField(null=False, default=0.0)
-    cityName = models.CharField(max_length=15)
-    
-    distance = models.FloatField(null=False, default=0.0)
-    guestrating = models.FloatField(null=False, default=0.0,
-                                    validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
-    kinds = models.CharField(max_length=1000, default='')
-    address = models.CharField(max_length=100, default='')
-    description = models.CharField(max_length=100, default='')
-    # TODO make null False
-    image = models.URLField(max_length=200, null=True)
-
-
-class Room(models.Model):
-    hotelId = models.ForeignKey(
-        'Hotel',
-        on_delete=models.CASCADE
-    )
-    checkinDate = models.DateTimeField()
-    checkoutDate = models.DateTimeField()
-    details = models.CharField(max_length=1000)
-
-# class Restaurant(Place,Bookable):
-#     checkinDate = models.DateTimeField()
-#     orderMenu = []#list(Order())
-#     # @override
-#     def makeAnAppointment():
-#         pass
+    review_text = models.CharField(max_length=5000)
+    overall_rating = 0.0
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
+    image = models.URLField(max_length=200)
 
     def __str__(self):
         return self.name
@@ -110,12 +98,3 @@ class Blog(models.Model):
     image = models.URLField(null=True)
     title = models.CharField(max_length=300)
     tags = models.ManyToManyField(Tag)
-
-# class BlogHasTag(models.Model):
-    # blog_id = models.ForeignKey('Blog', on_delete=models.CASCADE)
-    # tag_id = models.ForeignKey('Tag', on_delete=models.CASCADE)
-    #
-    # class Meta:
-    #     constraints = [
-    #         models.UniqueConstraint(fields=['blog_id', 'tag_id'], name='uniqueness')
-    #     ]
