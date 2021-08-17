@@ -11,12 +11,16 @@ from shared.permissions import ModeratedByAdminOnly
 
 
 class BlogViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.BlogSerializer
     permission_classes = (permissions.OwnerOrAdmin,)
     ordering_fields = ['title', 'date']
     search_fields = ['title', 'tags__name']
     filterset_class = filters.BlogFilter
     queryset = models.Blog.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return serializers.BlogMiniSerializer
+        return serializers.BlogSerializer
 
 
 class TagViewSet(viewsets.ModelViewSet):

@@ -18,4 +18,4 @@ class BlogFilter(filterset.FilterSet):
 
     class Meta:
         model = models.Blog
-        fields = ['date', 'tags']
+        fields = ['date', 'tags', 'user']

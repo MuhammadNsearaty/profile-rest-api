@@ -17,12 +17,6 @@ class Property(models.Model):
         return self.name
 
 
-PLACE_TYPES = [
-    (1, 'Place'),
-    (2, 'Hotel'),
-]
-
-
 class Place(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.FloatField(null=False, default=0.0)
@@ -35,7 +29,10 @@ class Place(models.Model):
     description = models.CharField(max_length=100, default='')
     # TODO make null False
     image = models.URLField(max_length=200, null=True)
-
+    PLACE_TYPES = [
+        (1, 'Place'),
+        (2, 'Hotel'),
+    ]
     type = models.IntegerField(choices=PLACE_TYPES, default=1)
 
     def __str__(self):
@@ -65,17 +62,30 @@ class PlaceReview(models.Model):
     )
     date = models.DateField(default=datetime.date.today)
     review_text = models.CharField(max_length=5000)
-    overall_rating = models.IntegerField(null=False, default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    RATING_CHOICES = [
+        (1, 'Terrible'),
+        (2, 'Poor'),
+        (3, 'Average'),
+        (4, 'Good'),
+        (5, 'Excellent')
+    ]
+    overall_rating = models.IntegerField(null=False, default=1, choices=RATING_CHOICES)
 
 
 class Day(models.Model):
     """Days over the trip"""
-    day_index = models.IntegerField(default=0, null=False, validators=[MinValueValidator(1), MaxValueValidator(15)])
-    places = models.ManyToManyField(Place, related_name="days")
+    day_index = models.PositiveIntegerField(default=0, null=False,
+                                            validators=[MinValueValidator(0), MaxValueValidator(14)])
     trip = models.ForeignKey(
         'Trip',
         on_delete=models.CASCADE, related_name='days',
     )
+
+
+class Activity(models.Model):
+    index = models.PositiveIntegerField(null=False, default=0)
+    day = models.ForeignKey(to='Day', related_name='activities', on_delete=models.CASCADE)
+    place = models.ForeignKey(to='Place', related_name='activities', on_delete=models.CASCADE)
 
 
 class Trip(models.Model):

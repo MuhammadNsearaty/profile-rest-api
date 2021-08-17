@@ -19,5 +19,10 @@ class ModeratedByAdminOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
         if self.is_Authenticated.has_permission(request, view):
+            return request.method in permissions.SAFE_METHODS or request.user.is_staff
+        return False
+
+    def has_object_permission(self, request, view, obj):
+        if self.is_Authenticated.has_permission(request, view):
             return request.user.is_staff
         return False
