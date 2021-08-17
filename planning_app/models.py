@@ -79,7 +79,7 @@ class Day(models.Model):
 
 
 class Trip(models.Model):
-    """Places ,overallRating and bookings"""
+    """Places and bookings"""
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

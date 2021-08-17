@@ -1,6 +1,3 @@
-from django.db.models import Avg
-from django.db.models import F
-
 from rest_framework import serializers
 
 from planning_app import models
@@ -58,6 +55,9 @@ class TripSerializer(serializers.ModelSerializer):
         depth = 2
 
     def to_representation(self, instance):
-
-        return super().to_representation(instance)
-
+        data = super().to_representation(instance)
+        for day in data['days']:
+            del day['trip']
+        del data['user']['birthday']
+        del data['user']['gender']
+        return data
