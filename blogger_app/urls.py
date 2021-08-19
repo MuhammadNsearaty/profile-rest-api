@@ -6,3 +6,4 @@ router = DefaultRouter()
 
 router.register('blogs', views.BlogViewSet, basename='blogs')
 router.register('tags', views.TagViewSet)
+router.register('likes', views.LikesViewSet)

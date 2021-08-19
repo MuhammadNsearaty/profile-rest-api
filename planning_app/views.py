@@ -11,8 +11,9 @@ class PlaceDbViewSet(viewsets.ModelViewSet):
     queryset = models.Place.objects.filter(
         type=models.Place.PLACE_TYPES[0][0]).annotate(
         guest_rating=Avg('reviews__overall_rating'), reviews_count=Count('reviews__overall_rating'))
-    ordering_fields = ['name', 'distance', 'guest_rating']
+    ordering_fields = ['name', 'distance', 'guest_rating', 'reviews_count']
     search_fields = ['name', 'address']
+    filterset_class = filters.PlaceFilter
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -35,9 +36,11 @@ class PlacesReviewsViewSet(viewsets.ModelViewSet):
 class HotelDbViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AdminOrReadOnly,)
     queryset = models.Place.objects.filter(
-        type=models.Place.PLACE_TYPES[1][0]).annotate(guest_rating=Avg('reviews__overall_rating'))
-    ordering_fields = ['name', 'distance', 'guest_rating']
+        type=models.Place.PLACE_TYPES[1][0]).annotate(guest_rating=Avg('reviews__overall_rating'),
+                                                      reviews_count=Count('reviews'))
+    ordering_fields = ['name', 'distance', 'guest_rating', 'reviews_count']
     search_fields = ['name', 'address']
+    filterset_class = filters.PlaceFilter
 
     def get_serializer_class(self):
         if self.action == 'list':

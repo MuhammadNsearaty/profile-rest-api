@@ -33,7 +33,9 @@ class Place(models.Model):
         (1, 'Place'),
         (2, 'Hotel'),
     ]
+
     type = models.IntegerField(choices=PLACE_TYPES, default=1)
+    price = models.PositiveIntegerField(default=10)
 
     def __str__(self):
         return self.name
@@ -61,7 +63,7 @@ class PlaceReview(models.Model):
         on_delete=models.CASCADE, related_name='reviews',
     )
     date = models.DateField(default=datetime.date.today)
-    review_text = models.CharField(max_length=5000)
+    review_text = models.CharField(max_length=700)
     RATING_CHOICES = [
         (1, 'Terrible'),
         (2, 'Poor'),

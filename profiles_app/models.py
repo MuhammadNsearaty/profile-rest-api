@@ -41,8 +41,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     password = models.CharField(max_length=128,
                                 validators=[MinLengthValidator(8, message='Password must be at least 8 characters')])
-    first_name = models.CharField(max_length=255, default='')
-    last_name = models.CharField(max_length=255, default='')
+    first_name = models.CharField(max_length=25, default='')
+    last_name = models.CharField(max_length=25, default='')
     birthday = models.DateField()
     GENDER_CHOICES = (
         ('M', 'Male'),

@@ -27,7 +27,7 @@ class PlacesMiniSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Place
         fields = ('id', 'name', 'latitude', 'longitude', 'address', 'distance',
-                  'image', 'city_name', 'guest_rating', 'properties')
+                  'image', 'city_name', 'guest_rating', 'properties', 'price', 'type')
         read_only_fields = ['type']
 
     def to_representation(self, instance):
@@ -57,7 +57,8 @@ class PlaceDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Place
         fields = ('id', 'name', 'description', 'latitude', 'longitude', 'address', 'distance',
-                  'image', 'city_name', 'guest_rating', 'properties')
+                  'image', 'city_name', 'guest_rating', 'properties', 'type')
+        read_only_fields = ('type', )
         extra_kwargs = {
             'properties': {
                 'required': False,
