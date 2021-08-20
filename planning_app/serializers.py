@@ -1,3 +1,4 @@
+# from _typeshed import StrPath
 import datetime
 
 from django.db.models import Count
@@ -6,7 +7,7 @@ from rest_framework import serializers
 
 from planning_app import models
 from profiles_app.serializers import UserProfileSerializer
-
+from profiles_app import models as profile_app_models
 
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
@@ -93,6 +94,9 @@ class ActivityDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Activity
         fields = ('day', 'index', 'place')
+    def create(self,validated_data):
+        activity = self.create(**validated_data)
+        return activity
 
 
 # TODO implement create method for nested representation
@@ -101,9 +105,19 @@ class DayDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Day
-        fields = ('id', 'day_index', 'activities')
+        fields = ('id', 'day_index', 'trip','activities')
         extra_kwargs = {'activities': {'required': True}}
 
+    def create(self,validated_data):        
+        activities_data = validated_data.pop('activities')
+        day = models.Trip.objects.create(
+            id = validated_data['id'],
+            day_index = validated_data['day_index'],
+            trip = validated_data['trip']
+        )
+        serilaized_activities =  ActivityDetailsSerializer(data=activities_data,many=True)
+        return day
+        
     def to_representation(self, instance):
         data = super().to_representation(instance)
         for activity in data['activities']:
@@ -125,6 +139,22 @@ class TripDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Trip
         fields = ('id', 'user', 'start_date', 'days')
+    
+    def create(self, validated_data):
+        try:
+            throwThis = profile_app_models.UserProfile.objects.get(validated_data['user'])
+        except profile_app_models.UserProfile.DoesNotExist:
+            return Response({'message':'User does not exists'})
+        
+        days_data = validated_data.pop('days')
+
+        trip = models.Trip.objects.create(
+            id = validated_data['id'],
+            start_date = validated_data['start_date'],
+        )
+        serilaized_days = DayDetailsSerializer(data=days_data,read_only=True, many=True)
+        
+        return trip
 
     def validate_start_date(self, value):
         """
