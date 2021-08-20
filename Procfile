@@ -1,1 +1,1 @@
-web: gunicorn profiles_project.wsgi
+web: gunicorn trip_pal_project.wsgi
