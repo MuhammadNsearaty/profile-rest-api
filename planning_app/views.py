@@ -4,6 +4,7 @@ from rest_framework import viewsets, parsers
 
 from shared.permissions import IsOwnerOrReadOnly
 from planning_app import permissions, filters, models, serializers
+from rest_framework.response import Response
 
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
@@ -64,5 +65,10 @@ class TripViewSet(viewsets.ModelViewSet):
             return serializers.TripMiniSerializer
         return serializers.TripDetailsSerializer
 
-    # def perform_create(self, serializer):
-    #     serializer.save(user=self.request.user)
+    def create(self, request,*args,**kwargs):
+        trip_data = request.data
+        # new_trip = models.Trip.objects.create(user = trip_data['user'],start_date=trip_data['start_date'])
+        # new_trip.save()
+        serializer = serializers.TripDetailsSerializer(trip_data)
+
+        return Response(serializer.data)                
