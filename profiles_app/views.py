@@ -56,6 +56,7 @@ class UserProfilesApiView(viewsets.ModelViewSet):
     queryset = models.UserProfile.objects.annotate(name=Concat('first_name', Value(' '), 'last_name',
                                                                output_field=CharField())).all()
     ordering_fields = ('name', 'birthday', )
+    search_fields = ('name', 'email', )
     filterset_class = filters.UserProfileFilter
     permission_classes = (permissions.OwnerOrAdminOnly, )
 
@@ -64,7 +65,7 @@ class DevicesViewSet(viewsets.ModelViewSet):
     """handles CRUD operations on users devices"""
 
     serializer_class = serializers.DeviceInfoSerializer
-    permission_classes = (permissions.OwnerOrAdminOnly,)
+    permission_classes = (permissions.DeviceOwnerOrAdminOnly,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -77,7 +78,7 @@ class DevicesViewSet(viewsets.ModelViewSet):
         return True
 
     @action(detail=False, url_path='update', methods=['PUT'])
-    def update_own(self, request: Request, pk=None):
+    def update_own(self, request: Request):
         serializer = self.serializer_class(data=request.data, partial=True)
         if self.validate_own(request.data):
             try:
@@ -98,4 +99,3 @@ class DevicesViewSet(viewsets.ModelViewSet):
         if self.request.user.is_staff:
             return models.DeviceInfo.objects.all()
         return models.DeviceInfo.objects.filter(user=self.request.user)
-

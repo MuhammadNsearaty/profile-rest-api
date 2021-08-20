@@ -26,17 +26,18 @@ class BlogFilter(filterset.FilterSet):
         field_name='tags',
         method='filter_tags',
     )
+    likes_count = filters.RangeFilter(label='Likes Count')
 
     def filter_tags(self, queryset, name, value):
         if self.is_valid():
             if value:
                 return reduce(lambda x, y: x & y, [queryset.filter(tags=tag) for tag in value])
-            return models.Blog.objects.all(),
+            return queryset
 
     class Meta:
         model = models.Blog
         form = BlogFilterForm
-        fields = ['date', 'tags', 'user']
+        fields = ['date', 'tags', 'user', 'likes_count']
 
 
 class LikesFilter(filterset.FilterSet):

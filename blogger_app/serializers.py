@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.db import models as dj_models
 
 from blogger_app import models
 from profiles_app.models import UserProfile
@@ -12,6 +11,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ('id', 'email', 'first_name', 'last_name', 'birthday', 'gender', 'profile_picture', 'likes_count')
+        ref_name = 'blogger_app_user_serializer'
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

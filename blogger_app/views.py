@@ -44,9 +44,9 @@ class BlogViewSet(viewsets.ModelViewSet):
         qs = models.UserLikeBlog.objects.filter(
             date__gte=_truncate(datetime.datetime.now() - datetime.timedelta(days=7)),
             date__lt=_truncate(datetime.datetime.now() + datetime.timedelta(days=1))).values_list(
-            'user').annotate(
-            likes_count=Count('user')).order_by('-likes_count').filter(likes_count__gte=4)
-        qs = UserProfile.objects.filter(pk__in=qs.values_list('user'))
+            'blog__user').annotate(
+            likes_count=Count('blog__user')).order_by('-likes_count').filter(likes_count__gte=5)
+        qs = UserProfile.objects.filter(pk__in=qs.values_list('blog__user'))
         page = self.paginate_queryset(qs)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
@@ -96,4 +96,4 @@ class LikesViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Li
     permission_classes = (IsAuthenticatedOrReadOnly, )
     serializer_class = serializers.UserLikeBlogSerializer
     filterset_class = filters.LikesFilter
-    ordering_fields = ['date']
+    ordering_fields = ['date', 'blog__likes']
