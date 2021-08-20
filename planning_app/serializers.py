@@ -114,11 +114,11 @@ class ActivityDetailsSerializer(serializers.ModelSerializer):
     def update(self,instance,validated_data):
         instance.day = validated_data['day']
         instance.index = validated_data['index']
-        instance.place = validated_data['place']['id']
+        instance.place = validated_data['place']
         instance.save()
-        place_db = models.Place.objects.get(id=validated_data['place']['id'])
-        place_serilaizer = PlaceDetailsSerializer()
-        place_serilaizer.update(place_db,validated_data['place'])
+        # place_db = models.Place.objects.get(id=validated_data['place']['id'])
+        # place_serilaizer = PlaceDetailsSerializer()
+        # place_serilaizer.update(place_db,validated_data['place'])
         return instance
 
 
