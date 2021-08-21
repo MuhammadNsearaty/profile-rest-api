@@ -129,18 +129,19 @@ class DayDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Day
-        fields = ('id', 'day_index', 'trip','activities')
+        fields = ('day_index', 'trip','activities')
         extra_kwargs = {'activities': {'required': True}}
 
-    def create(self,validated_data):        
+    def create(self,validated_data):
+        print(f'data {validated_data}')
         activities_data = validated_data.pop('activities')
         day = models.Trip.objects.create(
-            id = validated_data['id'],
             day_index = validated_data['day_index'],
             trip = validated_data['trip']
         )
-        serilaized_activities =  ActivityDetailsSerializer(data=activities_data,many=True)
+        # serilaized_activities =  ActivityDetailsSerializer(data=activities_data,many=True)
         return day
+
     def update(self,instance,validated_data):
         instance.day_index = validated_data['day_index']
         instance.trip = validated_data['trip']
@@ -173,22 +174,28 @@ class TripDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Trip
-        fields = ('id', 'user', 'start_date', 'days')
+        fields = ('user', 'start_date', 'days')
     
     def create(self, validated_data):
-        try:
-            throwThis = profile_app_models.UserProfile.objects.get(validated_data['user'])
-        except profile_app_models.UserProfile.DoesNotExist:
-            return Response({'message':'User does not exists'})
-        
         days_data = validated_data.pop('days')
-
+        user_email = validated_data.pop('user')
+        user = profile_app_models.UserProfile.objects.get(email=user_email)
         trip = models.Trip.objects.create(
-            id = validated_data['id'],
             start_date = validated_data['start_date'],
+            user = user,
         )
-        serilaized_days = DayDetailsSerializer(data=days_data,read_only=True, many=True)
-        return trip
+        days_data2 =[]
+        for day in days_data:
+            day["trip"] = trip.id
+            days_data2.append(day)
+
+        serilaized_days = DayDetailsSerializer(data=days_data2,read_only=True, many=True)
+        # if serilaized_days.is_valid():
+        #     obj = serilaized_days.save()
+        #     print(f'new days {obj}')
+        # print(f'serilaized_days {serilaized_days}')
+        return self.to_representation(trip)
+
     def update(self,instance,validated_data):
         instance.id = validated_data['id']
         instance.start_date = validated_data['start_date']

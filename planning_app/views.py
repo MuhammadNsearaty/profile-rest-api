@@ -59,6 +59,7 @@ class TripViewSet(viewsets.ModelViewSet):
     filterset_class = filters.TripFilter
     ordering_fields = ('start_date', 'days_count')
     parser_classes = (parsers.JSONParser, )
+    serializer_class = serializers.TripDetailsSerializer
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -66,9 +67,8 @@ class TripViewSet(viewsets.ModelViewSet):
         return serializers.TripDetailsSerializer
 
     def create(self, request,*args,**kwargs):
-        trip_data = request.data
-        # new_trip = models.Trip.objects.create(user = trip_data['user'],start_date=trip_data['start_date'])
-        # new_trip.save()
-        serializer = serializers.TripDetailsSerializer(trip_data)
 
-        return Response(serializer.data)                
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            trip = serializer.create(request.data)
+            return Response({"trip":trip})                
