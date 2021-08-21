@@ -18,7 +18,7 @@ class Property(models.Model):
 
 
 class Place(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=25)
     latitude = models.FloatField(null=False, default=0.0)
     longitude = models.FloatField(null=False, default=0.0)
     city_name = models.CharField(max_length=15)
@@ -26,7 +26,7 @@ class Place(models.Model):
     distance = models.FloatField(null=False, default=0.0)
     properties = models.ManyToManyField('Property', related_name='places')
     address = models.CharField(max_length=100, default='')
-    description = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=300, default='')
     # TODO make null False
     image = models.URLField(max_length=200, null=True)
     PLACE_TYPES = [

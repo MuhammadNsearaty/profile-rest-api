@@ -36,7 +36,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            profile_picture=validated_data['profile_picture'],
+            profile_picture=validated_data.get('profile_picture', None),
             birthday=validated_data['birthday'],
             gender=validated_data['gender'],
             password=validated_data['password'],

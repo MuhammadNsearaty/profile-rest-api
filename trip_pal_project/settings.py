@@ -27,7 +27,7 @@ SECRET_KEY = 'nn!w(@jx7q^c0tykch^s+t=jtjx)!&x1=v+@#-d$!slt(s&28p'
 DEBUG = True
 APPEND_SLASH = False
 
-ALLOWED_HOSTS = ['0.0.0.0', '192.168.43.180', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.1.103', '127.0.0.1']
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
     'django_seed',
     'django_filters',
     'profiles_app',
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'trip_pal_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

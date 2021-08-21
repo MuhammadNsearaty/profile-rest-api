@@ -14,7 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.conf.urls import url
+
+from rest_framework import permissions
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 from patches.routers import DefaultRouter
 from trip_pal_project import settings
@@ -28,7 +34,23 @@ router.extend(profile_router)
 router.extend(planning_router)
 router.extend(blogger_router)
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="TripPal",
+        default_version='v1',
+        description="Test description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@snippets.local"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+docs_urls = [
+    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    url(r'^docs/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
+]
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(settings.BASE_API_URL, include(router.urls)),
+    path(settings.BASE_API_URL, include(router.urls + docs_urls)),
 ]
