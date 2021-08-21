@@ -79,11 +79,11 @@ class DevicesViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, url_path='update', methods=['PUT'])
     def update_own(self, request: Request):
-        serializer = self.serializer_class(data=request.data, partial=True)
+        serializer = self.serializer_class(data=request.data)
         if self.validate_own(request.data):
             try:
                 obj = models.DeviceInfo.objects.get(uuid=request.data['uuid'])
-                del request.data['uuid']
+                serializer = self.get_serializer(obj, data=request.data, partial=True)
                 if serializer.is_valid(raise_exception=True):
                     obj = serializer.update(obj, serializer.validated_data)
                     return Response(serializer.to_representation(obj))

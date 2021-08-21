@@ -52,4 +52,6 @@ class PlaceFilter(filterset.FilterSet):
     class Meta:
         model = models.Place
         form = PlaceFilterForm
-        fields = ['properties']
+        fields = {
+            'city_name': ['contains', 'exact'],
+        }

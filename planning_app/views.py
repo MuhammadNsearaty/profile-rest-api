@@ -1,4 +1,5 @@
-from django.db.models import Avg, Count
+from django.db.models import Avg, Count, CharField, Value, F
+from django.db.models.functions import Concat
 
 from rest_framework import viewsets, parsers
 
@@ -28,9 +29,11 @@ class PlaceDbViewSet(viewsets.ModelViewSet):
 class PlacesReviewsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaceReviewSerializer
     permission_classes = (IsOwnerOrReadOnly, )
-    queryset = models.PlaceReview.objects.all()
+    queryset = models.PlaceReview.objects.annotate(user_name=Concat(F('user__first_name'), Value(' '),
+                                                                    F('user__last_name'),
+                                                                    output_field=CharField()))
     filterset_class = filters.PlaceReviewFilter
-    search_fields = ['review_text']
+    search_fields = ['review_text', 'user_name']
     ordering_fields = ('date', 'overall_rating')
 
 
