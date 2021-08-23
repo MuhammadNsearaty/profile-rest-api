@@ -66,6 +66,9 @@ class DevicesViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.DeviceInfoSerializer
     permission_classes = (permissions.DeviceOwnerOrAdminOnly,)
+    ordering_fields = ['app_version', 'build_number']
+    filterset_fields = ['user', 'os', 'os_version']
+    search_fields =['model', 'brand']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

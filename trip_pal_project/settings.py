@@ -142,4 +142,14 @@ REST_FRAMEWORK = {
 }
 BASE_API_URL = 'api/'
 
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'Token',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
+
 django_heroku.settings(locals())

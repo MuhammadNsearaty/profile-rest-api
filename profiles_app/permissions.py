@@ -9,6 +9,8 @@ class OwnerOrAdminOnly(permissions.BasePermission):
         return self.isAuthenticated.has_permission(request, view)
 
     def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         if bool(request.user and request.user.is_authenticated):
             return request.user.id == obj.user.id
         return self.isAdmin.has_permission(request, view)

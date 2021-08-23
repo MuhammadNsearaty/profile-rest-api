@@ -9,10 +9,11 @@ from planning_app import models
 
 class TripFilter(filterset.FilterSet):
     start_date = filters.DateFromToRangeFilter()
+    days_count = filters.RangeFilter(label="Days Count")
 
     class Meta:
         model = models.Trip
-        fields = ['start_date', 'user']
+        fields = ['user']
 
 
 class PlaceReviewFilter(filterset.FilterSet):
@@ -42,6 +43,9 @@ class PlaceFilter(filterset.FilterSet):
         field_name='properties',
         method='filter_properties',
     )
+    guest_rating = filters.RangeFilter(label='Guest Ratings')
+    reviews_count = filters.RangeFilter(label='Total Reviews Count')
+    distance = filters.RangeFilter(label='Distance to City Center')
 
     def filter_properties(self, queryset, name, value):
         if self.is_valid():

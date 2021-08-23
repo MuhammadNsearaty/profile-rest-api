@@ -33,7 +33,7 @@ class PlacesReviewsViewSet(viewsets.ModelViewSet):
                                                                     F('user__last_name'),
                                                                     output_field=CharField()))
     filterset_class = filters.PlaceReviewFilter
-    search_fields = ['review_text', 'user_name']
+    search_fields = ['review_text', 'user_name', 'place__name']
     ordering_fields = ('date', 'overall_rating')
 
 
@@ -58,9 +58,12 @@ class HotelDbViewSet(viewsets.ModelViewSet):
 # TODO implement Create/Update methods
 class TripViewSet(viewsets.ModelViewSet):
     permission_classes = []
-    queryset = models.Trip.objects.annotate(days_count=Count('days'))
+    queryset = models.Trip.objects.annotate(days_count=Count('days'), user_name=Concat(F('user__first_name'),
+                                                                                       Value(' '), F('user__last_name')
+                                                                                       ))
     filterset_class = filters.TripFilter
     ordering_fields = ('start_date', 'days_count')
+    search_fields = ['user_name']
     parser_classes = (parsers.JSONParser, )
 
     def get_serializer_class(self):

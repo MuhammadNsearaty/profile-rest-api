@@ -88,6 +88,7 @@ class TagViewSet(viewsets.ModelViewSet):
     permission_classes = (ModeratedByAdminOnly, )
     ordering_fields = ['name', 'blog_count']
     search_fields = ['name', 'description']
+    filterset_class = filters.TagFilter
     queryset = models.Tag.objects.annotate(blog_count=Count('blogs'))
 
 

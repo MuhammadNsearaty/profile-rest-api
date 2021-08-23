@@ -40,6 +40,14 @@ class BlogFilter(filterset.FilterSet):
         fields = ['date', 'tags', 'user', 'likes_count']
 
 
+class TagFilter(filterset.FilterSet):
+    blog_count = filters.RangeFilter(label='Blog Count')
+
+    class Meta:
+        model = models.Tag
+        fields = []
+
+
 class LikesFilter(filterset.FilterSet):
     date = filters.DateFromToRangeFilter()
 
