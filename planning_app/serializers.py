@@ -101,63 +101,21 @@ class PlaceReviewSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'place', 'date', 'review_text', 'overall_rating')
 
 
-# TODO implement create method for nested representation
-class ActivityDetailsSerializer(serializers.ModelSerializer):
-    place = PlacesMicroSerializer()
-
+class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Activity
         fields = ('day', 'index', 'place')
-    def create(self,validated_data):
-        activity = self.create(**validated_data)
-        return activity
-    def update(self,instance,validated_data):
-        instance.day = validated_data['day']
-        instance.index = validated_data['index']
-        instance.place = validated_data['place']
-        instance.save()
-        # place_db = models.Place.objects.get(id=validated_data['place']['id'])
-        # place_serilaizer = PlaceDetailsSerializer()
-        # place_serilaizer.update(place_db,validated_data['place'])
-        return instance
 
-
-
-# TODO implement create method for nested representation
-class DayDetailsSerializer(serializers.ModelSerializer):
-    activities = ActivityDetailsSerializer(many=True)
+class DaySerializer(serializers.ModelSerializer):
+    activities = ActivitySerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Day
-        fields = ('id', 'day_index', 'trip','activities')
-        extra_kwargs = {'activities': {'required': True}}
-
-    def create(self,validated_data):        
-        activities_data = validated_data.pop('activities')
-        day = models.Trip.objects.create(
-            id = validated_data['id'],
-            day_index = validated_data['day_index'],
-            trip = validated_data['trip']
-        )
-        serilaized_activities =  ActivityDetailsSerializer(data=activities_data,many=True)
+        fields = ('day_index', 'trip','activities')
+    def create(self, validated_data):
+        day = models.Day.objects.create(
+            day_index = validated_data['day_index'], trip=validated_data['trip'])
         return day
-    def update(self,instance,validated_data):
-        instance.day_index = validated_data['day_index']
-        instance.trip = validated_data['trip']
-        activties = validated_data.get('activities')
-        activities_serilaizer = ActivityDetailsSerializer() 
-        for activity in activties:
-            activity_db = models.Activity.objects.get(id=activity['id'])
-            if activity_db:
-                activities_serilaizer.update(activity_db,activity)
-            else:
-                models.Activity.objects.create(**activity)
-
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        for activity in data['activities']:
-            del activity['day']
-        return data
 
 
 class DayMiniSerializer(serializers.ModelSerializer):
@@ -169,26 +127,17 @@ class DayMiniSerializer(serializers.ModelSerializer):
 # TODO implement create method for nested representation
 class TripDetailsSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
-    days = DayDetailsSerializer(read_only=True, many=True)
+    days = DaySerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Trip
-        fields = ('id', 'user', 'start_date', 'days')
+        fields = ('user', 'start_date', 'days')
     
     def create(self, validated_data):
-        try:
-            throwThis = profile_app_models.UserProfile.objects.get(validated_data['user'])
-        except profile_app_models.UserProfile.DoesNotExist:
-            return Response({'message':'User does not exists'})
-        
-        days_data = validated_data.pop('days')
-
         trip = models.Trip.objects.create(
-            id = validated_data['id'],
-            start_date = validated_data['start_date'],
-        )
-        serilaized_days = DayDetailsSerializer(data=days_data,read_only=True, many=True)
+            start_date = validated_data['start_date'], user=validated_data['user'])
         return trip
+
     def update(self,instance,validated_data):
         instance.id = validated_data['id']
         instance.start_date = validated_data['start_date']
