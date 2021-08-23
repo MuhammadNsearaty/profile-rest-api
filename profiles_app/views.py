@@ -4,10 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.functions import Concat
 from django.db.models import CharField, Value
 
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, status
 from rest_framework.authtoken.models import Token
 
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -48,7 +48,9 @@ class UserLoginApiView(viewsets.GenericViewSet, mixins.CreateModelMixin):
         serializer.is_valid(raise_exception=True)
         token, created = serializer.get_or_create(validated_data=serializer.validated_data)
         user = serializer.validated_data['user']
-        return Response(serializer.to_representation({'token': token, 'user': user}))
+        headers = self.get_success_headers({'token': token, 'user': user})
+        return Response(serializer.to_representation({'token': token, 'user': user}),
+                        status=status.HTTP_200_OK if not created else status.HTTP_201_CREATED, headers=headers)
 
 
 class UserProfilesApiView(viewsets.ModelViewSet):
@@ -59,6 +61,14 @@ class UserProfilesApiView(viewsets.ModelViewSet):
     search_fields = ('name', 'email', )
     filterset_class = filters.UserProfileFilter
     permission_classes = (permissions.OwnerOrAdminOnly, )
+
+    @action(detail=False, url_path='/logout', methods=['GET'], permission_classes=(IsAuthenticated, ))
+    def logout(self, request):
+        user = request.user
+        token = Token.objects.get(user=user)
+        token.delete()
+        return Response(self.get_serializer(user).data, status=status.HTTP_200_OK)
+
 
 
 class DevicesViewSet(viewsets.ModelViewSet):
