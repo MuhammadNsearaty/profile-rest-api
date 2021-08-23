@@ -73,5 +73,28 @@ class TripViewSet(viewsets.ModelViewSet):
 
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            trip = serializer.create(request.data)
-            return Response({"trip":trip})                
+            valid_data = serializer.validated_data
+            valid_data['user'] = request.user
+            trip = serializer.create(valid_data)
+            days_data = request.data.pop('days')
+            for day in days_data:
+                day["trip"] = trip.id
+            serilaized_days = serializers.DaySerializer(data=days_data, many=True)
+            if serilaized_days.is_valid():
+                days = serilaized_days.save()
+                for d_data,day in zip(days_data,days):
+                    activities_data = d_data['activities']
+                    for active in activities_data:
+                        active['day'] = day.id
+                    print(f'activity {activities_data}')
+                    activities_serializer = serializers.ActivitySerializer(data=activities_data,many=True)
+                    if activities_serializer.is_valid():
+                        activities = activities_serializer.save()
+            if serilaized_days.errors:
+                 print(f'serilaized_days.errors {serilaized_days.errors}')
+                 return Response({'message':'invalid days data'})
+            if activities_serializer.errors:
+                print(f'serilaized_days.errors {activities_serializer.errors}')
+                return Response({'message':'invalid activities data'})
+
+            return Response(serializer.to_representation(models.Trip.objects.get(id=trip.id)))                
