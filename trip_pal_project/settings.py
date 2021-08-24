@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'profiles_app',
     'planning_app',
     'blogger_app',
-    'django_heroku'
+    'django_heroku',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -152,5 +153,8 @@ SWAGGER_SETTINGS = {
       }
    }
 }
-
+GRAPH_MODELS={
+    'all_application':True,
+    'group_models':True,
+}
 django_heroku.settings(locals())

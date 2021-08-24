@@ -1,0 +1,898 @@
+digraph model_graph {
+  // Dotfile by Django-Extensions graph_models
+  // Created: 2021-08-24 10:56
+  // Cli Options: profiles_app planning_app blogger_app
+
+  fontname = "Roboto"
+  fontsize = 8
+  splines  = true
+
+  node [
+    fontname = "Roboto"
+    fontsize = 8
+    shape = "plaintext"
+  ]
+
+  edge [
+    fontname = "Roboto"
+    fontsize = 8
+  ]
+
+  // Labels
+  subgraph cluster_profiles_app {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT FACE="Roboto" COLOR="Black" POINT-SIZE="10">
+          <B>profiles_app</B>
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    django_contrib_auth_base_user_AbstractBaseUser [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      AbstractBaseUser
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT COLOR="#7B7B7B" FACE="Roboto">last_login</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT COLOR="#7B7B7B" FACE="Roboto">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">password</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    django_contrib_auth_models_PermissionsMixin [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      PermissionsMixin
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">is_superuser</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">BooleanField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    profiles_app_models_UserProfile [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      UserProfile<BR/>&lt;<FONT FACE="Roboto"><I>AbstractBaseUser,PermissionsMixin</I></FONT>&gt;
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">birthday</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">date_joined</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">email</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">EmailField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">first_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">gender</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">is_staff</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><I>is_superuser</I></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><I>BooleanField</I></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT COLOR="#7B7B7B" FACE="Roboto"><I>last_login</I></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT COLOR="#7B7B7B" FACE="Roboto"><I>DateTimeField</I></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">last_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">password</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">profile_picture</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">URLField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    profiles_app_models_DeviceInfo [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      DeviceInfo
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>user</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">app_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">app_version</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">brand</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">build_number</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">fcm_token</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">model</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">os</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">os_version</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">uuid</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_planning_app {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT FACE="Roboto" COLOR="Black" POINT-SIZE="10">
+          <B>planning_app</B>
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    planning_app_models_Property [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Property
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_Place [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Place
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">address</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">city_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">distance</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">FloatField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">image</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">URLField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">latitude</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">FloatField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">longitude</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">FloatField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">price</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">PositiveIntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">IntegerField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_Room [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Room
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>hotel</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">check_in_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">check_out_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">image</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">URLField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">price</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">FloatField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_PlaceReview [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      PlaceReview
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>place</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>user</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">overall_rating</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">IntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">review_text</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_Day [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Day
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>trip</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">day_index</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">PositiveIntegerField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_Activity [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Activity
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>day</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>place</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">index</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">PositiveIntegerField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    planning_app_models_Trip [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Trip
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>user</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">start_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_blogger_app {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT FACE="Roboto" COLOR="Black" POINT-SIZE="10">
+          <B>blogger_app</B>
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    blogger_app_models_Tag [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Tag
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">image</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">URLField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    blogger_app_models_Blog [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      Blog
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>user</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">blog_text</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">image</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">URLField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">title</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    blogger_app_models_UserLikeBlog [label=<
+      <TABLE BGCOLOR="white" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="5" ALIGN="CENTER" BGCOLOR="#1b563f">
+      <FONT FACE="Roboto" COLOR="white" POINT-SIZE="10"><B>
+      UserLikeBlog
+      </B></FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>id</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>AutoField</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>blog</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto"><B>user</B></FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto"><B>ForeignKey (id)</B></FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT FACE="Roboto">date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT FACE="Roboto">DateField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+
+
+  // Relations
+  django_contrib_auth_models_Group [label=<
+  <TABLE BGCOLOR="white" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+  <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="#1b563f">
+  <FONT FACE="Roboto" POINT-SIZE="12" COLOR="white">Group</FONT>
+  </TD></TR>
+  </TABLE>
+  >]
+  profiles_app_models_UserProfile -> django_contrib_auth_models_Group
+  [label=" groups (user)"] [arrowhead=dot arrowtail=dot, dir=both];
+  django_contrib_auth_models_Permission [label=<
+  <TABLE BGCOLOR="white" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+  <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="#1b563f">
+  <FONT FACE="Roboto" POINT-SIZE="12" COLOR="white">Permission</FONT>
+  </TD></TR>
+  </TABLE>
+  >]
+  profiles_app_models_UserProfile -> django_contrib_auth_models_Permission
+  [label=" user_permissions (user)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  profiles_app_models_UserProfile -> django_contrib_auth_base_user_AbstractBaseUser
+  [label=" abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+  profiles_app_models_UserProfile -> django_contrib_auth_models_PermissionsMixin
+  [label=" abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+  profiles_app_models_DeviceInfo -> profiles_app_models_UserProfile
+  [label=" user (deviceinfo)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+  planning_app_models_Place -> planning_app_models_Property
+  [label=" properties (places)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  planning_app_models_Room -> planning_app_models_Place
+  [label=" hotel (room)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_PlaceReview -> profiles_app_models_UserProfile
+  [label=" user (reviews)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_PlaceReview -> planning_app_models_Place
+  [label=" place (reviews)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_Day -> planning_app_models_Trip
+  [label=" trip (days)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_Activity -> planning_app_models_Day
+  [label=" day (activities)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_Activity -> planning_app_models_Place
+  [label=" place (activities)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  planning_app_models_Trip -> profiles_app_models_UserProfile
+  [label=" user (trip)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+  blogger_app_models_Blog -> profiles_app_models_UserProfile
+  [label=" user (blogs)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  blogger_app_models_Blog -> blogger_app_models_Tag
+  [label=" tags (blogs)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  blogger_app_models_UserLikeBlog -> blogger_app_models_Blog
+  [label=" blog (likes)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  blogger_app_models_UserLikeBlog -> profiles_app_models_UserProfile
+  [label=" user (blog_likes)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+}
