@@ -7,6 +7,7 @@ class PlaceAdmin(admin.ModelAdmin):
     filter_horizontal = ('properties', )
 
 
+
 admin.site.register(models.Place, PlaceAdmin)
 admin.site.register(models.PlaceReview)
 admin.site.register(models.Room)
