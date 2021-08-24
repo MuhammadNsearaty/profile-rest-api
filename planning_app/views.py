@@ -6,6 +6,7 @@ from rest_framework import viewsets, parsers
 from shared.permissions import IsOwnerOrReadOnly
 from planning_app import permissions, filters, models, serializers
 from rest_framework.response import Response
+from django.db import transaction
 
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
@@ -100,4 +101,65 @@ class TripViewSet(viewsets.ModelViewSet):
                 print(f'serilaized_days.errors {activities_serializer.errors}')
                 return Response({'message':'invalid activities data'})
 
-            return Response(serializer.to_representation(models.Trip.objects.get(id=trip.id)))                
+            return Response(serializer.to_representation(models.Trip.objects.get(id=trip.id)))
+
+    def patch(self, request, *args, **kwargs):
+        # update the trip
+        trip = models.Trip.objects.get(id=request.data['id'])
+        serializer = self.serializer_class(trip, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        # update the days
+        days = request.data['days']
+        
+        with transaction.atomic():
+            for day in days:
+                try:
+                    day_db = models.Day.objects.get(id=day['id'])
+                    print(f'found the day {day_db}')
+                    days_serilaizer = serializers.DaySerializer(day_db,data=day,partial=True)
+                    if days_serilaizer.is_valid(raise_exception=True):
+                        days_serilaizer.save()
+                        print(f'updated day {day_db}')
+                    if days_serilaizer.errors:
+                        print(f'days_serilaizer.errors {days_serilaizer.errors}')
+                        return Response({'message':'invalid days data'})
+
+                    activities_data = day['activities']
+                    for active in activities_data:
+                        try:
+                            active_db = models.Activity.objects.get(id=active['id'])
+                            print(f'found the day {active_db}')
+                            activities_serializer = serializers.ActivitySerializer(active_db,data=active,partial=True)
+                            if activities_serializer.is_valid(raise_exception=True):
+                                activities_serializer.save()
+                                print(f'updated active {active_db}')
+                            if activities_serializer.errors:
+                                print(f'activities_serializer.errors {activities_serializer.errors}')
+                                return Response({'message':'invalid activities data'})
+                            
+                        except models.Activity.DoesNotExist:
+                            active['day'] = day_db.id
+                            active.pop('id')
+                            new_active_serializer = serializers.ActivitySerializer(data=active)
+                            if new_active_serializer.is_valid(raise_exception=True):
+                                new_active = new_active_serializer.save()
+                                print(f'new activity {new_active}')
+                            if new_active_serializer.errors:
+                                print(f'new_active_serializer.errors {new_active_serializer.errors}')
+                                return Response({'message':'invalid activities data'})
+                    
+                except models.Day.DoesNotExist:
+                    day['trip'] = trip.id
+                    day.pop('id')
+                    new_day_serializer = serializers.DaySerializer(data=day)
+                    if new_day_serializer.is_valid(raise_exception=True):
+                        new_day = new_day_serializer.save()
+                        print(f'created new Day {new_day}')
+                    if new_day_serializer.errors:
+                        print(f'new_day_serializer.errors {new_day_serializer.errors}')
+                        return Response({'message':'invalid days data'})
+
+        
+
+        return Response(serializer.data)

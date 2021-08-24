@@ -145,19 +145,18 @@ class TripDetailsSerializer(serializers.ModelSerializer):
         return trip
 
     def update(self,instance,validated_data):
-        instance.id = validated_data['id']
         instance.start_date = validated_data['start_date']
         instance.save()
-
-        days = validated_data.get('days')
-        days_serilaizer = DaySerializer()
-        with transaction.atomic():
-            for day in days:
-                day_db = models.Day.get(id=day['id'])
-                if day_db:
-                    days_serilaizer.update(day_db,day)
-                else:
-                    models.Day.objects.create(**day)
+        print(f'validated data {validated_data}')
+        # days_serilaizer = DaySerializer()
+        # with transaction.atomic():
+        #     for day in days:
+        #         day_db = models.Day.get(id=day['id'])
+        #         if day_db:
+        #             days_serilaizer.update(day_db,day)
+        #         else:
+        #             models.Day.objects.create(**day)
+        return instance
 
 
     def validate_start_date(self, value):
