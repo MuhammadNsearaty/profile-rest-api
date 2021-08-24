@@ -106,6 +106,12 @@ class ActivitySerializer(serializers.ModelSerializer):
         model = models.Activity
         fields = ('day', 'index', 'place')
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        instance.place = models.Place.objects.get(id=data['place'])
+        data['place'] = PlaceDetailsSerializer().to_representation(instance.place)
+        return data
+
 class DaySerializer(serializers.ModelSerializer):
     activities = ActivitySerializer(read_only=True, many=True)
 
@@ -144,7 +150,7 @@ class TripDetailsSerializer(serializers.ModelSerializer):
         instance.save()
 
         days = validated_data.get('days')
-        days_serilaizer = DayDetailsSerializer()
+        days_serilaizer = DaySerializer()
         with transaction.atomic():
             for day in days:
                 day_db = models.Day.get(id=day['id'])

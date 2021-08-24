@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django_filters',
     'profiles_app',
     'planning_app',
-    'blogger_app'
+    'blogger_app',
+    'django_heroku'
 ]
 
 MIDDLEWARE = [

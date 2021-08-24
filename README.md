@@ -1,2 +1,3 @@
 # profile REST API
-profiles REST API course code.
+Django-Server for TripPal mobile application
+check the link for more informations
