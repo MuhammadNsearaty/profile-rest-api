@@ -8,4 +8,3 @@ class AdminOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return self.is_authenticated.has_permission(request, view) and request.user.is_staff
-

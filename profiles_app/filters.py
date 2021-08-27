@@ -1,4 +1,5 @@
 from django_filters import filters, filterset
+
 from profiles_app import models
 
 

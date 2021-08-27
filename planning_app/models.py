@@ -7,7 +7,7 @@ from django.db.models.fields import CharField
 
 
 class Property(models.Model):
-    name = models.CharField(unique=True,max_length=50)
+    name = models.CharField(unique=True, max_length=50)
     description = models.CharField(max_length=1000)
 
     class Meta:
@@ -23,7 +23,7 @@ class Place(models.Model):
     latitude = models.FloatField(null=False, default=0.0)
     longitude = models.FloatField(null=False, default=0.0)
     city_name = models.CharField(max_length=15)
-    
+
     distance = models.FloatField(null=False, default=0.0)
     properties = models.ManyToManyField('Property', related_name='places')
     address = models.CharField(max_length=100, default='')
@@ -34,10 +34,10 @@ class Place(models.Model):
         (1, 'Place'),
         (2, 'Hotel'),
     ]
-
     type = models.IntegerField(choices=PLACE_TYPES, default=1)
     price = models.PositiveIntegerField(default=10)
-    open_trip_map_id = CharField(max_length=15,default='')
+    open_trip_map_id = CharField(max_length=15, default='')
+
     def __str__(self):
         return self.name
 
@@ -90,6 +90,10 @@ class Activity(models.Model):
     day = models.ForeignKey(to='Day', related_name='activities', on_delete=models.CASCADE)
     place = models.ForeignKey(to='Place', related_name='activities', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "Activity"
+        verbose_name_plural = "Activities"
+
 
 class Trip(models.Model):
     """Places and bookings"""
@@ -98,3 +102,8 @@ class Trip(models.Model):
         on_delete=models.CASCADE,
     )
     start_date = models.DateField(null=False)
+    TYPE_CHOICES = [
+        (1, 'Extended'),
+        (2, 'Focused'),
+    ]
+    trip_type = models.IntegerField(null=False, default=1, choices=TYPE_CHOICES)

@@ -1,20 +1,17 @@
 import datetime
 
-from django.db.models import Count
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.db.models import Count
 from rest_framework import viewsets, status, mixins
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
-from profiles_app.models import UserProfile
-
-from blogger_app import models
-from blogger_app import serializers
 from blogger_app import filters
+from blogger_app import models
 from blogger_app import permissions
-
+from blogger_app import serializers
+from profiles_app.models import UserProfile
 from shared.permissions import ModeratedByAdminOnly
 
 
@@ -60,7 +57,6 @@ class BlogViewSet(viewsets.ModelViewSet):
             filterset_class=None,
             ordering_fields=[],
             search_fields=[])
-            
     def like(self, request, pk):
         serializer: serializers.UserLikeSerializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -86,7 +82,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 class TagViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TagSerializer
-    permission_classes = (ModeratedByAdminOnly, )
+    permission_classes = (ModeratedByAdminOnly,)
     ordering_fields = ['name', 'blog_count']
     search_fields = ['name', 'description']
     filterset_class = filters.TagFilter
@@ -95,7 +91,7 @@ class TagViewSet(viewsets.ModelViewSet):
 
 class LikesViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.ListModelMixin):
     queryset = models.UserLikeBlog.objects.all()
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = serializers.UserLikeBlogSerializer
     filterset_class = filters.LikesFilter
     ordering_fields = ['date', 'blog__likes']

@@ -2,7 +2,6 @@ from rest_framework import permissions
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
-
     is_Authenticated = permissions.IsAuthenticatedOrReadOnly()
 
     def has_permission(self, request, view):

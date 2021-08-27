@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('planning_app', '0002_place_open_trip_map_id'),
     ]

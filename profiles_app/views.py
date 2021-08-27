@@ -1,28 +1,26 @@
 from typing import Dict
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models.functions import Concat
 from django.db.models import CharField, Value
-
+from django.db.models.functions import Concat
 from rest_framework import viewsets, mixins, status
 from rest_framework.authtoken.models import Token
-
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from profiles_app import filters
 from profiles_app import models
 from profiles_app import permissions
 from profiles_app import serializers
-from profiles_app import filters
 
 
 class UserRegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """Handle creating users"""
 
     serializer_class = serializers.UserProfileSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
     user_serializer = serializers.UserProfileSerializer(read_only=True)
 
     def create(self, request, *args, **kwargs):
@@ -40,7 +38,7 @@ class UserRegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
 class UserLoginApiView(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """Handle getting authentication token and users login"""
     serializer_class = serializers.LoginSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -57,18 +55,17 @@ class UserProfilesApiView(viewsets.ModelViewSet):
     serializer_class = serializers.UserProfileSerializer
     queryset = models.UserProfile.objects.annotate(name=Concat('first_name', Value(' '), 'last_name',
                                                                output_field=CharField())).all()
-    ordering_fields = ('name', 'birthday', )
-    search_fields = ('name', 'email', )
+    ordering_fields = ('name', 'birthday',)
+    search_fields = ('name', 'email',)
     filterset_class = filters.UserProfileFilter
-    permission_classes = (permissions.OwnerOrAdminOnly, )
+    permission_classes = (permissions.OwnerOrAdminOnly,)
 
-    @action(detail=False, url_path='/logout', methods=['GET'], permission_classes=(IsAuthenticated, ))
+    @action(detail=False, url_path='/logout', methods=['GET'], permission_classes=(IsAuthenticated,))
     def logout(self, request):
         user = request.user
         token = Token.objects.get(user=user)
         token.delete()
         return Response(self.get_serializer(user).data, status=status.HTTP_200_OK)
-
 
 
 class DevicesViewSet(viewsets.ModelViewSet):
@@ -78,7 +75,7 @@ class DevicesViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.DeviceOwnerOrAdminOnly,)
     ordering_fields = ['app_version', 'build_number']
     filterset_fields = ['user', 'os', 'os_version']
-    search_fields =['model', 'brand']
+    search_fields = ['model', 'brand']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

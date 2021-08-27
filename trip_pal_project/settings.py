@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
-
 from pathlib import Path
 
 import django_heroku
@@ -134,7 +133,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',
                                 'rest_framework.filters.SearchFilter', 'rest_framework.filters.OrderingFilter'],
@@ -145,16 +144,16 @@ REST_FRAMEWORK = {
 BASE_API_URL = 'api/'
 
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Bearer': {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
             'type': 'Token',
             'name': 'Authorization',
             'in': 'header'
-      }
-   }
+        }
+    }
 }
-GRAPH_MODELS={
-    'all_application':True,
-    'group_models':True,
+GRAPH_MODELS = {
+    'all_application': True,
+    'group_models': True,
 }
 django_heroku.settings(locals())

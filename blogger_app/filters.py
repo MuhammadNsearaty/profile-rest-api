@@ -2,8 +2,8 @@ from functools import reduce
 
 from django.core.exceptions import ValidationError
 from django.forms import forms
-
 from django_filters import filters, filterset
+
 from blogger_app import models
 
 
