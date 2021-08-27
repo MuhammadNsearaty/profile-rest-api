@@ -180,3 +180,20 @@ class TripMiniSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Trip
         fields = ('id', 'user', 'start_date', 'days')
+
+class SemiAutoSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    trip1 = TripDetailsSerializer(required=True)
+    trip2 = TripDetailsSerializer(required=True)
+
+
+    def validate_action(self, value):
+        print(f'value {value}')
+        if not value:
+            raise serializers.ValidationError('empty trip')
+        return value

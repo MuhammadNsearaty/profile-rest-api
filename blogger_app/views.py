@@ -60,6 +60,7 @@ class BlogViewSet(viewsets.ModelViewSet):
             filterset_class=None,
             ordering_fields=[],
             search_fields=[])
+            
     def like(self, request, pk):
         serializer: serializers.UserLikeSerializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):

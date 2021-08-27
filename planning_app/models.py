@@ -3,10 +3,11 @@ import datetime
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models.fields import CharField
 
 
 class Property(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(unique=True,max_length=50)
     description = models.CharField(max_length=1000)
 
     class Meta:
@@ -36,7 +37,7 @@ class Place(models.Model):
 
     type = models.IntegerField(choices=PLACE_TYPES, default=1)
     price = models.PositiveIntegerField(default=10)
-
+    open_trip_map_id = CharField(max_length=15,default='')
     def __str__(self):
         return self.name
 

@@ -2,11 +2,15 @@ from django.db.models import Avg, Count, CharField, Value, F
 from django.db.models.functions import Concat
 
 from rest_framework import viewsets, parsers
+from rest_framework.decorators import action
+from rest_framework.renderers import JSONRenderer
+
 
 from shared.permissions import IsOwnerOrReadOnly
 from planning_app import permissions, filters, models, serializers
 from rest_framework.response import Response
 from django.db import transaction
+import util
 
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
@@ -73,8 +77,8 @@ class TripViewSet(viewsets.ModelViewSet):
             return serializers.TripMiniSerializer
         return serializers.TripDetailsSerializer
 
-    def create(self, request,*args,**kwargs):
 
+    def create(self, request,*args,**kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             valid_data = serializer.validated_data
@@ -163,3 +167,17 @@ class TripViewSet(viewsets.ModelViewSet):
         
 
         return Response(serializer.data)
+    
+    @action(methods=['POST'], url_path='semi_auto',
+            detail=False,
+            serializer_class=serializers.SemiAutoSerializer,
+            filterset_class=None,
+            ordering_fields=[],
+            search_fields=[])        
+    def semi_auto(self, request):
+        (trip1 , trip2) = util.fix_json(request)
+        print(f'user {request.user}')
+        t1 = util.create(trip1,request.user)
+        t2 = util.create(trip2,request.user)
+        print(f't1 t2 result {[t1,t2]}')
+        return Response({'trips' : [t1.data,t2.data]})
