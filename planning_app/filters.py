@@ -2,8 +2,8 @@ from functools import reduce
 
 from django import forms
 from django.core.exceptions import ValidationError
-
 from django_filters import filters, filterset
+
 from planning_app import models
 
 

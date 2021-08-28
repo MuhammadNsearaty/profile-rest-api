@@ -8,4 +8,3 @@ router.register('login', views.UserLoginApiView, basename='login')
 router.register('register', views.UserRegisterViewSet, basename='register')
 router.register('users', views.UserProfilesApiView, basename='users')
 router.register('devices', views.DevicesViewSet, basename='devices')
-

@@ -4,8 +4,7 @@ from planning_app import models
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    filter_horizontal = ('properties', )
-
+    filter_horizontal = ('properties',)
 
 
 admin.site.register(models.Place, PlaceAdmin)

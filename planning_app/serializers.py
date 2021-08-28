@@ -1,13 +1,11 @@
-# from _typeshed import StrPath
 import datetime
 
 from django.db.models import Count
-from django.db import transaction
 from rest_framework import serializers
 
 from planning_app import models
 from profiles_app.serializers import UserProfileSerializer
-from profiles_app import models as profile_app_models
+
 
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
@@ -59,13 +57,14 @@ class PlaceDetailsSerializer(serializers.ModelSerializer):
         model = models.Place
         fields = ('id', 'name', 'description', 'latitude', 'longitude', 'address', 'distance',
                   'image', 'city_name', 'guest_rating', 'properties', 'type')
-        read_only_fields = ('type', )
+        read_only_fields = ('type',)
         extra_kwargs = {
             'properties': {
                 'required': False,
             }
         }
-    def update(self,instance,validated_data):
+
+    def update(self, instance, validated_data):
         instance.name = validated_data['name']
         instance.description = validated_data['description']
         instance.latitude = validated_data['latitude']
@@ -109,18 +108,20 @@ class ActivitySerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         instance.place = models.Place.objects.get(id=data['place'])
-        data['place'] = PlaceDetailsSerializer().to_representation(instance.place)
+        data['place'] = PlacesMicroSerializer().to_representation(instance.place)
         return data
+
 
 class DaySerializer(serializers.ModelSerializer):
     activities = ActivitySerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Day
-        fields = ('day_index', 'trip','activities')
+        fields = ('day_index', 'trip', 'activities')
+
     def create(self, validated_data):
         day = models.Day.objects.create(
-            day_index = validated_data['day_index'], trip=validated_data['trip'])
+            day_index=validated_data['day_index'], trip=validated_data['trip'])
         return day
 
 
@@ -137,14 +138,14 @@ class TripDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Trip
-        fields = ('user', 'start_date', 'days')
-    
+        fields = ('user', 'start_date', 'days', 'trip_type')
+
     def create(self, validated_data):
         trip = models.Trip.objects.create(
-            start_date = validated_data['start_date'], user=validated_data['user'])
+            start_date=validated_data['start_date'], user=validated_data['user'])
         return trip
 
-    def update(self,instance,validated_data):
+    def update(self, instance, validated_data):
         instance.start_date = validated_data['start_date']
         instance.save()
         print(f'validated data {validated_data}')
@@ -157,7 +158,6 @@ class TripDetailsSerializer(serializers.ModelSerializer):
         #         else:
         #             models.Day.objects.create(**day)
         return instance
-
 
     def validate_start_date(self, value):
         """
@@ -179,21 +179,30 @@ class TripMiniSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Trip
-        fields = ('id', 'user', 'start_date', 'days')
+        fields = ('id', 'user', 'start_date', 'days', 'trip_type')
 
-class SemiAutoSerializer(serializers.Serializer):
+    def to_representation(self, instance):
+        json = super().to_representation(instance)
+        activities = models.Activity.objects.filter(day__in=instance.days.values('pk'))
+        json['cities'] = [city_name[0] for city_name in activities.values_list('place__city_name').distinct()]
+        json['image'] = f'https://loremflickr.com/320/320/places?random={instance.pk}'
+        return json
+
+
+class AutoPlanSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         pass
 
     def create(self, validated_data):
         pass
 
-    trip1 = TripDetailsSerializer(required=True)
-    trip2 = TripDetailsSerializer(required=True)
-
-
-    def validate_action(self, value):
-        print(f'value {value}')
-        if not value:
-            raise serializers.ValidationError('empty trip')
-        return value
+    locations = serializers.ListField()
+    trip_mode = serializers.ChoiceField(choices=[
+        (1, 'Extended'), (2, 'Focused')
+    ])
+    food_importance = serializers.IntegerField(required=False, min_value=0, max_value=10)
+    shop_importance = serializers.IntegerField(required=False, min_value=0, max_value=10)
+    days_count = serializers.IntegerField(min_value=1, max_value=15)
+    places_per_day = serializers.IntegerField(min_value=1, max_value=8)
+    shop_dis = serializers.BooleanField(required=False)
+    places_preferences = serializers.JSONField(required=False)
