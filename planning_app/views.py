@@ -4,6 +4,8 @@ from django.db.models.functions import Concat
 from rest_framework import viewsets, parsers
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from planning_app.models import Place, GeoNameInfo
+import pandas as pd
 
 import util
 from planning_app import permissions, filters, models, serializers
@@ -16,7 +18,7 @@ class PlaceDbViewSet(viewsets.ModelViewSet):
         type=models.Place.PLACE_TYPES[0][0]).annotate(
         guest_rating=Avg('reviews__overall_rating'), reviews_count=Count('reviews__overall_rating'))
     ordering_fields = ['name', 'distance', 'guest_rating', 'reviews_count']
-    search_fields = ['name', 'address']
+    search_fields = ['name', 'address', 'city_name']
     filterset_class = filters.PlaceFilter
 
     def get_serializer_class(self):
@@ -45,7 +47,7 @@ class HotelDbViewSet(viewsets.ModelViewSet):
         type=models.Place.PLACE_TYPES[1][0]).annotate(guest_rating=Avg('reviews__overall_rating'),
                                                       reviews_count=Count('reviews'))
     ordering_fields = ['name', 'distance', 'guest_rating', 'reviews_count']
-    search_fields = ['name', 'address']
+    search_fields = ['name', 'address', 'city_name']
     filterset_class = filters.PlaceFilter
 
     def get_serializer_class(self):
@@ -55,6 +57,9 @@ class HotelDbViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(type=models.Place.PLACE_TYPES[1][0])
+
+
+df = pd.read_csv(r"C:\Users\Nitro\Downloads\Compressed\content\cleaned_wikivector_geonames.csv")
 
 
 class TripViewSet(viewsets.ModelViewSet):
@@ -177,4 +182,27 @@ class TripViewSet(viewsets.ModelViewSet):
         # t2 = util.create(trip2, request.user)
         # print(f't1 t2 result {[t1, t2]}')
         # return Response({'trips': [t1.data, t2.data]})
+        return Response({'message': 'Hello, World!'})
+
+    @action(methods=['GET'], url_path='create_data', detail=False, filterset_class=None, ordering_fields=[], search_fields=[])
+    def create_geoname_data(self, request):
+        with transaction.atomic():
+            for index, row in df.iterrows():
+                obj = Place.objects.create(
+                    name=str(row['name']),
+                    latitude=row['latitude'],
+                    longitude=row['longitude'],
+                    city_name=str(row['nearest city']),
+                    type=Place.PLACE_TYPES[0][0],
+                )
+                country_name = str(row['country'])
+                if len(country_name) > 50:
+                    country_name = 'unknown'
+                GeoNameInfo.objects.create(
+                    geo_name_id=row['geonameid'],
+                    country_name=country_name,
+                    wiki_title=row['wiki title'],
+                    wiki_link=row['wiki link'],
+                    place=obj,
+                )
         return Response({'message': 'Hello, World!'})

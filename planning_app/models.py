@@ -19,10 +19,10 @@ class Property(models.Model):
 
 
 class Place(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=100)
     latitude = models.FloatField(null=False, default=0.0)
     longitude = models.FloatField(null=False, default=0.0)
-    city_name = models.CharField(max_length=15)
+    city_name = models.CharField(max_length=100)
 
     distance = models.FloatField(null=False, default=0.0)
     properties = models.ManyToManyField('Property', related_name='places')
@@ -44,7 +44,7 @@ class Place(models.Model):
 
 class GeoNameInfo(models.Model):
     geo_name_id = models.CharField(max_length=15)
-    country_name = models.CharField(max_length=36)
+    country_name = models.CharField(max_length=100)
     wiki_link = models.URLField()
     wiki_title = models.CharField(max_length=255)
     place = models.ForeignKey(Place, related_name='geo_name_info', on_delete=models.CASCADE)

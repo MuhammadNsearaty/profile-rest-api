@@ -8,6 +8,7 @@ class PlaceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Place, PlaceAdmin)
+admin.site.register(models.GeoNameInfo)
 admin.site.register(models.PlaceReview)
 admin.site.register(models.Room)
 admin.site.register(models.Property)

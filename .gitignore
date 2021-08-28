@@ -518,4 +518,4 @@ edsr/
 demo/
 tmp/
 
-
+.env
