@@ -8,6 +8,7 @@ from planning_app.models import Place, GeoNameInfo
 import pandas as pd
 
 import util
+
 from planning_app import permissions, filters, models, serializers
 from shared.permissions import IsOwnerOrReadOnly
 

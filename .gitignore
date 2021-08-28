@@ -517,5 +517,6 @@ media/
 edsr/
 demo/
 tmp/
+assets/
 
 .env
