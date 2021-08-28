@@ -71,6 +71,8 @@ class TripViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.TripMiniSerializer
+        if self.action == 'plan_auto':
+            return serializers.AutoPlanSerializer
         return serializers.TripDetailsSerializer
 
     def create(self, request, *args, **kwargs):
@@ -102,7 +104,7 @@ class TripViewSet(viewsets.ModelViewSet):
 
             return Response(serializer.to_representation(models.Trip.objects.get(id=trip.id)))
 
-    def patch(self, request, *args, **kwargs):
+    def partial_update(self, request, *args, **kwargs):
         # update the trip
         trip = models.Trip.objects.get(id=request.data['id'])
         serializer = self.serializer_class(trip, data=request.data, partial=True)
@@ -163,14 +165,16 @@ class TripViewSet(viewsets.ModelViewSet):
 
     @action(methods=['POST'], url_path='semi_auto',
             detail=False,
-            serializer_class=serializers.SemiAutoSerializer,
+            parser_classes=[parsers.JSONParser],
             filterset_class=None,
             ordering_fields=[],
             search_fields=[])
-    def semi_auto(self, request):
-        (trip1, trip2) = util.fix_json(request)
-        print(f'user {request.user}')
-        t1 = util.create(trip1, request.user)
-        t2 = util.create(trip2, request.user)
-        print(f't1 t2 result {[t1, t2]}')
-        return Response({'trips': [t1.data, t2.data]})
+    def plan_auto(self, request):
+        # (trip1, trip2) = util.fix_json(request)
+        # print(f'user {request.user}')
+        # t1 = util.create(trip1, request.user)
+        #
+        # t2 = util.create(trip2, request.user)
+        # print(f't1 t2 result {[t1, t2]}')
+        # return Response({'trips': [t1.data, t2.data]})
+        return Response({'message': 'Hello, World!'})

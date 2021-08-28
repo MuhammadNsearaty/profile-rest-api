@@ -189,18 +189,20 @@ class TripMiniSerializer(serializers.ModelSerializer):
         return json
 
 
-class SemiAutoSerializer(serializers.Serializer):
+class AutoPlanSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         pass
 
     def create(self, validated_data):
         pass
 
-    trip1 = TripDetailsSerializer(required=True)
-    trip2 = TripDetailsSerializer(required=True)
-
-    def validate_action(self, value):
-        print(f'value {value}')
-        if not value:
-            raise serializers.ValidationError('empty trip')
-        return value
+    locations = serializers.ListField()
+    trip_mode = serializers.ChoiceField(choices=[
+        (1, 'Extended'), (2, 'Focused')
+    ])
+    food_importance = serializers.IntegerField(required=False, min_value=0, max_value=10)
+    shop_importance = serializers.IntegerField(required=False, min_value=0, max_value=10)
+    days_count = serializers.IntegerField(min_value=1, max_value=15)
+    places_per_day = serializers.IntegerField(min_value=1, max_value=8)
+    shop_dis = serializers.BooleanField(required=False)
+    places_preferences = serializers.JSONField(required=False)

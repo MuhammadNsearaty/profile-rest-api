@@ -42,6 +42,17 @@ class Place(models.Model):
         return self.name
 
 
+class GeoNameInfo(models.Model):
+    geo_name_id = models.CharField(max_length=15)
+    country_name = models.CharField(max_length=36)
+    wiki_link = models.URLField()
+    wiki_title = models.CharField(max_length=255)
+    place = models.ForeignKey(Place, related_name='geo_name_info', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{str(self.place)} has geo name id: {self.geo_name_id}'
+
+
 class Room(models.Model):
     hotel = models.ForeignKey(
         'Place',
