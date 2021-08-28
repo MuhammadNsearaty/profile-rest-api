@@ -11,7 +11,7 @@ from planning_app import permissions, filters, models, serializers
 from rest_framework.response import Response
 from django.db import transaction
 import util
-
+from utilities import places_recommender as pRec
 
 class PlaceDbViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AdminOrReadOnly,)
