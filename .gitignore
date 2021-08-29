@@ -520,3 +520,4 @@ tmp/
 assets/
 
 .env
+*.pkl

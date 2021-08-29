@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2668ea6989ac4917a8187d353d60dd96 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_2668ea6989ac4917a8187d353d60dd96" ></div>
+        
+</body>
+<script>    
+    
+            var map_2668ea6989ac4917a8187d353d60dd96 = L.map(
+                "map_2668ea6989ac4917a8187d353d60dd96",
+                {
+                    center: [52.529412, 13.125847],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_64c338aa4cad4fc4b9c4fd9c5f8fe220 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var marker_e90c963d72574d6f91e639cc74828fb6 = L.marker(
+                [51.527199, -0.1326],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_0f4ce0c129e34292a3607b7c5b921a6b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e90c963d72574d6f91e639cc74828fb6.setIcon(icon_0f4ce0c129e34292a3607b7c5b921a6b);
+        
+    
+            marker_e90c963d72574d6f91e639cc74828fb6.bindTooltip(
+                `<div>
+                     Day:1,Place:1, historic, London and North Western Railway War Memorial
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_15d7c43195fc4d168898a9f0dd39078c = L.marker(
+                [51.526699, -0.1342],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_231c168d0d9948ae92cbaae95670d79f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_15d7c43195fc4d168898a9f0dd39078c.setIcon(icon_231c168d0d9948ae92cbaae95670d79f);
+        
+    
+            marker_15d7c43195fc4d168898a9f0dd39078c.bindTooltip(
+                `<div>
+                     Day:1,Place:2, architecture, 30 Euston Square
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dd2ab0c4c43e4dca96ccb9fb0a316a45 = L.marker(
+                [51.524601, -0.12975],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_e34a4a916a754c968db3ba0fd0b4e723 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_dd2ab0c4c43e4dca96ccb9fb0a316a45.setIcon(icon_e34a4a916a754c968db3ba0fd0b4e723);
+        
+    
+            marker_dd2ab0c4c43e4dca96ccb9fb0a316a45.bindTooltip(
+                `<div>
+                     Day:1,Place:3, architecture, Connaught Hall
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0aea7eaf98184b7f8264971d9cef35af = L.marker(
+                [51.527699, -0.130785],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_69dcae6aa4964aa5a86d4d350644ee71 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0aea7eaf98184b7f8264971d9cef35af.setIcon(icon_69dcae6aa4964aa5a86d4d350644ee71);
+        
+    
+            marker_0aea7eaf98184b7f8264971d9cef35af.bindTooltip(
+                `<div>
+                     Day:1,Place:4, architecture, Euston Fire Station
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d3002d094d854efcaaa0aaa90162a93a = L.marker(
+                [51.525036, -0.129],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_2a27369be9db4313917d846b920da573 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_d3002d094d854efcaaa0aaa90162a93a.setIcon(icon_2a27369be9db4313917d846b920da573);
+        
+    
+            marker_d3002d094d854efcaaa0aaa90162a93a.bindTooltip(
+                `<div>
+                     Day:1,Place:5, cultural, Mahatma Gandhi
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7645f67c227a4471b90f6510512d6cab = L.marker(
+                [51.527199, -0.1326],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_5ce94d19400448b783c6dedfc3a875f9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7645f67c227a4471b90f6510512d6cab.setIcon(icon_5ce94d19400448b783c6dedfc3a875f9);
+        
+    
+            marker_7645f67c227a4471b90f6510512d6cab.bindTooltip(
+                `<div>
+                     Day:2,Place:1, cultural, London and North Western Railway War Memorial
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6ef634e64b0b4174907e7a10690ca9a9 = L.marker(
+                [51.526623, -0.131859],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_e763c9e830804e8b9540cb8939f21623 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6ef634e64b0b4174907e7a10690ca9a9.setIcon(icon_e763c9e830804e8b9540cb8939f21623);
+        
+    
+            marker_6ef634e64b0b4174907e7a10690ca9a9.bindTooltip(
+                `<div>
+                     Day:2,Place:2, cultural, Friends House Garden
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bd395506cda84446a115cfe9541c71cf = L.marker(
+                [51.529412, -0.125847],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_b4ed314d71934990a434856ab27a19c7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_bd395506cda84446a115cfe9541c71cf.setIcon(icon_b4ed314d71934990a434856ab27a19c7);
+        
+    
+            marker_bd395506cda84446a115cfe9541c71cf.bindTooltip(
+                `<div>
+                     Day:3,Place:1, hotel, St. Pancras Renaissance Hotel London
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_79b3a0f11b234e12814c7cb190c8bc68 = L.marker(
+                [51.528236, -0.128996],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_e794257c3daa4490b02f0ee066d13323 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_79b3a0f11b234e12814c7cb190c8bc68.setIcon(icon_e794257c3daa4490b02f0ee066d13323);
+        
+    
+            marker_79b3a0f11b234e12814c7cb190c8bc68.bindTooltip(
+                `<div>
+                     Day:3,Place:2, architecture, The Rocket
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6d84d6cf62d9492c8430b79f7a0f08a9 = L.marker(
+                [51.528801, -0.129],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_eeee91eeb5d449569456985d4c2e2ea3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_6d84d6cf62d9492c8430b79f7a0f08a9.setIcon(icon_eeee91eeb5d449569456985d4c2e2ea3);
+        
+    
+            marker_6d84d6cf62d9492c8430b79f7a0f08a9.bindTooltip(
+                `<div>
+                     Day:3,Place:3, architecture, Ossulston Estate
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_377a7e2a21ac4b759c413b1dc891b9f4 = L.marker(
+                [51.530228, -0.12801],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_593a43c7cf4f44eaabb76d02665209dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_377a7e2a21ac4b759c413b1dc891b9f4.setIcon(icon_593a43c7cf4f44eaabb76d02665209dd);
+        
+    
+            marker_377a7e2a21ac4b759c413b1dc891b9f4.bindTooltip(
+                `<div>
+                     Day:3,Place:4, architecture, British Library restaurant
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7f2b20242000498db74107965678ec48 = L.marker(
+                [51.529877, -0.12772],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_4c9f2e04741148eb9d8d405be306114a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_7f2b20242000498db74107965678ec48.setIcon(icon_4c9f2e04741148eb9d8d405be306114a);
+        
+    
+            marker_7f2b20242000498db74107965678ec48.bindTooltip(
+                `<div>
+                     Day:3,Place:5, architecture, British Library
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_76fb8136d4d742cf8f20d52cd33711b1 = L.marker(
+                [51.528999, -0.1255],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_9b9e1ab57181484bb8a9b857e13ef58a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_76fb8136d4d742cf8f20d52cd33711b1.setIcon(icon_9b9e1ab57181484bb8a9b857e13ef58a);
+        
+    
+            marker_76fb8136d4d742cf8f20d52cd33711b1.bindTooltip(
+                `<div>
+                     Day:4,Place:1, architecture, Camden Town Hall
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b63f3f63907e4b1db50cbf62bc914aae = L.marker(
+                [51.527451, -0.128528],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_65675e3372684953af7af27e74a50ae9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_b63f3f63907e4b1db50cbf62bc914aae.setIcon(icon_65675e3372684953af7af27e74a50ae9);
+        
+    
+            marker_b63f3f63907e4b1db50cbf62bc914aae.bindTooltip(
+                `<div>
+                     Day:4,Place:2, cultural, The Place
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6594ca496ce647089a7eedf4ff5a680c = L.marker(
+                [51.529598, -0.128129],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_909e151304f743f788c9b8e24482cab3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_6594ca496ce647089a7eedf4ff5a680c.setIcon(icon_909e151304f743f788c9b8e24482cab3);
+        
+    
+            marker_6594ca496ce647089a7eedf4ff5a680c.bindTooltip(
+                `<div>
+                     Day:4,Place:3, cultural, British Library Exhibition Space
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9e65a4909a2049ce9427d2d65609f85d = L.marker(
+                [51.523998, -0.124],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_a6884b8f3204409ca518f99fed9bee57 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "lightred", "prefix": "glyphicon"}
+            );
+            marker_9e65a4909a2049ce9427d2d65609f85d.setIcon(icon_a6884b8f3204409ca518f99fed9bee57);
+        
+    
+            marker_9e65a4909a2049ce9427d2d65609f85d.bindTooltip(
+                `<div>
+                     Day:5,Place:1, shop, Brunswick Centre
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dff3b87aa01e4f73ad5c28f596925da8 = L.marker(
+                [51.523998, -0.124],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_b23c1bb7bfbc44e08937af00b49b79d8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "lightred", "prefix": "glyphicon"}
+            );
+            marker_dff3b87aa01e4f73ad5c28f596925da8.setIcon(icon_b23c1bb7bfbc44e08937af00b49b79d8);
+        
+    
+            marker_dff3b87aa01e4f73ad5c28f596925da8.bindTooltip(
+                `<div>
+                     Day:5,Place:2, architecture, Brunswick Centre
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_28159af346a94e6295d0f15e5bd9a09d = L.marker(
+                [51.521698, -0.126075],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_a9aedd817f7b46419adcfd546c401f64 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "lightred", "prefix": "glyphicon"}
+            );
+            marker_28159af346a94e6295d0f15e5bd9a09d.setIcon(icon_a9aedd817f7b46419adcfd546c401f64);
+        
+    
+            marker_28159af346a94e6295d0f15e5bd9a09d.bindTooltip(
+                `<div>
+                     Day:5,Place:3, cultural, Russell Square
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a415c50c1a194f5ea5fb75e07d964269 = L.marker(
+                [51.522778, -0.1225],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_21796e4290c94e1694f4eb071528d337 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "lightred", "prefix": "glyphicon"}
+            );
+            marker_a415c50c1a194f5ea5fb75e07d964269.setIcon(icon_21796e4290c94e1694f4eb071528d337);
+        
+    
+            marker_a415c50c1a194f5ea5fb75e07d964269.bindTooltip(
+                `<div>
+                     Day:5,Place:4, cultural, Guilford Street
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_91bd4a8b5d1b4dffb56384db8c7f532e = L.marker(
+                [51.522766, -0.124385],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_48c2b66580de4a4084386487a980d9df = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "lightred", "prefix": "glyphicon"}
+            );
+            marker_91bd4a8b5d1b4dffb56384db8c7f532e.setIcon(icon_48c2b66580de4a4084386487a980d9df);
+        
+    
+            marker_91bd4a8b5d1b4dffb56384db8c7f532e.bindTooltip(
+                `<div>
+                     Day:5,Place:5, cultural, Horse Hospital
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fe09d487efdb4914a9fc5e8c37150acd = L.marker(
+                [51.519291, -0.123236],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_2f7681537ecf4b1a8833b98e0e69e598 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_fe09d487efdb4914a9fc5e8c37150acd.setIcon(icon_2f7681537ecf4b1a8833b98e0e69e598);
+        
+    
+            marker_fe09d487efdb4914a9fc5e8c37150acd.bindTooltip(
+                `<div>
+                     Day:6,Place:1, historic, Charles James Fox
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c9ca7f32a6454afe8ef1bf7ce2b16e5d = L.marker(
+                [51.523998, -0.124],
+                {}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+    
+            var icon_1bca2a3c1f7b461ebcdce2323ebfb1da = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_c9ca7f32a6454afe8ef1bf7ce2b16e5d.setIcon(icon_1bca2a3c1f7b461ebcdce2323ebfb1da);
+        
+    
+            marker_c9ca7f32a6454afe8ef1bf7ce2b16e5d.bindTooltip(
+                `<div>
+                     Day:6,Place:2, historic, Brunswick Centre
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var poly_line_b8531f49674f4decb6b12cd22b3b11ac = L.polyline(
+                [[51.527199, -0.1326], [51.526699, -0.1342], [51.524601, -0.12975], [51.527699, -0.130785], [51.525036, -0.129], [51.527199, -0.1326], [51.526623, -0.131859], [51.529412, -0.125847], [51.528236, -0.128996], [51.528801, -0.129], [51.530228, -0.12801], [51.529877, -0.12772], [51.528999, -0.1255], [51.527451, -0.128528], [51.529598, -0.128129], [51.523998, -0.124], [51.523998, -0.124], [51.521698, -0.126075], [51.522778, -0.1225], [51.522766, -0.124385], [51.519291, -0.123236], [51.523998, -0.124]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_2668ea6989ac4917a8187d353d60dd96);
+        
+</script>

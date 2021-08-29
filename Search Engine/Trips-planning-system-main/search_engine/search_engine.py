@@ -1,8 +1,12 @@
-from enum import Enum
+import pickle
 
-from search_engine.trip_planner.trip_classes.Item import Item
 from search_engine.utils.hotels_engine import HotelSearchEngine as Hotels
 from search_engine.utils.places_engine import PlacesSearchEngine as Places
+from search_engine.trip_planner.trip_classes.Item import Item
+from enum import Enum
+from trip_planning.Plan_itinerary import plan_itinerary_schedule
+from trip_planning.Plan_trip_clusters import plan_itinerary_schedule_clusters
+import json
 
 
 class SearchEngine:
@@ -42,7 +46,7 @@ class SearchEngine:
         extended_trip = 1,
         focused_trip = 2,
 
-    def _collect_trip_components(self, locations: list, trip_mode: str, food_importance: int,
+    def _collect_trip_components(self, locations: list, trip_mode: int, food_importance: int,
                                  shop_importance: int, days_count: int, places_per_day: int,
                                  places_preferences: dict):
         def _calc_places_count():
@@ -53,58 +57,73 @@ class SearchEngine:
             return result
 
         if bool(places_preferences):
-            if trip_mode not in self.TripMode.__members__:
-                raise ValueError('You have entered wrong mode!')
-            else:
+            # if trip_mode not in self.TripMode.__members__:
+            #     raise ValueError('You have entered wrong mode!')
+            # else:
+            trip_data = {}
+
+            print('start collecting trip data..')
+
+            preferences = _calc_places_count()
+            print(preferences)
+
+            for location in locations:
                 trip_components = []
+                shops_count = round((shop_importance * days_count) / len(locations))
+                foods_count = round((food_importance * days_count) / len(locations))
 
-                print('start collecting trip data..')
+                print(f'collecting best hotels in {location}..')
 
-                preferences = _calc_places_count()
-                print(preferences)
+                starting_pt = self.hotels.best_hotels_in_country(location)  # starting point -> first hotel.
+                trip_components.append(Item(location, 'hotel', starting_pt['0']))
 
-                for location in locations:
-                    shops_count = round((shop_importance * days_count) / len(locations))
-                    foods_count = round((food_importance * days_count) / len(locations))
+                if food_importance > 0:
+                    print(f'collecting food palces in {location}..')
+                    places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
+                                                              starting_pt['0']['coordinate']['lon'],
+                                                              foods_count,
+                                                              'foods', '3')
+                    for place in places:
+                        trip_components.append(Item(location, 'food', place))
+                if shop_importance > 0:
+                    print(f'collecting shopping places in {location}..')
+                    places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
+                                                              starting_pt['0']['coordinate']['lon'],
+                                                              shops_count,
+                                                              'shops', '3')
+                    for place in places:
+                        trip_components.append(Item(location, 'shop', place))
+                print('collecting Point of Interest Places...')
+                for place_type in preferences.keys():
 
-                    print(f'collecting best hotels in {location}..')
+                    places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
+                                                              starting_pt['0']['coordinate']['lon'],
+                                                              int(preferences[place_type] / len(locations)),
+                                                              self.OptionalPlacesKinds[place_type].value[0],
+                                                              '3')
 
-                    starting_pt = self.hotels.best_hotels_in_country(location)  # starting point -> first hotel.
-                    trip_components.append(Item('hotel', starting_pt['0']))
+                    for place in places:
+                        trip_components.append(
+                            Item(location, str(self.OptionalPlacesKinds[place_type].value[0]), place))
+                    trip_data[location] = trip_components
+        return trip_data
+        # else:
+        #     raise ValueError('cannot collect trip components without specifying kinds!')
 
-                    if food_importance > 0:
-                        print(f'collecting food palces in {location}..')
-                        places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
-                                                                  starting_pt['0']['coordinate']['lon'],
-                                                                  foods_count,
-                                                                  'foods', '3')
-                        for place in places:
-                            trip_components.append(Item('food', place))
-                    if shop_importance > 0:
-                        print(f'collecting shopping places in {location}..')
-                        places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
-                                                                  starting_pt['0']['coordinate']['lon'],
-                                                                  shops_count,
-                                                                  'shops', '3')
-                        for place in places:
-                            trip_components.append(Item('shop', place))
-                    print('collecting Point of Interest Places...')
-                    for place_type in preferences.keys():
+    def _build_plan(self, data: dict, constraints: dict):
+        trip_plan = plan_itinerary_schedule(items_dict=data,
+                                            places_per_day=constraints['places_per_day'],
+                                            food_count=constraints['food_importance'],
+                                            is_shopping_last=constraints['shop_dis'],
+                                            shop_count=constraints['shop_importance'],
+                                            n_days=constraints['days_count']
+                                            )
 
-                        places = self.places.get_top_rated_places(starting_pt['0']['coordinate']['lat'],
-                                                                  starting_pt['0']['coordinate']['lon'],
-                                                                  int(preferences[place_type] / len(locations)),
-                                                                  self.OptionalPlacesKinds[place_type].value[0],
-                                                                  '3')
-
-                        for place in places:
-                            trip_components.append(Item(str(self.OptionalPlacesKinds[place_type].value[0]), place))
-            return trip_components
-        else:
-            raise ValueError('cannot collect trip components without specifying kinds!')
-
-    def _build_plan(self, data: list, constraints: dict):
-        pass  # add code here!   #ammar
+        trip_plan_clusters = plan_itinerary_schedule_clusters(data)
+        jsn = {'trip1': trip_plan.toJSON(), 'trip2': trip_plan_clusters.toJSON()}
+        with open('trip.json', 'w') as f:
+            json.dump(jsn, f, indent=4)
+        return jsn
 
     def plan_trip(self, constraints: dict):
         trip_data = self._collect_trip_components(locations=constraints['locations'],
@@ -115,8 +134,9 @@ class SearchEngine:
                                                   places_preferences=constraints['places_preferences'],
                                                   places_per_day=constraints['places_per_day'],
                                                   )
-        self._build_plan(trip_data, constraints)
-        return trip_data
+
+        trip_plan = self._build_plan(trip_data, constraints)
+        return trip_plan
         # add code here -> return planned trip as json file! ammar
 
     def get(self, engine_type, end_point, query_params):

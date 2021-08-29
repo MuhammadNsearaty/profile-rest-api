@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 from planning_app import models
 from profiles_app.serializers import UserProfileSerializer
+from utilities.places_recommender import predict_place
 
 
 class PropertySerializer(serializers.ModelSerializer):
@@ -40,7 +41,7 @@ class PlacesMicroSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Place
         fields = ('id', 'name', 'address', 'distance',
-                  'image', 'city_name', 'type')
+                  'image', 'city_name', 'type', 'latitude', 'longitude')
         read_only_fields = ['type']
 
     def to_representation(self, instance):
@@ -89,6 +90,15 @@ class PlaceDetailsSerializer(serializers.ModelSerializer):
         queryset_result = {stat['overall_rating']: stat['count'] for stat in queryset}
         data['rating_stat'] = {rate: queryset_result.get(rate, 0) for rate, _ in models.PlaceReview.RATING_CHOICES}
         data['properties'] = properties_serializer.to_representation(instance.properties)
+        if instance.type == 1:
+            prediction = predict_place(instance.dataset_index, 10)
+        else:
+            # [property['name'] for property in data['properties']]
+            prediction = []
+        places_serializer = PlacesMicroSerializer(data=models.Place.objects.filter(
+            dataset_index__in=prediction, type=instance.type), many=True)
+        places_serializer.is_valid()
+        data['similar_places'] = places_serializer.data
         return data
 
 
@@ -108,7 +118,7 @@ class ActivitySerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         instance.place = models.Place.objects.get(id=data['place'])
-        data['place'] = PlacesMicroSerializer().to_representation(instance.place)
+        data['place'] = PlaceDetailsSerializer().to_representation(instance.place)
         return data
 
 
@@ -195,7 +205,6 @@ class AutoPlanSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         pass
-
     locations = serializers.ListField()
     trip_mode = serializers.ChoiceField(choices=[
         (1, 'Extended'), (2, 'Focused')

@@ -1,3 +1,5 @@
+import sys
+
 from django.db import transaction
 from django.db.models import Avg, Count, CharField, Value, F
 from django.db.models.functions import Concat
@@ -6,6 +8,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from planning_app.models import Place, GeoNameInfo
 import pandas as pd
+sys.path.append("./Search Engine/Trips-planning-system-main/")
+
+from search_engine.search_engine import SearchEngine
 
 import util
 
@@ -64,7 +69,7 @@ df = pd.read_csv(r"C:\Users\Nitro\Downloads\Compressed\content\cleaned_wikivecto
 
 
 class TripViewSet(viewsets.ModelViewSet):
-    permission_classes = []
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = models.Trip.objects.annotate(days_count=Count('days'), user_name=Concat(F('user__first_name'),
                                                                                        Value(' '),
                                                                                        F('user__last_name')))
@@ -176,20 +181,23 @@ class TripViewSet(viewsets.ModelViewSet):
             ordering_fields=[],
             search_fields=[])
     def plan_auto(self, request):
-        # (trip1, trip2) = util.fix_json(request)
-        # print(f'user {request.user}')
-        # t1 = util.create(trip1, request.user)
-        #
-        # t2 = util.create(trip2, request.user)
-        # print(f't1 t2 result {[t1, t2]}')
-        # return Response({'trips': [t1.data, t2.data]})
-        return Response({'message': 'Hello, World!'})
+        serializer = self.get_serializer(data=request.data)
+        engine = SearchEngine()
+        if serializer.is_valid(raise_exception=True):
+            res = engine.plan_trip(serializer.validated_data)
+            trip1, trip2 = util.fix_json(res)
+            t1 = util.create(trip1, request.user)
+
+            t2 = util.create(trip2, request.user)
+            print(f't1 t2 result {[t1, t2]}')
+            return Response({'trips': [t1.data, t2.data]})
 
     @action(methods=['GET'], url_path='create_data', detail=False, filterset_class=None, ordering_fields=[], search_fields=[])
     def create_geoname_data(self, request):
         with transaction.atomic():
             for index, row in df.iterrows():
                 obj = Place.objects.create(
+                    dataset_index=index,
                     name=str(row['name']),
                     latitude=row['latitude'],
                     longitude=row['longitude'],

@@ -1,11 +1,13 @@
-import json
-
+import pandas as pd
+import numpy as np
 import requests
+import json
+import math
 
 
 def _clean_kinds(kinds: str):
     result = ''
-    iter = 2
+    iter = 3
 
     for kind in kinds.split(','):
         iter -= 1

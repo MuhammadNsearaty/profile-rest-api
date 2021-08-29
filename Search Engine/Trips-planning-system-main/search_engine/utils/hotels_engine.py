@@ -1,7 +1,8 @@
-import json
-
 import pandas as pd
+import numpy as np
 import requests
+import json
+import math
 from search_engine.utils import data_parser as dp
 
 
@@ -9,8 +10,8 @@ class HotelSearchEngine:
 
     def __init__(self):
         self.headers = {
-            'x-rapidapi-key': "1efa92d164msh01d90804f3853d5p17d12djsn8d02050ddb80",
-            'x-rapidapi-host': "hotels4.p.rapidapi.com"
+            'x-rapidapi-host': "hotels4.p.rapidapi.com",
+            'x-rapidapi-key': "4a4ab26c23msh5f9bb19277862bcp170a62jsn2d47921c76f1"
         }
         self.dojo_url = 'https://hotels4.p.rapidapi.com'
 
@@ -78,14 +79,33 @@ class HotelSearchEngine:
         return pd.DataFrame.from_dict(json.loads(jsn.text)['data']['body']['searchResults']['results'])
 
     def _clean_filters(self, json):
-        return {
-            'landmarks': json['landmarks']['items'][:10],
-            'neighbourhood': json['neighbourhood']['items'][:10],
-            'accommodationType': json['accommodationType']['items'][:10],
-            'facilities': json['facilities']['items'][:10],
-            'accessibility': json['accessibility']['items'][:10],
-            'paymentPreference': json['paymentPreference']['items'][:10],
-        }
+        result = {}
+        try:
+            result['landmarks'] = json['landmarks']['items'][:10]
+        except:
+            pass
+        try:
+            result['neighbourhood'] = json['neighbourhood']['items'][:10]
+        except:
+            pass
+        try:
+            result['accommodationType'] = json['accommodationType']['items'][:10]
+        except:
+            pass
+        try:
+            result['facilities'] = json['facilities']['items'][:10]
+        except:
+            pass
+        try:
+            result['accessibility'] = json['accessibility']['items'][:10]
+        except:
+            pass
+        try:
+            result['paymentPreference'] = json['paymentPreference']['items'][:10]
+        except:
+            pass
+
+        return result
 
     # get a list of filters from unparsed json file
     def get_search_filters(self, jsn):
@@ -100,7 +120,7 @@ class HotelSearchEngine:
     # general booking end_point -> search for hotels in a specific location.
     def search_location(self, loc, pn, check_in, check_out, adults, sort_order='PRICE', filters={}):
         '''
-        sort_order : One of the following is allowed:
+        sort_order : One of the following is allowed: 
         BEST_SELLER|
         STAR_RATING_HIGHEST_FIRST|
         STAR_RATING_LOWEST_FIRST|

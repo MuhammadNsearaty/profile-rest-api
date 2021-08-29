@@ -3,7 +3,6 @@ import datetime
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.db.models.fields import CharField
 
 
 class Property(models.Model):
@@ -27,7 +26,8 @@ class Place(models.Model):
     distance = models.FloatField(null=False, default=0.0)
     properties = models.ManyToManyField('Property', related_name='places')
     address = models.CharField(max_length=100, default='')
-    description = models.CharField(max_length=300, default='')
+    description = models.CharField(max_length=300,
+                                   default='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque efficitur posuere. Curabitur tincidunt placerat diam ac efficitur. Cras rutrum egestas nisl vitae pulvinar. Donec id mollis diam, id hendrerit neque.')
     # TODO make null False
     image = models.URLField(max_length=200, null=True)
     PLACE_TYPES = [
@@ -36,7 +36,9 @@ class Place(models.Model):
     ]
     type = models.IntegerField(choices=PLACE_TYPES, default=1)
     price = models.PositiveIntegerField(default=10)
-    open_trip_map_id = CharField(max_length=15, default='')
+
+    open_trip_map_id = models.CharField(max_length=15, default='')
+    dataset_index = models.IntegerField(default=-1)
 
     def __str__(self):
         return self.name
