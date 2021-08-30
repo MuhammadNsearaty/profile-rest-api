@@ -9,7 +9,7 @@ from search_engine.trip_planner.trip_classes.Day import Day
 import json
 import requests
 
-API_KEY = '5b3ce3597851110001cf624859a9e4cf86a3409abd7387ad2d5cac7a'
+API_KEY = '5b3ce3597851110001cf6248bd5e3be150bc410ebc5d8527d2521161'
 
 
 def get_distance(item1: Item, item2: Item):
@@ -61,6 +61,7 @@ class Planner:
             response = requests.post(url=self.url, json=body, headers=header)
             if response.status_code == requests.codes.ok:
                 self.graph = json.loads(response.text)['distances']
+            print(response.text)
         except ValueError as err:
             print('distance matrix err: ', err)
 
@@ -79,6 +80,7 @@ class Planner:
     # plan optimal path on distance
     def plan_two_opt(self, iterations=5):
         iter = 0
+        print(self.graph)
         while iter < iterations:
             iter += 1
             initial_route = [0] + random.sample(range(1, len(self.graph)), len(self.graph) - 1)
@@ -96,11 +98,9 @@ class Planner:
                     for j in range(i + 1, len(self.graph)):
                         if j - i == 1:
                             continue
-                        new_route = best_route[:]
-                        new_route[i:j] = best_route[j - 1:i - 1:-1]
-                        if self.cost(new_route) < self.cost(best_route):
+                        if self.delta(best_route[i - 1], best_route[i], best_route[j - 1], best_route[j]) < 0:
+                            best_route[i:j] = best_route[j - 1:i - 1:-1]
                             improved = True
-                            best_route = new_route
 
             self.path = [self.items[i] for i in best_route]
             self.optimal_cost = 0
@@ -112,19 +112,10 @@ class Planner:
 
     # make schedule
     def split_trip_on_days(self, path, poi_per_day, n_days):
-        places = []
-        idx = 0
-        for i, place in enumerate(path):
-            places.append(place)
-            if len(places) >= poi_per_day:
-                self.days.append(Day(idx, deepcopy(places)))
-                idx +=1
-                places = []
-        # for items less than 5
-        if places:
-            self.days.append(Day(idx, places))
-            idx+=1
-            places = []
+        places_lists = np.array_split(path,n_days)
+        for i,place_list in enumerate(places_lists):
+            self.days.append(Day(i,place_list.tolist()))
+
         return self.days
 
     # insert restaurant in the day at index
@@ -144,7 +135,6 @@ class Planner:
             self.days = self.split_trip_on_days(self.path, places_per_day, n_days)
         else:
             self.days = self.split_trip_on_days(self.path, places_per_day + shop_count, n_days)
-
         for i, day in enumerate(self.days):
             days_items = day.items
 

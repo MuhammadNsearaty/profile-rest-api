@@ -1,4 +1,5 @@
-import sys
+import util
+import pandas as pd
 
 from django.db import transaction
 from django.db.models import Avg, Count, CharField, Value, F
@@ -7,12 +8,8 @@ from rest_framework import viewsets, parsers
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from planning_app.models import Place, GeoNameInfo
-import pandas as pd
-sys.path.append("./Search Engine/Trips-planning-system-main/")
 
 from search_engine.search_engine import SearchEngine
-
-import util
 
 from planning_app import permissions, filters, models, serializers
 from shared.permissions import IsOwnerOrReadOnly
@@ -45,6 +42,9 @@ class PlacesReviewsViewSet(viewsets.ModelViewSet):
     filterset_class = filters.PlaceReviewFilter
     search_fields = ['review_text', 'user_name', 'place__name']
     ordering_fields = ('date', 'overall_rating')
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class HotelDbViewSet(viewsets.ModelViewSet):
@@ -174,7 +174,7 @@ class TripViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    @action(methods=['POST'], url_path='semi_auto',
+    @action(methods=['POST'], url_path='auto',
             detail=False,
             parser_classes=[parsers.JSONParser],
             filterset_class=None,
@@ -182,8 +182,9 @@ class TripViewSet(viewsets.ModelViewSet):
             search_fields=[])
     def plan_auto(self, request):
         serializer = self.get_serializer(data=request.data)
-        engine = SearchEngine()
         if serializer.is_valid(raise_exception=True):
+            print(serializer.validated_data)
+            engine = SearchEngine()
             res = engine.plan_trip(serializer.validated_data)
             trip1, trip2 = util.fix_json(res)
             t1 = util.create(trip1, request.user)
@@ -192,7 +193,8 @@ class TripViewSet(viewsets.ModelViewSet):
             print(f't1 t2 result {[t1, t2]}')
             return Response({'trips': [t1.data, t2.data]})
 
-    @action(methods=['GET'], url_path='create_data', detail=False, filterset_class=None, ordering_fields=[], search_fields=[])
+    @action(methods=['GET'], url_path='create_data', detail=False, filterset_class=None, ordering_fields=[],
+            search_fields=[])
     def create_geoname_data(self, request):
         with transaction.atomic():
             for index, row in df.iterrows():

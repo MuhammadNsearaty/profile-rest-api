@@ -60,7 +60,7 @@ class UserProfilesApiView(viewsets.ModelViewSet):
     filterset_class = filters.UserProfileFilter
     permission_classes = (permissions.OwnerOrAdminOnly,)
 
-    @action(detail=False, url_path='/logout', methods=['GET'], permission_classes=(IsAuthenticated,))
+    @action(detail=False, url_path='logout', methods=['GET'], permission_classes=(IsAuthenticated,))
     def logout(self, request):
         user = request.user
         token = Token.objects.get(user=user)
@@ -93,10 +93,10 @@ class DevicesViewSet(viewsets.ModelViewSet):
         if self.validate_own(request.data):
             try:
                 obj = models.DeviceInfo.objects.get(uuid=request.data['uuid'])
-                serializer = self.get_serializer(obj, data=request.data, partial=True)
-                if serializer.is_valid(raise_exception=True):
-                    obj = serializer.update(obj, serializer.validated_data)
-                    return Response(serializer.to_representation(obj))
+                serializer = serializers.DeviceInfoSerializer(obj, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                obj = serializer.update(obj, serializer.validated_data)
+                return Response(serializer.to_representation(obj))
             except ObjectDoesNotExist:
                 if serializer.is_valid(raise_exception=True):
                     validated_data = serializer.validated_data

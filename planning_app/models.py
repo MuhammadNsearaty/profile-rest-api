@@ -18,7 +18,7 @@ class Property(models.Model):
 
 
 class Place(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=256)
     latitude = models.FloatField(null=False, default=0.0)
     longitude = models.FloatField(null=False, default=0.0)
     city_name = models.CharField(max_length=100)

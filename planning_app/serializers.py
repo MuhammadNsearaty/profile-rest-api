@@ -215,3 +215,7 @@ class AutoPlanSerializer(serializers.Serializer):
     places_per_day = serializers.IntegerField(min_value=1, max_value=8)
     shop_dis = serializers.BooleanField(required=False)
     places_preferences = serializers.JSONField(required=False)
+
+
+class SimiAutoPlanSerializer(serializers.Serializer):
+    pass
