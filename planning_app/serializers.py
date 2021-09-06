@@ -5,7 +5,7 @@ from rest_framework import serializers
 
 from planning_app import models
 from profiles_app.serializers import UserProfileSerializer
-from utilities.places_recommender import predict_place
+# from utilities.places_recommender import predict_place
 
 
 class PropertySerializer(serializers.ModelSerializer):
@@ -90,15 +90,15 @@ class PlaceDetailsSerializer(serializers.ModelSerializer):
         queryset_result = {stat['overall_rating']: stat['count'] for stat in queryset}
         data['rating_stat'] = {rate: queryset_result.get(rate, 0) for rate, _ in models.PlaceReview.RATING_CHOICES}
         data['properties'] = properties_serializer.to_representation(instance.properties)
-        if instance.type == 1:
-            prediction = predict_place(instance.dataset_index, 10)
-        else:
-            # [property['name'] for property in data['properties']]
-            prediction = []
-        places_serializer = PlacesMicroSerializer(data=models.Place.objects.filter(
-            dataset_index__in=prediction, type=instance.type), many=True)
-        places_serializer.is_valid()
-        data['similar_places'] = places_serializer.data
+        # if instance.type == 1:
+        #     prediction = predict_place(instance.dataset_index, 10)
+        # else:
+        #     # [property['name'] for property in data['properties']]
+        #     prediction = []
+        # places_serializer = PlacesMicroSerializer(data=models.Place.objects.filter(
+        #     dataset_index__in=prediction, type=instance.type), many=True)
+        # places_serializer.is_valid()
+        # data['similar_places'] = places_serializer.data
         return data
 
 
