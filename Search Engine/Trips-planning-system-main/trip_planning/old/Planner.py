@@ -9,7 +9,7 @@ from search_engine.trip_planner.trip_classes.Day import Day
 import json
 import requests
 
-API_KEY = '5b3ce3597851110001cf6248815abfd4d8834abbbbd9a2df9ed7a478'
+API_KEY = '5b3ce3597851110001cf6248bd5e3be150bc410ebc5d8527d2521161'
 
 
 def get_distance(item1: Item, item2: Item):
@@ -61,6 +61,7 @@ class Planner:
             response = requests.post(url=self.url, json=body, headers=header)
             if response.status_code == requests.codes.ok:
                 self.graph = json.loads(response.text)['distances']
+            print(response.text)
         except ValueError as err:
             print('distance matrix err: ', err)
 
@@ -79,6 +80,7 @@ class Planner:
     # plan optimal path on distance
     def plan_two_opt(self, iterations=5):
         iter = 0
+        print(self.graph)
         while iter < iterations:
             iter += 1
             initial_route = [0] + random.sample(range(1, len(self.graph)), len(self.graph) - 1)
@@ -90,6 +92,7 @@ class Planner:
                 improved = False
                 tries += 1
                 if tries > 100:
+                    print(tries)
                     break
                 for i in range(1, len(self.graph) - 2):
                     for j in range(i + 1, len(self.graph)):
@@ -111,23 +114,10 @@ class Planner:
 
     # make schedule
     def split_trip_on_days(self, path, poi_per_day, n_days):
-        # places_lists = np.array_split(path,n_days)
-        # for i,place_list in enumerate(places_lists):
-        #     self.days.append(Day(i,place_list.tolist()))
-        places = []
+        places_lists = np.array_split(path,n_days)
+        for i,place_list in enumerate(places_lists):
+            self.days.append(Day(i,place_list.tolist()))
 
-        idx = 0
-        for i, place in enumerate(path):
-            places.append(place)
-            if len(places) >= poi_per_day:
-                self.days.append(Day(idx, places))
-                idx += 1
-                places = []
-        # for items less than 5
-        if places:
-            self.days.append(Day(idx, places))
-            idx += 1
-            places = []
         return self.days
 
     # insert restaurant in the day at index

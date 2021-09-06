@@ -33,7 +33,7 @@ class PlacesMiniSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         # TODO remove statement
-        data['image'] = f'https://loremflickr.com/320/320/hotels?random={instance.pk}'
+        data['image'] = f'https://loremflickr.com/320/320/flower?random={instance.pk}'
         return data
 
 
@@ -47,7 +47,7 @@ class PlacesMicroSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         # TODO remove statement
-        data['image'] = f'https://loremflickr.com/320/320/hotels?random={instance.pk}'
+        data['image'] = f'https://loremflickr.com/320/320/flower?random={instance.pk}'
         return data
 
 
@@ -84,7 +84,7 @@ class PlaceDetailsSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         properties_serializer = PropertySerializer(many=True, read_only=True)
         # TODO remove statement
-        data['image'] = f'https://loremflickr.com/320/320/hotels?random={instance.pk}'
+        data['image'] = f'https://loremflickr.com/320/320/flower?random={instance.pk}'
         queryset = models.PlaceReview.objects.filter(
             place=instance.pk).values('overall_rating').order_by().annotate(count=Count('overall_rating'))
         queryset_result = {stat['overall_rating']: stat['count'] for stat in queryset}
@@ -195,7 +195,7 @@ class TripMiniSerializer(serializers.ModelSerializer):
         json = super().to_representation(instance)
         activities = models.Activity.objects.filter(day__in=instance.days.values('pk'))
         json['cities'] = [city_name[0] for city_name in activities.values_list('place__city_name').distinct()]
-        json['image'] = f'https://loremflickr.com/320/320/places?random={instance.pk}'
+        json['image'] = f'https://loremflickr.com/320/320/garden?random={instance.pk}'
         return json
 
 

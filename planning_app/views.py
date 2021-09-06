@@ -1,3 +1,5 @@
+from django.http import FileResponse
+
 import util
 import pandas as pd
 
@@ -65,7 +67,8 @@ class HotelDbViewSet(viewsets.ModelViewSet):
         serializer.save(type=models.Place.PLACE_TYPES[1][0])
 
 
-df = pd.read_csv(r"C:\Users\Nitro\Downloads\Compressed\content\cleaned_wikivector_geonames.csv")
+# df = pd.read_csv(r"C:\Users\Nitro\Downloads\Compressed\content\cleaned_wikivector_geonames.csv")
+# df = pd.read_csv(r"C:\Users\Nitro\SOURCE\profile-rest-api\assets\Hotels Recommender\SelectedFeaturesHotelDataset.csv")
 
 
 class TripViewSet(viewsets.ModelViewSet):
@@ -193,27 +196,55 @@ class TripViewSet(viewsets.ModelViewSet):
             print(f't1 t2 result {[t1, t2]}')
             return Response({'trips': [t1.data, t2.data]})
 
+    @action(methods=['GET'], url_path='map-view',
+            detail=False,
+            parser_classes=[parsers.JSONParser],
+            filterset_class=None,
+            ordering_fields=[],
+            search_fields=[])
+    def webview(self, request):
+        return FileResponse(open(r'C:\Users\Nitro\SOURCE\profile-rest-api\map.html', 'rb'), as_attachment=False)
+
     @action(methods=['GET'], url_path='create_data', detail=False, filterset_class=None, ordering_fields=[],
             search_fields=[])
     def create_geoname_data(self, request):
-        with transaction.atomic():
-            for index, row in df.iterrows():
-                obj = Place.objects.create(
-                    dataset_index=index,
-                    name=str(row['name']),
-                    latitude=row['latitude'],
-                    longitude=row['longitude'],
-                    city_name=str(row['nearest city']),
-                    type=Place.PLACE_TYPES[0][0],
-                )
-                country_name = str(row['country'])
-                if len(country_name) > 50:
-                    country_name = 'unknown'
-                GeoNameInfo.objects.create(
-                    geo_name_id=row['geonameid'],
-                    country_name=country_name,
-                    wiki_title=row['wiki title'],
-                    wiki_link=row['wiki link'],
-                    place=obj,
-                )
+        # with transaction.atomic():
+        #     for index, row in df[df['country code'].isin(['SY', 'LB', 'FR', 'TR', 'IT', 'BR'])].iterrows():
+        #         obj = Place.objects.create(
+        #             dataset_index=index,
+        #             name=str(row['name']),
+        #             latitude=row['latitude'],
+        #             longitude=row['longitude'],
+        #             city_name=str(row['nearest city']),
+        #             type=Place.PLACE_TYPES[0][0],
+        #         )
+        #         country_name = str(row['country'])
+        #         if len(country_name) > 50:
+        #             country_name = 'unknown'
+        #         GeoNameInfo.objects.create(
+        #             geo_name_id=row['geonameid'],
+        #             country_name=country_name,
+        #             wiki_title=row['wiki title'],
+        #             wiki_link=row['wiki link'],
+        #             place=obj,
+        #         )
+
+        # with transaction.atomic():
+        #     prop_id = []
+        #     for t in df.columns:
+        #         if t != 'country' and t != 'name':
+        #             _property, _ = models.Property.objects.get_or_create(name=t,
+        #                                                                  defaults={
+        #                                                                      "name": t})
+        #             prop_id.append(_property.id)
+        #     for index, row in df[df['country'].isin(['Lebanon', 'Syria', 'France', 'Turkey'])].iterrows():
+        #         obj = models.Place.objects.create(
+        #             name=row['name'], latitude=0,
+        #             longitude=0, city_name='unknown',
+        #             type=models.Place.PLACE_TYPES[1][0],
+        #         )
+        #         for t in prop_id:
+        #             _property = models.Property.objects.get(id=t)
+        #             if row[_property.name] != 0:
+        #                 _property.places.add(obj.id)
         return Response({'message': 'Hello, World!'})

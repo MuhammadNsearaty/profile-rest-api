@@ -5,125 +5,107 @@
                 "day_index": 1,
                 "items": [
                     {
-                        "item_id": "487455",
+                        "item_id": "230411",
                         "item_type": [
                             ""
                         ],
                         "type": 2,
                         "distance": 0,
-                        "name": "Hyatt Regency Istanbul Atak\u00f6y",
-                        "city": "Istanbul",
+                        "name": "Le Meridien Dubai Hotel & Conference Centre",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.9756,
-                            "lon": 28.857127
+                            "lat": 25.249397,
+                            "lon": 55.347909
                         },
-                        "rate": "8.0"
+                        "rate": "9.0"
                     },
                     {
-                        "item_id": "Q308162",
+                        "item_id": "W542042595",
                         "item_type": [
-                            "architecture",
-                            "historic",
+                            "museums",
+                            "cultural",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 5754.95106216,
-                        "name": "Abdi \u0130pek\u00e7i Arena",
-                        "city": "Istanbul",
+                        "distance": 5076.51626335,
+                        "name": "Al Fahidi Historical Neighbourhood",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.996944,
-                            "lon": 28.919443
+                            "lat": 25.26416,
+                            "lon": 55.300201
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "W619276340",
-                        "item_type": [
-                            "fortifications",
-                            "historic",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5848.87757327,
-                        "name": "Yedikule Fortress",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.993034,
-                            "lon": 28.92271
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W23272340",
-                        "item_type": [
-                            "historic",
-                            "architecture",
-                            "fortifications",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5834.62922374,
-                        "name": "Golden Gate (Constantinople)",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.99279,
-                            "lon": 28.922642
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W23272340",
-                        "item_type": [
-                            "historic",
-                            "architecture",
-                            "fortifications",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5834.62922374,
-                        "name": "Golden Gate (Constantinople)",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.99279,
-                            "lon": 28.922642
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "Q1551419",
+                        "item_id": "W491182166",
                         "item_type": [
                             "religion",
-                            "architecture",
-                            "historic",
+                            "other",
+                            "museums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 6432.42859264,
-                        "name": "Monastery of Stoudios",
-                        "city": "Istanbul",
+                        "distance": 5181.50720367,
+                        "name": "Al Bastakiya Mosque",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.996113,
-                            "lon": 28.928612
+                            "lat": 25.265011,
+                            "lon": 55.299423
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "Q776353",
+                        "item_id": "W491182166",
                         "item_type": [
-                            "historic",
-                            "cultural",
-                            "urban",
+                            "religion",
+                            "other",
+                            "museums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8069.80867676,
-                        "name": "Column of Arcadius",
-                        "city": "Istanbul",
+                        "distance": 5181.50720367,
+                        "name": "Al Bastakiya Mosque",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.007801,
-                            "lon": 28.9431
+                            "lat": 25.265011,
+                            "lon": 55.299423
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "R7214752",
+                        "item_type": [
+                            "religion",
+                            "mosques",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5410.64305737,
+                        "name": "Grand Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.264427,
+                            "lon": 55.296806
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q17627890",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7153.01813031,
+                        "name": "Entisar Tower",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.224056,
+                            "lon": 55.282612
                         },
                         "rate": "3"
                     }
@@ -133,112 +115,112 @@
                 "day_index": 2,
                 "items": [
                     {
-                        "item_id": "N2511296170",
+                        "item_id": "Q1630922",
                         "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8542.05729005,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
+                        "distance": 7197.59189267,
+                        "name": "Acico Twin Towers",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.005722,
-                            "lon": 28.950533
+                            "lat": 25.22352,
+                            "lon": 55.282383
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "W499251648",
+                        "item_id": "W386649647",
                         "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 8576.18296868,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.005116,
-                            "lon": 28.951307
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "N2511296163",
-                        "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 8562.57757409,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.005089,
-                            "lon": 28.951147
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "N415157636",
-                        "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 10473.68673737,
-                        "name": "Serpent Column",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.005661,
-                            "lon": 28.975103
-                        },
-                        "rate": "7"
-                    },
-                    {
-                        "item_id": "N415157636",
-                        "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 10473.68673737,
-                        "name": "Serpent Column",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.005661,
-                            "lon": 28.975103
-                        },
-                        "rate": "7"
-                    },
-                    {
-                        "item_id": "N4763681623",
-                        "item_type": [
-                            "gardens",
-                            "urban",
+                            "museums",
                             "cultural",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 10157.00572786,
-                        "name": "Alfred Heilbronn Botanical Garden",
-                        "city": "Istanbul",
+                        "distance": 5031.99199324,
+                        "name": "Dubai Frame",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.018314,
-                            "lon": 28.963871
+                            "lat": 25.235458,
+                            "lon": 55.300373
                         },
                         "rate": "3"
+                    },
+                    {
+                        "item_id": "Q3336839",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 3590.71774013,
+                        "name": "National Bank of Dubai",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.260555,
+                            "lon": 55.314445
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W191101231",
+                        "item_type": [
+                            "religion",
+                            "mosques",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 103416.57219718,
+                        "name": "Al Badiyah Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.439114,
+                            "lon": 56.35379
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W191101232",
+                        "item_type": [
+                            "religion",
+                            "mosques",
+                            "fortifications",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 103376.23772047,
+                        "name": "Al Badiyah Fort",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.439238,
+                            "lon": 56.353352
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "N4929166822",
+                        "item_type": [
+                            "fortifications",
+                            "historic",
+                            "museums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 172465.86408116,
+                        "name": "Sohar Fort Museum",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 24.362141,
+                            "lon": 56.74963
+                        },
+                        "rate": "7"
                     }
                 ]
             },
@@ -246,7 +228,76 @@
                 "day_index": 3,
                 "items": [
                     {
-                        "item_id": "N4477143891",
+                        "item_id": "129129",
+                        "item_type": [
+                            ""
+                        ],
+                        "type": 2,
+                        "distance": 0,
+                        "name": "Le Meridien Barcelona",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.38371,
+                            "lon": 2.17111
+                        },
+                        "rate": "8.6"
+                    },
+                    {
+                        "item_id": "N2896807807",
+                        "item_type": [
+                            "historic",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 377.31915208,
+                        "name": "Cafe of the Opera",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.38097,
+                            "lon": 2.173777
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "R2873443",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 250.50299985,
+                        "name": "Church of Santa Ana",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.385933,
+                            "lon": 2.171609
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "Q21568919",
+                        "item_type": [
+                            "historic",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 14.43797299,
+                        "name": "Edifici Companyia de Tabacs de Filipines",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.383579,
+                            "lon": 2.17111
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W132533806",
                         "item_type": [
                             "historic",
                             "palaces",
@@ -254,35 +305,53 @@
                             ""
                         ],
                         "type": 1,
-                        "distance": 15448.32379844,
-                        "name": "Y\u0131ld\u0131z Palace",
-                        "city": "Istanbul",
+                        "distance": 153.54942662,
+                        "name": "Palau de la Virreina",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 41.050713,
-                            "lon": 29.011703
+                            "lat": 41.382362,
+                            "lon": 2.171527
                         },
                         "rate": "7"
                     },
                     {
-                        "item_id": "N1007724138",
+                        "item_id": "W126336685",
                         "item_type": [
-                            "historical",
-                            "historic",
+                            "urban",
+                            "cultural",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 92808.78758855,
-                        "name": "Cumal\u0131k\u0131z\u0131k",
-                        "city": "Istanbul",
+                        "distance": 346.53876373,
+                        "name": "La Rambla",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.175213,
-                            "lon": 29.172689
+                            "lat": 41.381081,
+                            "lon": 2.173344
                         },
                         "rate": "7"
                     },
                     {
-                        "item_id": "W408822809",
+                        "item_id": "W239117583",
+                        "item_type": [
+                            "urban",
+                            "cultural",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 337.95672152,
+                        "name": "La Rambla",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.381199,
+                            "lon": 2.173393
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "N4166496789",
                         "item_type": [
                             "historic",
                             "architecture",
@@ -290,68 +359,14 @@
                             ""
                         ],
                         "type": 1,
-                        "distance": 95006.9127134,
-                        "name": "\u0130znik",
-                        "city": "Istanbul",
+                        "distance": 648.9260485,
+                        "name": "Restaurante Grill Room",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.428207,
-                            "lon": 29.721098
+                            "lat": 41.379242,
+                            "lon": 2.176107
                         },
                         "rate": "7"
-                    },
-                    {
-                        "item_id": "N5661339121",
-                        "item_type": [
-                            "bridges",
-                            "architecture",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 130527.66230726,
-                        "name": "justinianus bridge",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.737453,
-                            "lon": 30.373093
-                        },
-                        "rate": "7"
-                    },
-                    {
-                        "item_id": "W189584048",
-                        "item_type": [
-                            "bridges",
-                            "architecture",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 130350.83931008,
-                        "name": "Justinaus",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.73679,
-                            "lon": 30.370762
-                        },
-                        "rate": "7"
-                    },
-                    {
-                        "item_id": "N3236233297",
-                        "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 9000.89685999,
-                        "name": "Column of Marcian",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.015442,
-                            "lon": 28.950285
-                        },
-                        "rate": "3"
                     }
                 ]
             },
@@ -359,223 +374,148 @@
                 "day_index": 4,
                 "items": [
                     {
-                        "item_id": "W136456159",
-                        "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 9579.00954153,
-                        "name": "Fethiye Museum",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.029148,
-                            "lon": 28.946388
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "N5243953326",
-                        "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 9573.81212783,
-                        "name": "Fethiye Camii",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.029068,
-                            "lon": 28.94639
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W32395058",
-                        "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 9252.31757752,
-                        "name": "Kariye Museum",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.0312,
-                            "lon": 28.93903
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "N4966376521",
-                        "item_type": [
-                            "museums",
-                            "aquariums",
-                            "cultural",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 8440.03224226,
-                        "name": "sea life",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.045597,
-                            "lon": 28.896212
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "Q31192574",
-                        "item_type": [
-                            "sport",
-                            "stadiums",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5678.2656802,
-                        "name": "Necmi Kad\u0131o\u011flu Stadium",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.02375,
-                            "lon": 28.879833
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "Q6078807",
+                        "item_id": "N1072798261",
                         "item_type": [
                             "historic",
-                            "archaeology",
+                            "architecture",
+                            "fortifications",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 483.67636298,
+                        "name": "Taverna del Bisbe",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.384926,
+                            "lon": 2.176663
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "Q21903344",
+                        "item_type": [
+                            "religion",
+                            "churches",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 3117.99512432,
-                        "name": "Cistern of the Hebdomon",
-                        "city": "Istanbul",
+                        "distance": 269.63752797,
+                        "name": "Hospital de San Severo",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.993099,
-                            "lon": 28.886101
+                            "lat": 41.383556,
+                            "lon": 2.174327
                         },
-                        "rate": "3"
-                    }
-                ]
-            },
-            {
-                "day_index": 5,
-                "items": [
+                        "rate": "7"
+                    },
                     {
-                        "item_id": "W325726729",
+                        "item_id": "W226409749",
                         "item_type": [
-                            "sport",
-                            "stadiums",
+                            "historic",
+                            "palaces",
+                            "architecture",
                             ""
                         ],
                         "type": 1,
-                        "distance": 1466.94255661,
-                        "name": "Sinan Erdem Dome",
-                        "city": "Istanbul",
+                        "distance": 77.11529418,
+                        "name": "Palau Moja",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.988594,
-                            "lon": 28.853994
+                            "lat": 41.383377,
+                            "lon": 2.17192
                         },
-                        "rate": "3"
+                        "rate": "7"
                     },
                     {
-                        "item_id": "Q6091148",
+                        "item_id": "W132419453",
                         "item_type": [
-                            "historic",
-                            "monuments",
+                            "religion",
+                            "churches",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 4179.42465541,
-                        "name": "Russian Monument of San Stefano",
-                        "city": "Istanbul",
+                        "distance": 72.07419142,
+                        "name": "Betlem Church",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.961559,
-                            "lon": 28.81106
+                            "lat": 41.38308,
+                            "lon": 2.171307
                         },
-                        "rate": "3"
+                        "rate": "7"
                     },
                     {
-                        "item_id": "W315607041",
+                        "item_id": "W37142909",
                         "item_type": [
-                            "museums",
-                            "aquariums",
-                            "cultural",
+                            "religion",
+                            "churches",
+                            "urban",
                             ""
                         ],
                         "type": 1,
-                        "distance": 4974.35401962,
-                        "name": "Istanbul Aquarium",
-                        "city": "Istanbul",
+                        "distance": 343.4626294,
+                        "name": "Esgl\u00e9sia de Sant Agust\u00ed de Barcelona",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.964237,
-                            "lon": 28.799963
+                            "lat": 41.380661,
+                            "lon": 2.171784
                         },
-                        "rate": "3"
+                        "rate": "7"
                     },
                     {
-                        "item_id": "Q5461957",
+                        "item_id": "Q44611470",
                         "item_type": [
-                            "biographical",
                             "historic",
-                            "museums",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 6286.68077186,
-                        "name": "Florya Atat\u00fcrk Marine Mansion",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.972599,
-                            "lon": 28.782539
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W27705333",
-                        "item_type": [
-                            "bridges",
                             "architecture",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 186269.14821119,
-                        "name": "Uzunk\u00f6pr\u00fc Bridge",
-                        "city": "Istanbul",
+                        "distance": 64.92146247,
+                        "name": "Building of the Royal Academy of Sciences and Arts of Barcelona",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 41.277573,
-                            "lon": 26.675133
+                            "lat": 41.384216,
+                            "lon": 2.170726
                         },
                         "rate": "7"
                     },
                     {
-                        "item_id": "N1037084486",
+                        "item_id": "Q11905721",
                         "item_type": [
-                            "national",
-                            "museums",
-                            "cultural",
+                            "religion",
+                            "churches",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 2891.85485472,
-                        "name": "Turkish Air Force Museum",
-                        "city": "Istanbul",
+                        "distance": 140.76387213,
+                        "name": "Antic Convent del Bonsucc\u00e9s",
+                        "city": "Barcelona",
                         "coordinate": {
-                            "lat": 40.964157,
-                            "lon": 28.826265
+                            "lat": 41.383888,
+                            "lon": 2.169444
                         },
-                        "rate": "3"
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "N4200467953",
+                        "item_type": [
+                            "historic",
+                            "architecture",
+                            "historic",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 916.89746917,
+                        "name": "Garriga",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.390781,
+                            "lon": 2.165454
+                        },
+                        "rate": "7"
                     }
                 ]
             }
@@ -587,92 +527,92 @@
                 "day_index": 1,
                 "items": [
                     {
-                        "item_id": "Q776353",
+                        "item_id": "N5557725122",
                         "item_type": [
-                            "historic",
-                            "cultural",
-                            "urban",
+                            "shops",
+                            "malls",
+                            "tourist",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8069.80867676,
-                        "name": "Column of Arcadius",
-                        "city": "Istanbul",
+                        "distance": 8884.42289035,
+                        "name": "dubai mall u",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.007801,
-                            "lon": 28.9431
+                            "lat": 25.199577,
+                            "lon": 55.278812
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "Q1551419",
+                        "item_id": "W532836516",
                         "item_type": [
-                            "religion",
+                            "skyscrapers",
                             "architecture",
-                            "historic",
+                            "accomodations",
                             ""
                         ],
                         "type": 1,
-                        "distance": 6432.42859264,
-                        "name": "Monastery of Stoudios",
-                        "city": "Istanbul",
+                        "distance": 9007.13337961,
+                        "name": "The Address - The BLVD",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.996113,
-                            "lon": 28.928612
+                            "lat": 25.200886,
+                            "lon": 55.276173
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N415157636",
+                        "item_id": "H4434929",
                         "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
+                            "guest",
+                            "skyscrapers",
+                            "architecture",
                             ""
                         ],
                         "type": 1,
-                        "distance": 10473.68673737,
-                        "name": "Serpent Column",
-                        "city": "Istanbul",
+                        "distance": 9337.5561349,
+                        "name": "quality furnished 1 bed in burj khalifa",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.005661,
-                            "lon": 28.975103
+                            "lat": 25.197521,
+                            "lon": 55.274872
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "N415157636",
+                        "item_id": "W47515677",
                         "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
+                            "shops",
+                            "malls",
+                            "tourist",
                             ""
                         ],
                         "type": 1,
-                        "distance": 10473.68673737,
-                        "name": "Serpent Column",
-                        "city": "Istanbul",
+                        "distance": 9040.88283843,
+                        "name": "The Dubai Mall",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.005661,
-                            "lon": 28.975103
+                            "lat": 25.197092,
+                            "lon": 55.279037
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "N2511296163",
+                        "item_id": "Q1264855",
                         "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8562.57757409,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
+                        "distance": 8373.8524526,
+                        "name": "The Index",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.005089,
-                            "lon": 28.951147
+                            "lat": 25.207117,
+                            "lon": 55.279018
                         },
                         "rate": "3"
                     }
@@ -682,92 +622,88 @@
                 "day_index": 2,
                 "items": [
                     {
-                        "item_id": "N2511296170",
+                        "item_id": "230411",
                         "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
+                            ""
+                        ],
+                        "type": 2,
+                        "distance": 0,
+                        "name": "Le Meridien Dubai Hotel & Conference Centre",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.249397,
+                            "lon": 55.347909
+                        },
+                        "rate": "9.0"
+                    },
+                    {
+                        "item_id": "W25780630",
+                        "item_type": [
+                            "shops",
+                            "malls",
+                            "tourist",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8542.05729005,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
+                        "distance": 1609.04451013,
+                        "name": "Deira City Centre",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.005722,
-                            "lon": 28.950533
+                            "lat": 25.252228,
+                            "lon": 55.332245
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N3236233297",
+                        "item_id": "N4757512725",
                         "item_type": [
-                            "historic",
-                            "monuments",
-                            "burial",
+                            "shops",
+                            "supermarkets",
+                            "malls",
                             ""
                         ],
                         "type": 1,
-                        "distance": 9000.89685999,
-                        "name": "Column of Marcian",
-                        "city": "Istanbul",
+                        "distance": 1437.89582707,
+                        "name": "Deira City Center",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.015442,
-                            "lon": 28.950285
+                            "lat": 25.251019,
+                            "lon": 55.333748
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "W136456159",
+                        "item_id": "Q3336839",
                         "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 9579.00954153,
-                        "name": "Fethiye Museum",
-                        "city": "Istanbul",
+                        "distance": 3590.71774013,
+                        "name": "National Bank of Dubai",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.029148,
-                            "lon": 28.946388
+                            "lat": 25.260555,
+                            "lon": 55.314445
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N5243953326",
+                        "item_id": "R9125734",
                         "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 9573.81212783,
-                        "name": "Fethiye Camii",
-                        "city": "Istanbul",
+                        "distance": 3566.81103017,
+                        "name": "Rashid Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.029068,
-                            "lon": 28.94639
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W32395058",
-                        "item_type": [
-                            "religion",
-                            "mosques",
-                            "churches",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 9252.31757752,
-                        "name": "Kariye Museum",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.0312,
-                            "lon": 28.93903
+                            "lat": 25.279675,
+                            "lon": 55.359955
                         },
                         "rate": "3"
                     }
@@ -777,94 +713,90 @@
                 "day_index": 3,
                 "items": [
                     {
-                        "item_id": "N4763681623",
+                        "item_id": "W201292184",
                         "item_type": [
-                            "gardens",
-                            "urban",
-                            "cultural",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 10157.00572786,
-                        "name": "Alfred Heilbronn Botanical Garden",
-                        "city": "Istanbul",
+                        "distance": 4575.86554297,
+                        "name": "Maktoum stadium & Bowling club",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.018314,
-                            "lon": 28.963871
+                            "lat": 25.290703,
+                            "lon": 55.348175
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N4477143891",
+                        "item_id": "W74954610",
                         "item_type": [
-                            "historic",
-                            "palaces",
-                            "architecture",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 15448.32379844,
-                        "name": "Y\u0131ld\u0131z Palace",
-                        "city": "Istanbul",
+                        "distance": 11632.97121349,
+                        "name": "Sharjah Cricket Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.050713,
-                            "lon": 29.011703
+                            "lat": 25.33078,
+                            "lon": 55.420906
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "W408822809",
+                        "item_id": "W105359350",
                         "item_type": [
-                            "historic",
-                            "architecture",
-                            "interesting",
+                            "shops",
+                            "malls",
+                            "tourist",
                             ""
                         ],
                         "type": 1,
-                        "distance": 95006.9127134,
-                        "name": "\u0130znik",
-                        "city": "Istanbul",
+                        "distance": 7045.8055361,
+                        "name": "Mirdif City Center",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.428207,
-                            "lon": 29.721098
+                            "lat": 25.21607,
+                            "lon": 55.407467
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "N5661339121",
+                        "item_id": "W584967778",
                         "item_type": [
-                            "bridges",
-                            "architecture",
-                            "interesting",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 130527.66230726,
-                        "name": "justinianus bridge",
-                        "city": "Istanbul",
+                        "distance": 117349.89150605,
+                        "name": "Hazza bin Zayed Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.737453,
-                            "lon": 30.373093
+                            "lat": 24.245052,
+                            "lon": 55.717056
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "W189584048",
+                        "item_id": "Q2000728",
                         "item_type": [
-                            "bridges",
-                            "architecture",
-                            "interesting",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 130350.83931008,
-                        "name": "Justinaus",
-                        "city": "Istanbul",
+                        "distance": 122949.94059743,
+                        "name": "Sheikh Khalifa International Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.73679,
-                            "lon": 30.370762
+                            "lat": 24.207293,
+                            "lon": 55.766335
                         },
-                        "rate": "7"
+                        "rate": "3"
                     }
                 ]
             },
@@ -872,87 +804,91 @@
                 "day_index": 4,
                 "items": [
                     {
-                        "item_id": "W499251648",
-                        "item_type": [
-                            "industrial",
-                            "abandoned",
-                            "historic",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 8576.18296868,
-                        "name": "Yenikap\u0131 railway station",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 41.005116,
-                            "lon": 28.951307
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "487455",
-                        "item_type": [
-                            ""
-                        ],
-                        "type": 2,
-                        "distance": 0,
-                        "name": "Hyatt Regency Istanbul Atak\u00f6y",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.9756,
-                            "lon": 28.857127
-                        },
-                        "rate": "8.0"
-                    },
-                    {
-                        "item_id": "W325726729",
+                        "item_id": "R968978",
                         "item_type": [
                             "sport",
                             "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 1466.94255661,
-                        "name": "Sinan Erdem Dome",
-                        "city": "Istanbul",
+                        "distance": 129271.25280185,
+                        "name": "Zayed Sports City Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.988594,
-                            "lon": 28.853994
+                            "lat": 24.416084,
+                            "lon": 54.452602
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "Q31192574",
+                        "item_id": "N281184717",
                         "item_type": [
-                            "sport",
-                            "stadiums",
+                            "shops",
+                            "malls",
+                            "tourist",
                             ""
                         ],
                         "type": 1,
-                        "distance": 5678.2656802,
-                        "name": "Necmi Kad\u0131o\u011flu Stadium",
-                        "city": "Istanbul",
+                        "distance": 10239.32791029,
+                        "name": "Mercato Shopping Mall",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.02375,
-                            "lon": 28.879833
+                            "lat": 25.21641,
+                            "lon": 55.252979
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N4966376521",
+                        "item_id": "Q1808295",
                         "item_type": [
-                            "museums",
-                            "aquariums",
-                            "cultural",
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 8440.03224226,
-                        "name": "sea life",
-                        "city": "Istanbul",
+                        "distance": 7778.32507111,
+                        "name": "Al Yaqoub Tower",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.045597,
-                            "lon": 28.896212
+                            "lat": 25.216333,
+                            "lon": 55.279804
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q845182",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7404.07456532,
+                        "name": "Emirates Office Tower",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.217501,
+                            "lon": 55.283333
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q17627890",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7153.01813031,
+                        "name": "Entisar Tower",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.224056,
+                            "lon": 55.282612
                         },
                         "rate": "3"
                     }
@@ -962,92 +898,92 @@
                 "day_index": 5,
                 "items": [
                     {
-                        "item_id": "Q6078807",
+                        "item_id": "Q1630922",
                         "item_type": [
-                            "historic",
-                            "archaeology",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 3117.99512432,
-                        "name": "Cistern of the Hebdomon",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.993099,
-                            "lon": 28.886101
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "Q6091148",
-                        "item_type": [
-                            "historic",
-                            "monuments",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 4179.42465541,
-                        "name": "Russian Monument of San Stefano",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.961559,
-                            "lon": 28.81106
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "N1037084486",
-                        "item_type": [
-                            "national",
-                            "museums",
-                            "cultural",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 2891.85485472,
-                        "name": "Turkish Air Force Museum",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.964157,
-                            "lon": 28.826265
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "W27705333",
-                        "item_type": [
-                            "bridges",
+                            "skyscrapers",
                             "architecture",
                             "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 186269.14821119,
-                        "name": "Uzunk\u00f6pr\u00fc Bridge",
-                        "city": "Istanbul",
+                        "distance": 7197.59189267,
+                        "name": "Acico Twin Towers",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 41.277573,
-                            "lon": 26.675133
+                            "lat": 25.22352,
+                            "lon": 55.282383
                         },
-                        "rate": "7"
+                        "rate": "3"
                     },
                     {
-                        "item_id": "Q5461957",
+                        "item_id": "Q1470076",
                         "item_type": [
-                            "biographical",
-                            "historic",
-                            "museums",
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
                             ""
                         ],
                         "type": 1,
-                        "distance": 6286.68077186,
-                        "name": "Florya Atat\u00fcrk Marine Mansion",
-                        "city": "Istanbul",
+                        "distance": 7449.39387562,
+                        "name": "HHHR Tower",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.972599,
-                            "lon": 28.782539
+                            "lat": 25.221111,
+                            "lon": 55.280834
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q1436004",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7834.27200542,
+                        "name": "Khalid Al Attar Tower 2",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.217594,
+                            "lon": 55.278461
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q1069161",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 8445.45567369,
+                        "name": "Chelsea Tower",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.211378,
+                            "lon": 55.275257
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W175115425",
+                        "item_type": [
+                            "shops",
+                            "malls",
+                            "tourist",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 20791.21627262,
+                        "name": "Mall of the Emirates",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.118244,
+                            "lon": 55.200363
                         },
                         "rate": "3"
                     }
@@ -1057,92 +993,91 @@
                 "day_index": 6,
                 "items": [
                     {
-                        "item_id": "W315607041",
+                        "item_id": "W93632515",
                         "item_type": [
-                            "museums",
-                            "aquariums",
+                            "winter",
+                            "other",
+                            "sport",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 21020.21776555,
+                        "name": "Ski Dubai",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.117306,
+                            "lon": 55.198196
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W94414196",
+                        "item_type": [
+                            "accomodations",
+                            "other",
+                            "shops",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 26565.49672106,
+                        "name": "Atlantis Mall",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.13171,
+                            "lon": 55.118267
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W102832548",
+                        "item_type": [
                             "cultural",
+                            "cinemas",
+                            "theatres",
                             ""
                         ],
                         "type": 1,
-                        "distance": 4974.35401962,
-                        "name": "Istanbul Aquarium",
-                        "city": "Istanbul",
+                        "distance": 32251.90420602,
+                        "name": "Ibn Battuta Mall",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.964237,
-                            "lon": 28.799963
+                            "lat": 25.04458,
+                            "lon": 55.120575
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "N1007724138",
+                        "item_id": "N2377117124",
                         "item_type": [
-                            "historical",
-                            "historic",
-                            "interesting",
+                            "cultural",
+                            "cinemas",
+                            "theatres",
                             ""
                         ],
                         "type": 1,
-                        "distance": 92808.78758855,
-                        "name": "Cumal\u0131k\u0131z\u0131k",
-                        "city": "Istanbul",
+                        "distance": 32254.23326798,
+                        "name": "Ibn Battuta Mall",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.175213,
-                            "lon": 29.172689
-                        },
-                        "rate": "7"
-                    },
-                    {
-                        "item_id": "W23272340",
-                        "item_type": [
-                            "historic",
-                            "architecture",
-                            "fortifications",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5834.62922374,
-                        "name": "Golden Gate (Constantinople)",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.99279,
-                            "lon": 28.922642
+                            "lat": 25.044687,
+                            "lon": 55.120426
                         },
                         "rate": "3"
                     },
                     {
-                        "item_id": "W619276340",
+                        "item_id": "Q285692",
                         "item_type": [
-                            "fortifications",
-                            "historic",
-                            "interesting",
+                            "sport",
+                            "stadiums",
                             ""
                         ],
                         "type": 1,
-                        "distance": 5848.87757327,
-                        "name": "Yedikule Fortress",
-                        "city": "Istanbul",
+                        "distance": 130874.00099685,
+                        "name": "Al Nahyan Stadium",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.993034,
-                            "lon": 28.92271
-                        },
-                        "rate": "3"
-                    },
-                    {
-                        "item_id": "Q308162",
-                        "item_type": [
-                            "architecture",
-                            "historic",
-                            "interesting",
-                            ""
-                        ],
-                        "type": 1,
-                        "distance": 5754.95106216,
-                        "name": "Abdi \u0130pek\u00e7i Arena",
-                        "city": "Istanbul",
-                        "coordinate": {
-                            "lat": 40.996944,
-                            "lon": 28.919443
+                            "lat": 24.469397,
+                            "lon": 54.375252
                         },
                         "rate": "3"
                     }
@@ -1152,22 +1087,506 @@
                 "day_index": 7,
                 "items": [
                     {
-                        "item_id": "W23272340",
+                        "item_id": "R5719292",
                         "item_type": [
-                            "historic",
-                            "architecture",
+                            "sport",
+                            "stadiums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 130779.18822931,
+                        "name": "Al-Jazira Mohammed bin Zayed Stadium",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 24.452808,
+                            "lon": 54.392872
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q5206123",
+                        "item_type": [
+                            "sport",
+                            "stadiums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 25997.08078485,
+                        "name": "DSC Multi-Purpose Stadium",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.043303,
+                            "lon": 55.224579
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W139822392",
+                        "item_type": [
+                            "sport",
+                            "stadiums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 25940.3948114,
+                        "name": "Dubai International Cricket Stadium",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.046738,
+                            "lon": 55.219006
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W191101232",
+                        "item_type": [
+                            "religion",
+                            "mosques",
                             "fortifications",
                             ""
                         ],
                         "type": 1,
-                        "distance": 5834.62922374,
-                        "name": "Golden Gate (Constantinople)",
-                        "city": "Istanbul",
+                        "distance": 103376.23772047,
+                        "name": "Al Badiyah Fort",
+                        "city": "Dubai",
                         "coordinate": {
-                            "lat": 40.99279,
-                            "lon": 28.922642
+                            "lat": 25.439238,
+                            "lon": 56.353352
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W191101231",
+                        "item_type": [
+                            "religion",
+                            "mosques",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 103416.57219718,
+                        "name": "Al Badiyah Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.439114,
+                            "lon": 56.35379
+                        },
+                        "rate": "7"
+                    }
+                ]
+            },
+            {
+                "day_index": 8,
+                "items": [
+                    {
+                        "item_id": "230411",
+                        "item_type": [
+                            ""
+                        ],
+                        "type": 2,
+                        "distance": 0,
+                        "name": "Le Meridien Dubai Hotel & Conference Centre",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.249397,
+                            "lon": 55.347909
+                        },
+                        "rate": "9.0"
+                    },
+                    {
+                        "item_id": "Q3336839",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 3590.71774013,
+                        "name": "National Bank of Dubai",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.260555,
+                            "lon": 55.314445
                         },
                         "rate": "3"
+                    },
+                    {
+                        "item_id": "W542042595",
+                        "item_type": [
+                            "museums",
+                            "cultural",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5076.51626335,
+                        "name": "Al Fahidi Historical Neighbourhood",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.26416,
+                            "lon": 55.300201
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W491182166",
+                        "item_type": [
+                            "religion",
+                            "other",
+                            "museums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5181.50720367,
+                        "name": "Al Bastakiya Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.265011,
+                            "lon": 55.299423
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W491182166",
+                        "item_type": [
+                            "religion",
+                            "other",
+                            "museums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5181.50720367,
+                        "name": "Al Bastakiya Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.265011,
+                            "lon": 55.299423
+                        },
+                        "rate": "3"
+                    }
+                ]
+            },
+            {
+                "day_index": 9,
+                "items": [
+                    {
+                        "item_id": "R7214752",
+                        "item_type": [
+                            "religion",
+                            "mosques",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5410.64305737,
+                        "name": "Grand Mosque",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.264427,
+                            "lon": 55.296806
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q1630922",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7197.59189267,
+                        "name": "Acico Twin Towers",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.22352,
+                            "lon": 55.282383
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "Q17627890",
+                        "item_type": [
+                            "skyscrapers",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 7153.01813031,
+                        "name": "Entisar Tower",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.224056,
+                            "lon": 55.282612
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "W386649647",
+                        "item_type": [
+                            "museums",
+                            "cultural",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 5031.99199324,
+                        "name": "Dubai Frame",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 25.235458,
+                            "lon": 55.300373
+                        },
+                        "rate": "3"
+                    },
+                    {
+                        "item_id": "N4929166822",
+                        "item_type": [
+                            "fortifications",
+                            "historic",
+                            "museums",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 172465.86408116,
+                        "name": "Sohar Fort Museum",
+                        "city": "Dubai",
+                        "coordinate": {
+                            "lat": 24.362141,
+                            "lon": 56.74963
+                        },
+                        "rate": "7"
+                    }
+                ]
+            },
+            {
+                "day_index": 10,
+                "items": [
+                    {
+                        "item_id": "Q21903344",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 269.63752797,
+                        "name": "Hospital de San Severo",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.383556,
+                            "lon": 2.174327
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W239117583",
+                        "item_type": [
+                            "urban",
+                            "cultural",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 337.95672152,
+                        "name": "La Rambla",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.381199,
+                            "lon": 2.173393
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W37142909",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "urban",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 343.4626294,
+                        "name": "Esgl\u00e9sia de Sant Agust\u00ed de Barcelona",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.380661,
+                            "lon": 2.171784
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W126336685",
+                        "item_type": [
+                            "urban",
+                            "cultural",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 346.53876373,
+                        "name": "La Rambla",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.381081,
+                            "lon": 2.173344
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "129129",
+                        "item_type": [
+                            ""
+                        ],
+                        "type": 2,
+                        "distance": 0,
+                        "name": "Le Meridien Barcelona",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.38371,
+                            "lon": 2.17111
+                        },
+                        "rate": "8.6"
+                    }
+                ]
+            },
+            {
+                "day_index": 11,
+                "items": [
+                    {
+                        "item_id": "Q21568919",
+                        "item_type": [
+                            "historic",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 14.43797299,
+                        "name": "Edifici Companyia de Tabacs de Filipines",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.383579,
+                            "lon": 2.17111
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W132419453",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 72.07419142,
+                        "name": "Betlem Church",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.38308,
+                            "lon": 2.171307
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W132533806",
+                        "item_type": [
+                            "historic",
+                            "palaces",
+                            "architecture",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 153.54942662,
+                        "name": "Palau de la Virreina",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.382362,
+                            "lon": 2.171527
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "W226409749",
+                        "item_type": [
+                            "historic",
+                            "palaces",
+                            "architecture",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 77.11529418,
+                        "name": "Palau Moja",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.383377,
+                            "lon": 2.17192
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "R2873443",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 250.50299985,
+                        "name": "Church of Santa Ana",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.385933,
+                            "lon": 2.171609
+                        },
+                        "rate": "7"
+                    }
+                ]
+            },
+            {
+                "day_index": 12,
+                "items": [
+                    {
+                        "item_id": "Q11905721",
+                        "item_type": [
+                            "religion",
+                            "churches",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 140.76387213,
+                        "name": "Antic Convent del Bonsucc\u00e9s",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.383888,
+                            "lon": 2.169444
+                        },
+                        "rate": "7"
+                    },
+                    {
+                        "item_id": "Q44611470",
+                        "item_type": [
+                            "historic",
+                            "architecture",
+                            "interesting",
+                            ""
+                        ],
+                        "type": 1,
+                        "distance": 64.92146247,
+                        "name": "Building of the Royal Academy of Sciences and Arts of Barcelona",
+                        "city": "Barcelona",
+                        "coordinate": {
+                            "lat": 41.384216,
+                            "lon": 2.170726
+                        },
+                        "rate": "7"
                     }
                 ]
             }

@@ -10,9 +10,9 @@ class HotelSearchEngine:
 
     def __init__(self):
         self.headers = {
-            'x-rapidapi-host': "hotels4.p.rapidapi.com",
-            'x-rapidapi-key': "4a4ab26c23msh5f9bb19277862bcp170a62jsn2d47921c76f1"
-        }
+    'x-rapidapi-host': "hotels4.p.rapidapi.com",
+    'x-rapidapi-key': "88d5bf9d46msh7f603c884d2a30ap1a47fbjsn5e22d45bdb1e"
+    }
         self.dojo_url = 'https://hotels4.p.rapidapi.com'
 
     # 'raw requests' methods:
